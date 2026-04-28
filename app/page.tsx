@@ -266,7 +266,7 @@ function Hero({ onOpen, unlocked }: { onOpen: () => void; unlocked: boolean }) {
           style={{
             fontFamily: '"alfabet", "Alfabet Black", "Alfabet Bold", Manrope, "Helvetica Neue", Arial, sans-serif',
             fontWeight: 850,
-            fontSize: "clamp(18px, 4.4vw, 38px)",
+            fontSize: "clamp(15px, 4vw, 38px)",
             lineHeight: 1.12,
             letterSpacing: "-0.02em",
             color: DC.fg,
