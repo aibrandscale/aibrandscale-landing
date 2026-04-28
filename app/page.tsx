@@ -989,7 +989,7 @@ function FinalCTA({ onOpen }: { onOpen: () => void }) {
         <div className="relative flex flex-col items-center gap-6">
           <DesignEyebrow>Едно последно нещо</DesignEyebrow>
           <h2 style={{ margin: 0, fontFamily: "alfabet, sans-serif", fontWeight: 800, fontSize: "clamp(22px, 2.4vw, 32px)", letterSpacing: "-0.02em", color: DC.fg, lineHeight: 1.2, textWrap: "balance", maxWidth: 820 }}>
-            След 2 години AI ще управлява половината реклами по света. Въпросът е дали <em style={{ fontStyle: "italic", color: DC.purple100 }}>ти</em> ще ги управляваш или ще плащаш за тях.
+            До 2 години AI ще управлява половината реклами по света. Въпросът е само един: ще <em style={{ fontStyle: "italic", color: DC.purple100 }}>управляваш</em>, или ще <em style={{ fontStyle: "italic", color: DC.purple100 }}>плащаш</em>?
           </h2>
           <div className="mt-2 cta-pulse" style={{ display: "inline-flex", borderRadius: 999, animation: "ctaPulse 3.2s ease-in-out infinite" }}>
             <CTAPill big onClick={onOpen} ariaLabel="Получи мигновен достъп">Получи мигновен достъп →</CTAPill>
