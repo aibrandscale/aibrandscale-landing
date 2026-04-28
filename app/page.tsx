@@ -947,7 +947,8 @@ function FAQ() {
                   <span aria-hidden style={{
                     display: "inline-flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
                     width: 32, height: 32, borderRadius: "50%",
-                    background: isOpen ? `linear-gradient(135deg, ${DC.purple600}, ${DC.purple500})` : "rgba(255,255,255,0.06)",
+                    background: isOpen ? `linear-gradient(135deg, ${DC.purple600}, ${DC.purple500})` : "rgba(196,155,217,0.18)",
+                    border: isOpen ? "none" : "1px solid rgba(196,155,217,0.35)",
                     color: "#fff",
                     transform: isOpen ? "rotate(45deg)" : "rotate(0deg)",
                     transition: "transform 240ms cubic-bezier(0.23,1,0.32,1), background 240ms cubic-bezier(0.23,1,0.32,1)",
