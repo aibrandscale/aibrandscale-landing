@@ -1,6 +1,6 @@
 "use client";
 
-/* Shared design-kit primitives — ported from claude.ai/design ui_kits/website.
+/* Shared design-kit primitives ported from claude.ai/design ui_kits/website.
    Used across the landing to give every section a consistent purple-glow look. */
 
 import {

@@ -62,9 +62,9 @@ const oldWay = [
 
 const newWay = [
   "Първи клиент е възможен още в първите 30 дни",
-  "Това е умение, не продукт — търсенето е глобално и не свършва",
+  "Това е умение, не продукт търсенето е глобално и не свършва",
   "AI съкращава това, което преди отнемаше 10 години, до няколко седмици фокусирана работа",
-  "Свързано е директно с приходи — бизнесите плащат за него, защото им носи пари",
+  "Свързано е директно с приходи бизнесите плащат за него, защото им носи пари",
 ];
 
 const discover = [
@@ -89,7 +89,7 @@ const discover = [
 const modules = [
   { n: "01", title: "AI Foundations", desc: "Как работят рекламните алгоритми и защо AI промени играта в полза на новите играчи." },
   { n: "02", title: "Anti-Guru Mindset", desc: "Защо повечето „онлайн бизнес“ модели не работят и как да разпознаеш реална възможност." },
-  { n: "03", title: "Намиране на ниша", desc: "Списък с печеливши ниши за 2026 — къде търсенето е високо, а конкуренцията слаба." },
+  { n: "03", title: "Намиране на ниша", desc: "Списък с печеливши ниши за 2026 къде търсенето е високо, а конкуренцията слаба." },
   { n: "04", title: "Building the Offer", desc: "Как да опаковаш услугата си така, че клиентите да казват „да“ от първия разговор." },
   { n: "05", title: "AI Ad Creatives", desc: "Шаблони и инструменти за реклами, които конвертират; без снимачен екип и без бюджет за дизайн." },
   { n: "06", title: "Client Acquisition", desc: "Outbound и inbound системата, с която затваряш клиенти всяка седмица." },
@@ -106,12 +106,12 @@ const testimonials = [
 
 const faqs = [
   { q: "Имам ли нужда от опит или капитал, за да започна?", a: "Не. Цялата причина AI рекламите да работят за начинаещи е, че инструментите вече вършат това, което преди изискваше опит и бюджет. Единственото, което се иска от теб, е реално да гледаш обучението и да следваш стъпките по ред." },
-  { q: "Пробвал съм неща в онлайн бизнеса и нищо не сработи. Защо това е различно?", a: "Защото dropshipping, Amazon и faceless YouTube са продукти — а продуктите се пренасищат. AI рекламата е умение. Бизнесите плащат за умения всеки месец и те не се изчерпват. Напълно различна категория, напълно различна математика." },
-  { q: "Има толкова много курсове — какво прави този различен?", a: "Това не е курс. Това е безплатно обучение, което ти показва точната система, която бих използвал, ако трябваше да започна от 0 днес. Без теория, без преразказан YouTube съвет — само работният процес, който реално работи в 2026." },
+  { q: "Пробвал съм неща в онлайн бизнеса и нищо не сработи. Защо това е различно?", a: "Защото dropshipping, Amazon и faceless YouTube са продукти а продуктите се пренасищат. AI рекламата е умение. Бизнесите плащат за умения всеки месец и те не се изчерпват. Напълно различна категория, напълно различна математика." },
+  { q: "Има толкова много курсове какво прави този различен?", a: "Това не е курс. Това е безплатно обучение, което ти показва точната система, която бих използвал, ако трябваше да започна от 0 днес. Без теория, без преразказан YouTube съвет само работният процес, който реално работи в 2026." },
   { q: "Колко дълго е обучението?", a: "Около 60 минути. Без воден текст, без 3-часова продажба. Ще разбереш в първите 10 минути дали е за теб." },
-  { q: "Наистина ли е безплатно? Какъв е уловът?", a: "Да, наистина безплатно. В края накратко споменавам какво предлагаме за хората, които искат hands-on помощ — но самото обучение е завършено само по себе си. Повечето хора го прилагат, без изобщо да купят нещо." },
+  { q: "Наистина ли е безплатно? Какъв е уловът?", a: "Да, наистина безплатно. В края накратко споменавам какво предлагаме за хората, които искат hands-on помощ но самото обучение е завършено само по себе си. Повечето хора го прилагат, без изобщо да купят нещо." },
   { q: "Аз съм студент / работя на пълно работно време. Имам ли реално време за това?", a: "Да. Системата е проектирана за 1–2 фокусирани часа на ден. Първите 30 дни искат фокус, не свободно време." },
-  { q: "Нямам идея как AI се вписва в управлението на реклами. Ще се загубя ли?", a: "Не. Обучението приема, че никога не си докосвал AI или реклама. Започваме от нула умишлено — това е целият смисъл." },
+  { q: "Нямам идея как AI се вписва в управлението на реклами. Ще се загубя ли?", a: "Не. Обучението приема, че никога не си докосвал AI или реклама. Започваме от нула умишлено това е целият смисъл." },
 ];
 
 /* ─────────── PRIMITIVES ─────────── */
@@ -277,7 +277,7 @@ function HandwrittenArrow() {
 }
 
 /* ─────────── PROMO ─────────── */
-// Replaced by PurpleAlertNav from _design.tsx — kept for back-compat if referenced.
+// Replaced by PurpleAlertNav from _design.tsx kept for back-compat if referenced.
 function PromoBar() {
   return <PurpleAlertNav />;
 }
@@ -353,7 +353,7 @@ function Hero({ onOpen, unlocked }: { onOpen: () => void; unlocked: boolean }) {
           >
             €5K–€20K&nbsp;/&nbsp;месец
           </span>{" "}
-          — без опит, без голям бюджет, без собствен продукт и без аудитория.
+          без опит, без голям бюджет, без собствен продукт и без аудитория.
         </motion.p>
 
         <motion.p
@@ -445,7 +445,7 @@ function Hero({ onOpen, unlocked }: { onOpen: () => void; unlocked: boolean }) {
         <motion.div initial="hidden" animate="show" variants={fadeUp} custom={7} className="mt-32 flex flex-col items-center gap-7">
           <DesignEyebrow>Защо да го гледаш</DesignEyebrow>
           <div className="trust-pills-grid">
-            {/* Pill 1 — Beginners */}
+            {/* Pill 1 Beginners */}
             <div className="trust-pill" data-accent="purple">
               <div className="trust-pill__top">
                 <div className="trust-pill__icon-wrap">
@@ -456,10 +456,10 @@ function Hero({ onOpen, unlocked }: { onOpen: () => void; unlocked: boolean }) {
               <div className="trust-pill__metric">
                 <span className="trust-pill__big">100%</span>
               </div>
-              <p className="trust-pill__copy">Създадено за хора без опит — стъпка по стъпка от нулата.</p>
+              <p className="trust-pill__copy">Създадено за хора без опит стъпка по стъпка от нулата.</p>
             </div>
 
-            {/* Pill 2 — Rating */}
+            {/* Pill 2 Rating */}
             <div className="trust-pill" data-accent="purple">
               <div className="trust-pill__top">
                 <div className="trust-pill__icon-wrap">
@@ -473,7 +473,7 @@ function Hero({ onOpen, unlocked }: { onOpen: () => void; unlocked: boolean }) {
               <p className="trust-pill__copy">Оценено от <strong style={{ color: DC.fg }}>1,200+</strong> курсисти, които вече имат резултати.</p>
             </div>
 
-            {/* Pill 3 — Instant */}
+            {/* Pill 3 Instant */}
             <div className="trust-pill" data-accent="purple">
               <div className="trust-pill__top">
                 <div className="trust-pill__icon-wrap">
@@ -489,7 +489,7 @@ function Hero({ onOpen, unlocked }: { onOpen: () => void; unlocked: boolean }) {
                   <span style={{ fontSize: "0.55em", color: DC.fgMuted, fontWeight: 600 }}>&nbsp;сек.</span>
                 </span>
               </div>
-              <p className="trust-pill__copy">Гледаш веднага след регистрация — без опашки, без чакане за имейл.</p>
+              <p className="trust-pill__copy">Гледаш веднага след регистрация без опашки, без чакане за имейл.</p>
             </div>
           </div>
         </motion.div>
@@ -541,7 +541,7 @@ function Comparison() {
             Не си изостанал. Не си нямал късмет.<br />Просто са ти продали грешната възможност.
           </h2>
           <p className="mt-5 t-body" style={{ color: "var(--text-2)", maxWidth: 1080, fontStyle: "italic", fontSize: "clamp(14px, 1.1vw, 17px)", lineHeight: 1.55, textWrap: "balance" }}>
-            <strong style={{ color: "var(--text-1)" }}>Dropshipping. Amazon FBA. SMM агенции. Crypto bots. Faceless YouTube.</strong> Всяко едно от тях изискваше пари, които нямаше, време, което не можеше да отделиш, или преднина, която нямаше как да наваксаш. <strong style={{ color: "var(--text-1)" }}>AI рекламата обръща цялата игра</strong> — начинаещи вече изпреварват хора с години опит, защото теренът беше върнат обратно на нула.
+            <strong style={{ color: "var(--text-1)" }}>Dropshipping. Amazon FBA. SMM агенции. Crypto bots. Faceless YouTube.</strong> Всяко едно от тях изискваше пари, които нямаше, време, което не можеше да отделиш, или преднина, която нямаше как да наваксаш. <strong style={{ color: "var(--text-1)" }}>AI рекламата обръща цялата игра</strong> начинаещи вече изпреварват хора с години опит, защото теренът беше върнат обратно на нула.
           </p>
         </motion.div>
 
@@ -594,7 +594,7 @@ function WhatYouLearn() {
     {
       n: "1",
       title: "Рамката „AI Edge“",
-      body: "Защо 19-годишен човек с правилните prompts вече може да побеждава агенции, които таксуват $10,000/месец — и как точно да се позиционираш в тази празнина, преди останалият свят да навакса.",
+      body: "Защо 19-годишен човек с правилните prompts вече може да побеждава агенции, които таксуват $10,000/месец и как точно да се позиционираш в тази празнина, преди останалият свят да навакса.",
     },
     {
       n: "2",
@@ -614,7 +614,7 @@ function WhatYouLearn() {
           className="mb-14 mx-auto flex flex-col items-center text-center max-w-4xl">
           <div className="mb-5"><DesignEyebrow>Вътре в безплатното обучение</DesignEyebrow></div>
           <h2 className="t-section" style={{ fontSize: "clamp(20px, 2.4vw, 32px)", lineHeight: 1.25, letterSpacing: "-0.02em", fontWeight: 700, maxWidth: 1100, textWrap: "balance" }}>
-            Системата, която превръща AI в реален доход —<br />не просто в още един отворен таб в браузъра ти.
+            Системата, която превръща AI в реален доход <br />не просто в още един отворен таб в браузъра ти.
           </h2>
         </motion.div>
         <div className="grid md:grid-cols-3 gap-6 md:gap-8">
@@ -697,9 +697,9 @@ function Discover() {
 
 function WhyNow() {
   const stats = [
-    { big: "$740B", tag: "Глобален пазар", label: "Харчат се за реклама глобално всяка година — и бизнесите плащат отново следващата година." },
+    { big: "$740B", tag: "Глобален пазар", label: "Харчат се за реклама глобално всяка година и бизнесите плащат отново следващата година." },
     { big: "~3%", tag: "Възприемане", label: "От малките бизнеси в момента използват AI в рекламите си. Останалите 97% ще имат нужда от някой да им го настрои." },
-    { big: "12–18м.", tag: "Времеви прозорец", label: "Прозорецът преди AI рекламата да стане „стандартът“ — и лесните пари да изчезнат." },
+    { big: "12–18м.", tag: "Времеви прозорец", label: "Прозорецът преди AI рекламата да стане „стандартът“ и лесните пари да изчезнат." },
   ];
   return (
     <section id="zashto-sega" className="relative px-6 py-14 md:py-20 overflow-hidden">
@@ -711,7 +711,7 @@ function WhyNow() {
             Това работи само защото по-голямата част от света е с 18 месеца назад.
           </h2>
           <p className="mt-5 t-body" style={{ color: "var(--text-2)", maxWidth: 1280, fontStyle: "italic", fontSize: "clamp(14px, 1.1vw, 17px)", lineHeight: 1.55, textWrap: "balance" }}>
-            На всеки 5–10 години се отваря нов рекламен канал и малка група от хора, които влизат рано, печелят сериозно, преди всички останали да се усетят. <strong style={{ color: "var(--text-1)" }}>Facebook ads през 2012. YouTube през 2016. TikTok през 2020.</strong> AI рекламата е този прозорец в момента — и хората, които печелят от него, не са „експертите“. <strong style={{ color: "var(--text-1)" }}>Те са начинаещи, които никога не е трябвало да забравят стария начин.</strong>
+            На всеки 5–10 години се отваря нов рекламен канал и малка група от хора, които влизат рано, печелят сериозно, преди всички останали да се усетят. <strong style={{ color: "var(--text-1)" }}>Facebook ads през 2012. YouTube през 2016. TikTok през 2020.</strong> AI рекламата е този прозорец в момента и хората, които печелят от него, не са „експертите“. <strong style={{ color: "var(--text-1)" }}>Те са начинаещи, които никога не е трябвало да забравят стария начин.</strong>
           </p>
         </motion.div>
 
@@ -771,10 +771,10 @@ function About() {
                   Започнах точно от мястото, на което си ти в момента. <strong style={{ color: "var(--text-1)" }}>Без пари. Без аудитория. Без диплома, която някой да цени.</strong>
                 </p>
                 <p>
-                  Пробвах dropshipping. Пробвах работа в агенция. Нищо не сработваше — докато AI не промени какво един човек, работещ сам, може реално да направи.
+                  Пробвах dropshipping. Пробвах работа в агенция. Нищо не сработваше докато AI не промени какво един човек, работещ сам, може реално да направи.
                 </p>
                 <p>
-                  В това безплатно обучение ще ти покажа точния път, който бих изминал, ако трябваше да започна отначало днес — <strong style={{ color: "var(--text-1)" }}>без двете години грешки между другото.</strong>
+                  В това безплатно обучение ще ти покажа точния път, който бих изминал, ако трябваше да започна отначало днес <strong style={{ color: "var(--text-1)" }}>без двете години грешки между другото.</strong>
                 </p>
               </div>
               <div className="flex flex-wrap gap-2.5">
@@ -809,7 +809,7 @@ function Modules() {
           </p>
         </motion.div>
 
-        {/* Curriculum list — 2 columns, divided rows, no boxed cards */}
+        {/* Curriculum list 2 columns, divided rows, no boxed cards */}
         <ol className="grid md:grid-cols-2 gap-x-12">
           {modules.map((m, i) => (
             <motion.li
@@ -989,7 +989,7 @@ function FinalCTA({ onOpen }: { onOpen: () => void }) {
         <div className="relative flex flex-col items-center gap-6">
           <DesignEyebrow>Едно последно нещо</DesignEyebrow>
           <h2 style={{ margin: 0, fontFamily: "alfabet, sans-serif", fontWeight: 800, fontSize: "clamp(22px, 2.4vw, 32px)", letterSpacing: "-0.02em", color: DC.fg, lineHeight: 1.2, textWrap: "balance", maxWidth: 820 }}>
-            След 2 години AI ще управлява половината реклами по света. Въпросът е дали <em style={{ fontStyle: "italic", color: DC.purple100 }}>ти</em> ще ги управляваш — или ще плащаш за тях.
+            След 2 години AI ще управлява половината реклами по света. Въпросът е дали <em style={{ fontStyle: "italic", color: DC.purple100 }}>ти</em> ще ги управляваш или ще плащаш за тях.
           </h2>
           <div className="mt-2 cta-pulse" style={{ display: "inline-flex", borderRadius: 999, animation: "ctaPulse 3.2s ease-in-out infinite" }}>
             <CTAPill big onClick={onOpen} ariaLabel="Получи мигновен достъп">Получи мигновен достъп →</CTAPill>
@@ -1220,7 +1220,7 @@ function OptInModal({ open, onClose, onUnlock }: { open: boolean; onClose: () =>
             {status === "success" ? (
               <div style={{ color: "var(--text-2)", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: 16 }}>
                 <p style={{ margin: 0, lineHeight: 1.55 }}>
-                  ✓ Готово! Провери имейла си в следващите <strong style={{ color: "var(--text)" }}>60 секунди</strong> — линкът към достъпа е на път. Не виждаш имейла? Провери папка „Промоции“ или „Спам“.
+                  ✓ Готово! Провери имейла си в следващите <strong style={{ color: "var(--text)" }}>60 секунди</strong> линкът към достъпа е на път. Не виждаш имейла? Провери папка „Промоции“ или „Спам“.
                 </p>
                 <CTAPill onClick={onClose} ariaLabel="Затвори">Затвори</CTAPill>
               </div>

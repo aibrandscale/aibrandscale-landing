@@ -445,7 +445,7 @@ const NAV_LINKS = [
 
 function Logo() {
   return (
-    <a href="#home" aria-label="ЛОГИСТИК — начало" style={{ display: "inline-flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
+    <a href="#home" aria-label="ЛОГИСТИК начало" style={{ display: "inline-flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
       <span
         aria-hidden
         style={{
@@ -880,7 +880,7 @@ function Hero() {
         </h1>
 
         <p style={{ margin: 0, fontSize: 18, lineHeight: 1.55, color: COLOR.fgMuted, maxWidth: 760 }}>
-          Безплатно видео, в което показваме точната система, с която помагаме на компании да намалят логистичните разходи с 18–35% за под 90 дни — без смяна на партньор и без хаос в операциите.
+          Безплатно видео, в което показваме точната система, с която помагаме на компании да намалят логистичните разходи с 18–35% за под 90 дни без смяна на партньор и без хаос в операциите.
         </p>
 
         <div style={{ marginTop: 14 }}>
@@ -1035,7 +1035,7 @@ const SERVICES = [
   { icon: <Icon.Truck size={26} />, title: "Шосеен транспорт", body: "Цялостни и групажни товари в България и Европа с пълна проследимост." },
   { icon: <Icon.Package size={26} />, title: "Складова логистика", body: "Модерни складове клас A с WMS, picking, опаковане и cross-docking." },
   { icon: <Icon.MapPin size={26} />, title: "Last-mile доставки", body: "Експресна доставка до краен клиент в рамките на 24 часа в София и страната." },
-  { icon: <Icon.Clipboard size={26} />, title: "Митническо оформяне", body: "Лицензирани агенти за внос/износ — документи, акцизи, T1, EORI." },
+  { icon: <Icon.Clipboard size={26} />, title: "Митническо оформяне", body: "Лицензирани агенти за внос/износ документи, акцизи, T1, EORI." },
   { icon: <Icon.Snowflake size={26} />, title: "Температурен контрол", body: "Хладилни превози 2–8°C и -25°C с пълен мониторинг и одит на веригата." },
   { icon: <Icon.Satellite size={26} />, title: "Дигитален трекинг", body: "Real-time GPS трекинг, автоматични известия, API към ERP/e-commerce." },
 ];
@@ -1109,8 +1109,8 @@ function Services() {
       <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 44 }}>
         <SectionHead
           eyebrow="Услуги"
-          title="Цялата ти верига на доставки — на едно място"
-          kicker="От товара в склада до подписа на клиента — поемаме всяка стъпка с измерими SLA."
+          title="Цялата ти верига на доставки на едно място"
+          kicker="От товара в склада до подписа на клиента поемаме всяка стъпка с измерими SLA."
         />
         <div
           style={{
@@ -1133,7 +1133,7 @@ function Services() {
 
 const STEPS = [
   { num: "01", title: "Анализ", body: "Анализираме текущите ви логистични потоци, идентифицираме bottlenecks и реалните разходи на пратка." },
-  { num: "02", title: "Стратегия", body: "Изграждаме персонализирано решение, съобразено с целите, обема и бюджета ви — с ясни KPI." },
+  { num: "02", title: "Стратегия", body: "Изграждаме персонализирано решение, съобразено с целите, обема и бюджета ви с ясни KPI." },
   { num: "03", title: "Изпълнение", body: "Имплементираме процесите, поемаме операцията и отчитаме резултатите всяка седмица." },
 ];
 
@@ -1492,7 +1492,7 @@ function FinalCTA() {
             Готов ли си да видиш как ще изглежда логистиката ти след 90 дни?
           </h2>
           <p style={{ margin: 0, color: COLOR.fgMuted, fontSize: 17, maxWidth: 640 }}>
-            Безплатен 20-минутен разговор. Без презентации. Излизаш с конкретен план — независимо дали ще работим заедно.
+            Безплатен 20-минутен разговор. Без презентации. Излизаш с конкретен план независимо дали ще работим заедно.
           </p>
           <div style={{ display: "flex", gap: 14, flexWrap: "wrap", justifyContent: "center", marginTop: 6 }}>
             <CTA size="lg" href="#kontakt" ariaLabel="Заяви безплатна консултация">

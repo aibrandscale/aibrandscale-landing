@@ -6,9 +6,9 @@ const SITE_URL = "https://aibrandscale.io";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "AI Brand Scale — растеж за вашия бранд с изкуствен интелект",
+  title: "AI Brand Scale растеж за вашия бранд с изкуствен интелект",
   description:
-    "Безплатно обучение за AI рекламна система, с която обикновени хора изграждат €5K–€20K/месец — без опит, без голям бюджет, без аудитория.",
+    "Безплатно обучение за AI рекламна система, с която обикновени хора изграждат €5K–€20K/месец без опит, без голям бюджет, без аудитория.",
   applicationName: "AI Brand Scale",
   keywords: ["AI реклами", "AI Brand Scale", "AI marketing", "Facebook реклами", "обучение", "€5K-€20K"],
   authors: [{ name: "AI Brand Scale" }],
@@ -17,14 +17,14 @@ export const metadata: Metadata = {
     locale: "bg_BG",
     url: SITE_URL,
     siteName: "AI Brand Scale",
-    title: "AI Brand Scale — AI рекламната система за начинаещи",
+    title: "AI Brand Scale AI рекламната система за начинаещи",
     description:
       "Безплатно обучение за AI рекламна система, с която обикновени хора изграждат €5K–€20K/месец.",
     images: [{ url: "/og.svg", width: 1200, height: 630, alt: "AI Brand Scale" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Brand Scale — AI рекламната система за начинаещи",
+    title: "AI Brand Scale AI рекламната система за начинаещи",
     description:
       "Безплатно обучение за AI рекламна система до €5K–€20K/месец.",
     images: ["/og.svg"],
@@ -49,7 +49,7 @@ const ALFABET_FONTS = [
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Course",
-  name: "AI Brand Scale — AI рекламната система",
+  name: "AI Brand Scale AI рекламната система",
   description:
     "Безплатно обучение за AI рекламна система до €5K–€20K/месец без опит и голям бюджет.",
   provider: {
