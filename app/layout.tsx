@@ -84,7 +84,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           id="wistia-rejection-swallow"
           strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
-            __html: `window.addEventListener('unhandledrejection',function(e){var r=e.reason;if(r==null){e.preventDefault();e.stopImmediatePropagation&&e.stopImmediatePropagation();return;}var s=(r&&(r.stack||r.message||(typeof r.toString==='function'&&r.toString())))||'';if(typeof s==='string'&&(s.indexOf('wistia')>-1||s.indexOf('fast.wistia.com')>-1)){e.preventDefault();e.stopImmediatePropagation&&e.stopImmediatePropagation();}},true);`,
+            __html: `(function(){function isWistia(s){return typeof s==='string'&&(s.indexOf('wistia')>-1||s.indexOf('fast.wistia.com')>-1);}window.addEventListener('unhandledrejection',function(e){var r=e.reason;if(r==null){e.preventDefault();e.stopImmediatePropagation&&e.stopImmediatePropagation();return;}var s=(r&&(r.stack||r.message||(typeof r.toString==='function'&&r.toString())))||'';if(isWistia(s)||(s&&s.indexOf('Failed to fetch')>-1)){e.preventDefault();e.stopImmediatePropagation&&e.stopImmediatePropagation();}},true);window.addEventListener('error',function(e){var src=(e&&e.filename)||'';var msg=(e&&e.message)||'';if(isWistia(src)||isWistia(msg)){e.preventDefault();e.stopImmediatePropagation&&e.stopImmediatePropagation();}},true);})();`,
           }}
         />
       </head>
