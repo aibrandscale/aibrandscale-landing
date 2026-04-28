@@ -1002,7 +1002,7 @@ function FinalCTA({ onOpen }: { onOpen: () => void }) {
             {[
               { label: "100% Безплатно", sub: "Без скрити такси" },
               { label: "Мигновен достъп", sub: "Гледаш веднага" },
-              { label: "Без ангажимент", sub: "Отписване с 1 клик" },
+              { label: "Без кредитна карта", sub: "Без плащания" },
             ].map((b) => (
               <div key={b.label} style={{
                 display: "inline-flex", alignItems: "center", gap: 10,
