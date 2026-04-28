@@ -1247,11 +1247,9 @@ function OptInModal({ open, onClose, onUnlock }: { open: boolean; onClose: () =>
             transition={{ duration: 0.25, ease: EASE_OUT_QUINT }}
             className="modal-card" onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-start justify-end mb-1">
-              <button onClick={onClose} aria-label="Затвори" className="w-11 h-11 -mr-2 grid place-items-center cursor-pointer icon-btn btn-press rounded-full">
-                <I.X className="w-5 h-5" />
-              </button>
-            </div>
+            <button onClick={onClose} aria-label="Затвори" className="modal-close-floating" type="button">
+              <I.X className="w-4 h-4" />
+            </button>
             <span className="modal-eyebrow">{status === "success" ? "Достъп отключен" : "Безплатно обучение"}</span>
             <h3 id="modal-title" className="font-alfabet-bold" style={{ fontSize: "clamp(24px, 3vw, 30px)", textAlign: "center", marginBottom: 18, lineHeight: 1.15, letterSpacing: "-0.01em", textTransform: status === "success" ? "none" : "uppercase" }}>
               {status === "success" ? "Готово!" : "Отключи достъп"}
