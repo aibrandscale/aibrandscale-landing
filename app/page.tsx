@@ -1053,7 +1053,9 @@ function Footer() {
         >
           <div className="flex flex-col items-center gap-8 text-center">
             <img src="/logo-white.png" alt="AI Brand Scale" style={{ width: "clamp(190px, 16vw, 220px)", height: "auto", display: "block" }} />
-            <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "12px 28px", fontFamily: "Manrope, sans-serif", fontSize: 14 }}>
+            <div className="flex flex-col items-center gap-4">
+              <DesignEyebrow>Навигация</DesignEyebrow>
+              <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "12px 28px", fontFamily: "Manrope, sans-serif", fontSize: 14 }}>
               {[
                 ["#home", "Начало"],
                 ["#izborut", "Изборът"],
@@ -1064,8 +1066,11 @@ function Footer() {
                 <li key={h}><a href={h} className="logi-foot-link" style={linkStyle}>{l}</a></li>
               ))}
             </ul>
+            </div>
 
-            <div style={{ display: "flex", gap: 12 }}>
+            <div className="flex flex-col items-center gap-4">
+              <DesignEyebrow>Социални мрежи</DesignEyebrow>
+              <div style={{ display: "flex", gap: 12 }}>
               {[
                 { Icon: I.Inst, label: "Instagram", href: "https://www.instagram.com/aibrandscale.io?igsh=MWdxbG02NGl4YWd4ag%3D%3D&utm_source=qr" },
                 { Icon: I.TT, label: "TikTok", href: "https://www.tiktok.com/@venelinnyordan0v" },
@@ -1083,6 +1088,7 @@ function Footer() {
                   <Icon className="w-4 h-4" />
                 </a>
               ))}
+              </div>
             </div>
           </div>
 
