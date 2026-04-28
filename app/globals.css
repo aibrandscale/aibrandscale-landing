@@ -841,7 +841,6 @@ body { overflow-x: hidden; }
     inset 2.389px 0.398px 12.108px -1.250px rgba(85,43,105,0.96),
     inset 1.008px 0.168px 5.108px -0.625px rgba(85,43,105,0.98),
     0 40px 100px -24px rgba(0,0,0,0.78);
-  overflow: hidden;
   isolation: isolate;
 }
 .modal-card::before {
