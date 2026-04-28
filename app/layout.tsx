@@ -234,6 +234,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="preload" as="font" type="font/woff2" href={ALFABET_FONTS[0]} crossOrigin="anonymous" />
         <link rel="preconnect" href="https://framerusercontent.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <Script
+          id="gfonts-async"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap';document.head.appendChild(l);})();`,
+          }}
+        />
+        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" /></noscript>
         <Script
           id="ld-json"
           type="application/ld+json"
