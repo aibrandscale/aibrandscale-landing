@@ -105,14 +105,14 @@ export function PurpleAlertNav({
         alignItems: "center",
       }}
     >
-      <div className="md:hidden" style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "0 12px" }}>
+      <div className="alert-static" style={{ flex: 1, alignItems: "center", justifyContent: "center", padding: "0 12px" }}>
         <span style={{ ...itemStyle, padding: 0, fontSize: "clamp(11px, 3vw, 13px)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
           <Arrow />
           <span>{text}</span>
           <Arrow />
         </span>
       </div>
-      <div className="logi-marquee-track hidden md:flex" style={{ whiteSpace: "nowrap" }}>
+      <div className="logi-marquee-track alert-marquee" style={{ whiteSpace: "nowrap" }}>
         {[0, 1].map((g) => (
           <div key={g} aria-hidden={g === 1} style={{ display: "flex", alignItems: "center" }}>
             {items.map((_, i) => (

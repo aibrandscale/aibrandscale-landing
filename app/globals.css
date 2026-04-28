@@ -18,6 +18,13 @@ input, textarea {
   --font-inter-stack: var(--font-inter), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
+.alert-static { display: flex; }
+.alert-marquee { display: none; }
+@media (min-width: 768px) {
+  .alert-static { display: none !important; }
+  .alert-marquee { display: flex !important; }
+}
+
 .logi-marquee-track {
   animation: logiMarquee 60s linear infinite;
   will-change: transform;
