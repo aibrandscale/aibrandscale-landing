@@ -349,12 +349,11 @@
   border-color: rgba(196,155,217,0.38);
 }
 .field-shell:focus-within {
-  background: linear-gradient(180deg, rgba(54,30,82,0.6) 0%, rgba(20,12,32,0.85) 100%);
-  border-color: rgba(196,155,217,0.7);
+  background: linear-gradient(180deg, rgba(54,30,82,0.55) 0%, rgba(20,12,32,0.82) 100%);
+  border-color: rgba(196,155,217,0.55);
   box-shadow:
-    inset 8px 2px 40px -8px rgba(123,47,190,0.6),
-    inset 3px 1px 14px -3px rgba(123,47,190,0.75),
-    inset 0 1px 0 rgba(255,255,255,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.06),
+    inset 0 -1px 0 rgba(0,0,0,0.35),
     0 0 0 3px rgba(123,47,190,0.22);
 }
 .field-shell.is-error {
@@ -402,11 +401,18 @@
   font-family: Manrope, sans-serif;
   font-size: 16px;
 }
+.field-shell input,
+.field-shell input:focus,
+.field-shell input:focus-visible,
+.field-shell input:active,
+.field-input,
 .field-input:focus,
 .field-input:focus-visible,
 .field-input:active {
   outline: none !important;
   box-shadow: none !important;
+  border: 0 !important;
+  background: transparent !important;
 }
 .field-input::placeholder {
   color: rgba(255,255,255,0.42);
