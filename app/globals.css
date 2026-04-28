@@ -9,7 +9,11 @@
   font-family: "alfabet";
   font-style: normal;
   font-weight: 100 900;
-  font-display: swap;
+  font-display: optional;
+  size-adjust: 100%;
+  ascent-override: 92%;
+  descent-override: 22%;
+  line-gap-override: 0%;
   src: url("https://framerusercontent.com/assets/sIf2fVJGK0gmwbluERmSeUNkuw.woff2") format("woff2");
 }
 
