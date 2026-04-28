@@ -1253,7 +1253,7 @@ function OptInModal({ open, onClose, onUnlock }: { open: boolean; onClose: () =>
               </button>
             </div>
             <span className="modal-eyebrow">{status === "success" ? "Достъп отключен" : "Безплатно обучение"}</span>
-            <h3 id="modal-title" className="font-alfabet-bold" style={{ fontSize: "clamp(24px, 3vw, 30px)", textAlign: "center", marginBottom: 18, lineHeight: 1.15, letterSpacing: "-0.01em" }}>
+            <h3 id="modal-title" className="font-alfabet-bold" style={{ fontSize: "clamp(24px, 3vw, 30px)", textAlign: "center", marginBottom: 18, lineHeight: 1.15, letterSpacing: "-0.01em", textTransform: status === "success" ? "none" : "uppercase" }}>
               {status === "success" ? "Готово!" : "Отключи достъп"}
             </h3>
 
