@@ -611,7 +611,7 @@ function WhatYouLearn() {
     <section className="relative px-6 py-14 md:py-20">
       <div className="max-w-[1200px] mx-auto">
         <motion.div initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }} variants={fadeIn}
-          className="mb-14 mx-auto flex flex-col items-center text-center max-w-4xl">
+          className="mb-14 mx-auto flex flex-col items-center text-center max-w-6xl">
           <div className="mb-5"><DesignEyebrow>Вътре в безплатното обучение</DesignEyebrow></div>
           <h2 className="t-section" style={{ fontSize: "clamp(20px, 2.4vw, 32px)", lineHeight: 1.25, letterSpacing: "-0.02em", fontWeight: 700, maxWidth: 1100, textWrap: "balance" }}>
             Системата, която превръща AI в реален доход, <br />а не просто в още една отворена страница в Google.
