@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence, useScroll, useSpring, type Variants } from "framer-motion";
 import { useEffect, useState, type FormEvent } from "react";
+import Image from "next/image";
 import {
   PurpleAlertNav,
   Eyebrow as DesignEyebrow,
@@ -142,19 +143,25 @@ function StickyMobileCTA({ onOpen }: { onOpen: () => void }) {
 }
 
 function WistiaPlayer({ mediaId, unlocked, onUnlock }: { mediaId: string; unlocked: boolean; onUnlock: () => void }) {
+  const [scriptsLoaded, setScriptsLoaded] = useState(false);
+
   useEffect(() => {
+    const styleId = `wistia-style-${mediaId}`;
+    if (!document.getElementById(styleId)) {
+      const st = document.createElement("style");
+      st.id = styleId;
+      st.textContent = `wistia-player[media-id='${mediaId}']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/${mediaId}/swatch'); display: block; filter: blur(5px); padding-top:56.25%; }`;
+      document.head.appendChild(st);
+    }
+  }, [mediaId]);
+
+  useEffect(() => {
+    if (!unlocked || scriptsLoaded) return;
+
     const swallow = (e: PromiseRejectionEvent) => {
-      // Wistia's player.js periodically throws bare `undefined` rejections
-      // when its internal media-fetch race resolves out of order. Suppress
-      // only those (no real reason), keep real errors visible.
-      if (e.reason === undefined || e.reason === null) {
-        e.preventDefault();
-        return;
-      }
+      if (e.reason === undefined || e.reason === null) { e.preventDefault(); return; }
       const stack = (e.reason.stack || e.reason.toString?.() || "") + "";
-      if (stack.includes("wistia") || stack.includes("fast.wistia.com")) {
-        e.preventDefault();
-      }
+      if (stack.includes("wistia") || stack.includes("fast.wistia.com")) e.preventDefault();
     };
     window.addEventListener("unhandledrejection", swallow);
 
@@ -170,18 +177,10 @@ function WistiaPlayer({ mediaId, unlocked, onUnlock }: { mediaId: string; unlock
       if (type) s.type = type;
       document.head.appendChild(s);
     });
-    const styleId = `wistia-style-${mediaId}`;
-    if (!document.getElementById(styleId)) {
-      const st = document.createElement("style");
-      st.id = styleId;
-      st.textContent = `wistia-player[media-id='${mediaId}']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/${mediaId}/swatch'); display: block; filter: blur(5px); padding-top:56.25%; }`;
-      document.head.appendChild(st);
-    }
+    setScriptsLoaded(true);
 
-    return () => {
-      window.removeEventListener("unhandledrejection", swallow);
-    };
-  }, [mediaId]);
+    return () => { window.removeEventListener("unhandledrejection", swallow); };
+  }, [unlocked, scriptsLoaded, mediaId]);
 
   return (
     <div
@@ -754,10 +753,13 @@ function About() {
           className="rounded-2xl mx-auto overflow-hidden" style={{ maxWidth: 1200, background: "rgba(255,255,255,0.002)", border: "1px solid rgba(255,255,255,0.30)", boxShadow: CARD_INNER_GLOW }}>
           <div className="grid lg:grid-cols-[420px_1fr]">
             <div className="relative" style={{ minHeight: 460, background: "#0E0E10" }}>
-              <img
+              <Image
                 src="/venelin.png"
-                alt="Инструктор"
-                className="absolute inset-0 w-full h-full object-cover"
+                alt="Венелин Йорданов — лектор"
+                fill
+                sizes="(max-width: 1024px) 100vw, 420px"
+                className="object-cover"
+                loading="lazy"
               />
               <div aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 55%, rgba(14,14,16,0.85) 100%)" }} />
             </div>
@@ -1053,7 +1055,7 @@ function Footer() {
         >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 items-stretch">
             <div className="flex flex-col items-center justify-center" style={{ paddingLeft: "clamp(0px, 4vw, 60px)" }}>
-              <img src="/logo-white.png" alt="AI Brand Scale" style={{ width: "clamp(260px, 22vw, 320px)", height: "auto", display: "block" }} />
+              <Image src="/logo-white.png" alt="AI Brand Scale" width={320} height={80} sizes="(max-width: 768px) 260px, 320px" style={{ width: "clamp(260px, 22vw, 320px)", height: "auto", display: "block" }} loading="lazy" />
             </div>
 
             <div className="flex flex-col items-center gap-4">
