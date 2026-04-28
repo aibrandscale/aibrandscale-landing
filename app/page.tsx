@@ -508,7 +508,7 @@ function StudentsCallout() {
         initial="hidden" whileInView="show" viewport={{ once: true, margin: "-40px" }} variants={fadeIn}
         className="max-w-3xl mx-auto surface-accent rounded-2xl p-6 md:p-7 flex flex-col md:flex-row items-center gap-5"
       >
-        <div className="flex flex-col items-center md:items-start shrink-0">
+        <div className="flex flex-col items-center shrink-0">
           <div className="t-eyebrow mb-2">Students</div>
           <div className="flex items-center gap-1" style={{ color: "var(--accent)" }}>
             {Array.from({ length: 5 }).map((_, k) => <I.Star key={k} className="w-5 h-5" />)}
@@ -1051,11 +1051,11 @@ function Footer() {
           }}
         >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 items-start">
-            <div className="flex flex-col items-center md:items-start">
+            <div className="flex flex-col items-center">
               <img src="/logo-white.png" alt="AI Brand Scale" style={{ width: "clamp(180px, 14vw, 200px)", height: "auto", display: "block" }} />
             </div>
 
-            <div className="flex flex-col items-center md:items-start gap-4">
+            <div className="flex flex-col items-center gap-4">
               <DesignEyebrow>Навигация</DesignEyebrow>
               <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 12, fontFamily: "Manrope, sans-serif", fontSize: 14 }}>
                 {[
@@ -1070,7 +1070,7 @@ function Footer() {
               </ul>
             </div>
 
-            <div className="flex flex-col items-center md:items-start gap-4">
+            <div className="flex flex-col items-center gap-4">
               <DesignEyebrow>Социални мрежи</DesignEyebrow>
               <div style={{ display: "flex", gap: 12 }}>
                 {[
