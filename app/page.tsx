@@ -752,14 +752,13 @@ function About() {
         <motion.div initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }} variants={fadeIn}
           className="rounded-2xl mx-auto overflow-hidden" style={{ maxWidth: 1200, background: "rgba(255,255,255,0.002)", border: "1px solid rgba(255,255,255,0.30)", boxShadow: CARD_INNER_GLOW }}>
           <div className="grid lg:grid-cols-[420px_1fr]">
-            <div className="relative" style={{ minHeight: 460, background: "linear-gradient(135deg, rgba(123,47,190,0.45) 0%, rgba(85,43,105,0.85) 100%)" }}>
+            <div className="relative" style={{ minHeight: 460, background: "#0E0E10" }}>
               <img
                 src="/venelin.png"
                 alt="Инструктор"
                 className="absolute inset-0 w-full h-full object-cover"
-                style={{ filter: "grayscale(0.15) contrast(1.05)", mixBlendMode: "luminosity", opacity: 0.95 }}
               />
-              <div aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 40%, rgba(26,26,26,0.85) 100%)" }} />
+              <div aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 55%, rgba(14,14,16,0.85) 100%)" }} />
             </div>
             <div className="p-10 md:p-12 flex flex-col justify-center">
               <div className="mb-4 inline-flex items-center gap-2" style={{ fontFamily: "Manrope, sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--accent)" }}>
