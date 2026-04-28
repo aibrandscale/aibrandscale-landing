@@ -1051,9 +1051,22 @@ function Footer() {
             padding: "clamp(28px, 3vw, 44px) clamp(28px, 4vw, 56px)",
           }}
         >
-          <div className="flex flex-col items-center gap-8 text-center">
-            <img src="/logo-white.png" alt="AI Brand Scale" style={{ width: "clamp(190px, 16vw, 220px)", height: "auto", display: "block" }} />
+          <img aria-hidden src="/logo-white.png" alt="" style={{
+            position: "absolute",
+            left: "50%",
+            top: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "min(120%, 1100px)",
+            maxWidth: "none",
+            height: "auto",
+            opacity: 0.05,
+            pointerEvents: "none",
+            userSelect: "none",
+            filter: "blur(0.5px)",
+            zIndex: 0,
+          }} />
 
+          <div className="relative flex flex-col items-center gap-8 text-center" style={{ zIndex: 1 }}>
             <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "12px 28px", fontFamily: "Manrope, sans-serif", fontSize: 14 }}>
               {[
                 ["#home", "Начало"],
@@ -1087,13 +1100,13 @@ function Footer() {
             </div>
           </div>
 
-          <div className="footer-divider" aria-hidden />
-          <div style={{ marginTop: 24, display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 18, fontFamily: "Manrope, sans-serif", fontSize: 13 }}>
+          <div className="footer-divider relative" aria-hidden style={{ zIndex: 1 }} />
+          <div style={{ marginTop: 24, position: "relative", zIndex: 1, display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 18, fontFamily: "Manrope, sans-serif", fontSize: 13 }}>
             <a href="#" className="logi-foot-link" style={linkStyle}>Privacy Policy</a>
             <span aria-hidden style={{ color: DC.fgMuted, opacity: 0.5 }}>|</span>
             <a href="#" className="logi-foot-link" style={linkStyle}>Terms &amp; Conditions</a>
           </div>
-          <div style={{ marginTop: 18, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", gap: 12 } as React.CSSProperties} className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-center md:text-left">
+          <div style={{ marginTop: 18, position: "relative", zIndex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", gap: 12 } as React.CSSProperties} className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-center md:text-left">
             <p style={{ margin: 0, fontFamily: "Manrope, sans-serif", fontSize: 12, color: DC.fgMuted, lineHeight: 1.6, maxWidth: 760 }}>
               Този сайт не е част от Facebook или Meta Platforms, Inc. FACEBOOK е регистрирана търговска марка на Meta Platforms, Inc.
             </p>
