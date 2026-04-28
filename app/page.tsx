@@ -1094,9 +1094,9 @@ function Footer() {
 
           <div className="footer-divider" aria-hidden />
           <div style={{ marginTop: 24, position: "relative", zIndex: 1, display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 18, fontFamily: "Manrope, sans-serif", fontSize: 13 }}>
-            <a href="#" className="logi-foot-link" style={linkStyle}>Privacy Policy</a>
+            <a href="/privacy" className="logi-foot-link" style={linkStyle}>Privacy Policy</a>
             <span aria-hidden style={{ color: DC.fgMuted, opacity: 0.5 }}>|</span>
-            <a href="#" className="logi-foot-link" style={linkStyle}>Terms &amp; Conditions</a>
+            <a href="/privacy" className="logi-foot-link" style={linkStyle}>Terms &amp; Conditions</a>
           </div>
           <div style={{ marginTop: 18, position: "relative", zIndex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", gap: 12 } as React.CSSProperties} className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-center md:text-left">
             <p style={{ margin: 0, fontFamily: "Manrope, sans-serif", fontSize: 12, color: DC.fgMuted, lineHeight: 1.6, maxWidth: 760 }}>
@@ -1400,7 +1400,7 @@ function OptInModal({ open, onClose, onUnlock }: { open: boolean; onClose: () =>
                 </ul>
                 <p style={{ margin: "6px auto 0", fontSize: 11, lineHeight: 1.5, color: "var(--text-3)", textAlign: "center", whiteSpace: "nowrap", opacity: 0.75 }}>
                   С натискането на бутона приемаш{" "}
-                  <a href="#" style={{ color: "var(--text-2)", textDecoration: "underline" }}>политиката за поверителност</a>.
+                  <a href="/privacy" target="_blank" style={{ color: "var(--text-2)", textDecoration: "underline" }}>политиката за поверителност</a>.
                 </p>
               </form>
             )}
