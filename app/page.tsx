@@ -1051,21 +1051,21 @@ function Footer() {
             padding: "clamp(28px, 3vw, 44px) clamp(28px, 4vw, 56px)",
           }}
         >
-          <img aria-hidden src="/logo-white.png" alt="" style={{
-            position: "absolute",
-            left: "50%",
-            top: "50%",
-            transform: "translate(-50%, -50%)",
-            width: "min(120%, 1100px)",
-            maxWidth: "none",
-            height: "auto",
-            opacity: 0.05,
-            pointerEvents: "none",
-            userSelect: "none",
-            filter: "blur(0.5px)",
-            zIndex: 0,
-          }} />
-
+          <div className="relative" style={{ overflow: "hidden" }}>
+            <img aria-hidden src="/logo-white.png" alt="" style={{
+              position: "absolute",
+              left: "50%",
+              top: "50%",
+              transform: "translate(-50%, -50%)",
+              width: "min(110%, 980px)",
+              maxWidth: "none",
+              height: "auto",
+              opacity: 0.05,
+              pointerEvents: "none",
+              userSelect: "none",
+              filter: "blur(0.5px)",
+              zIndex: 0,
+            }} />
           <div className="relative flex flex-col items-center gap-8 text-center" style={{ zIndex: 1 }}>
             <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "12px 28px", fontFamily: "Manrope, sans-serif", fontSize: 14 }}>
               {[
@@ -1100,6 +1100,7 @@ function Footer() {
             </div>
           </div>
 
+          </div>
           <div className="footer-divider relative" aria-hidden style={{ zIndex: 1 }} />
           <div style={{ marginTop: 24, position: "relative", zIndex: 1, display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 18, fontFamily: "Manrope, sans-serif", fontSize: 13 }}>
             <a href="#" className="logi-foot-link" style={linkStyle}>Privacy Policy</a>
