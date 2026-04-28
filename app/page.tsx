@@ -1056,10 +1056,10 @@ function Footer() {
               <img src="/logo-white.png" alt="AI Brand Scale" style={{ width: "clamp(180px, 18vw, 240px)", height: "auto", display: "block" }} />
               <div style={{ display: "flex", gap: 10, marginTop: 4 }}>
                 {[
-                  { Icon: I.Inst, label: "Instagram" },
-                  { Icon: I.TT, label: "TikTok" },
-                ].map(({ Icon, label }) => (
-                  <a key={label} href="#" aria-label={label}
+                  { Icon: I.Inst, label: "Instagram", href: "https://www.instagram.com/aibrandscale.io?igsh=MWdxbG02NGl4YWd4ag%3D%3D&utm_source=qr" },
+                  { Icon: I.TT, label: "TikTok", href: "https://www.tiktok.com/@venelinnyordan0v" },
+                ].map(({ Icon, label, href }) => (
+                  <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
                     className="logi-social-chip"
                     style={{
                       width: 38, height: 38, borderRadius: "50%",
