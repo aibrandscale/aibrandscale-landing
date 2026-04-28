@@ -1051,7 +1051,7 @@ function Footer() {
             padding: "clamp(32px, 4vw, 56px) clamp(28px, 4vw, 56px)",
           }}
         >
-          <div className="grid grid-cols-1 md:grid-cols-[1.6fr_1fr_1fr] gap-10 md:gap-12 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 items-center">
             <div className="flex flex-col gap-4">
               <img src="/logo-white.png" alt="AI Brand Scale" style={{ width: "clamp(180px, 18vw, 240px)", height: "auto", display: "block" }} />
             </div>
