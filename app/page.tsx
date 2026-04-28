@@ -1402,7 +1402,7 @@ function OptInModal({ open, onClose, onUnlock }: { open: boolean; onClose: () =>
                     </li>
                   ))}
                 </ul>
-                <p style={{ margin: "6px auto 0", fontSize: 11, lineHeight: 1.5, color: "var(--text-3)", textAlign: "center", maxWidth: 320, opacity: 0.75 }}>
+                <p style={{ margin: "6px auto 0", fontSize: 11, lineHeight: 1.5, color: "var(--text-3)", textAlign: "center", whiteSpace: "nowrap", opacity: 0.75 }}>
                   С натискането на бутона приемаш{" "}
                   <a href="#" style={{ color: "var(--text-2)", textDecoration: "underline" }}>политиката за поверителност</a>.
                 </p>
