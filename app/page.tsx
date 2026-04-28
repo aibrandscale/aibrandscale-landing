@@ -1140,13 +1140,15 @@ function Footer() {
         .footer-divider::after {
           content: "";
           position: absolute;
-          top: -10px;
+          top: 0;
           left: 50%;
           transform: translateX(-50%);
-          width: 120px;
-          height: 22px;
-          background: radial-gradient(closest-side, rgba(196,155,217,0.35), transparent 70%);
+          width: 360px;
+          height: 220px;
+          background:
+            radial-gradient(ellipse 50% 90% at 50% 0%, rgba(247,203,255,0.28) 0%, rgba(196,155,217,0.18) 25%, rgba(123,47,190,0.08) 55%, transparent 80%);
           pointer-events: none;
+          filter: blur(2px);
         }
       `}</style>
     </footer>
