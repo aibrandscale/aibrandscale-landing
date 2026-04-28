@@ -1099,7 +1099,8 @@ function Footer() {
             </div>
           </div>
 
-          <div style={{ marginTop: 36, paddingTop: 20, borderTop: "1px solid rgba(255,255,255,0.08)", display: "flex", flexDirection: "column", md: { flexDirection: "row" }, alignItems: "center", justifyContent: "space-between", gap: 12 } as React.CSSProperties} className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-center md:text-left">
+          <div className="footer-divider" aria-hidden />
+          <div style={{ marginTop: 28, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", gap: 12 } as React.CSSProperties} className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-center md:text-left">
             <p style={{ margin: 0, fontFamily: "Manrope, sans-serif", fontSize: 12, color: DC.fgMuted, lineHeight: 1.6, maxWidth: 760 }}>
               Този сайт не е част от Facebook или Meta Platforms, Inc. FACEBOOK е регистрирана търговска марка на Meta Platforms, Inc.
             </p>
@@ -1114,6 +1115,38 @@ function Footer() {
         @media (hover: hover) and (pointer: fine) {
           .logi-foot-link:hover { color: ${DC.purple100}; }
           .logi-social-chip:hover { background: ${DC.purple500} !important; transform: translateY(-2px); }
+        }
+        .footer-divider {
+          position: relative;
+          margin-top: 36px;
+          height: 1px;
+          background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.22) 20%, rgba(255,255,255,0.22) 80%, transparent 100%);
+        }
+        .footer-divider::before {
+          content: "";
+          position: absolute;
+          top: -1px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 64px;
+          height: 3px;
+          border-radius: 999px;
+          background: linear-gradient(90deg, transparent 0%, #F7CBFF 50%, transparent 100%);
+          box-shadow:
+            0 0 12px 2px rgba(247,203,255,0.55),
+            0 0 28px 6px rgba(196,155,217,0.35);
+          filter: blur(0.3px);
+        }
+        .footer-divider::after {
+          content: "";
+          position: absolute;
+          top: -10px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 120px;
+          height: 22px;
+          background: radial-gradient(closest-side, rgba(196,155,217,0.35), transparent 70%);
+          pointer-events: none;
         }
       `}</style>
     </footer>
