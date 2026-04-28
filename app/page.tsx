@@ -1240,6 +1240,9 @@ function OptInModal({ open, onClose, onUnlock }: { open: boolean; onClose: () =>
           className="modal-backdrop" onClick={onClose}
           role="dialog" aria-modal="true" aria-labelledby="modal-title"
         >
+          <button onClick={(e) => { e.stopPropagation(); onClose(); }} aria-label="Затвори" className="modal-close-page" type="button">
+            <I.X className="w-5 h-5" />
+          </button>
           <motion.div
             initial={{ opacity: 0, y: 16, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -1247,9 +1250,6 @@ function OptInModal({ open, onClose, onUnlock }: { open: boolean; onClose: () =>
             transition={{ duration: 0.25, ease: EASE_OUT_QUINT }}
             className="modal-card" onClick={(e) => e.stopPropagation()}
           >
-            <button onClick={onClose} aria-label="Затвори" className="modal-close-floating" type="button">
-              <I.X className="w-4 h-4" />
-            </button>
             <span className="modal-eyebrow">{status === "success" ? "Достъп отключен" : "Безплатно обучение"}</span>
             <h3 id="modal-title" className="font-alfabet-bold" style={{ fontSize: "clamp(24px, 3vw, 30px)", textAlign: "center", marginBottom: 18, lineHeight: 1.15, letterSpacing: "-0.01em", textTransform: status === "success" ? "none" : "uppercase" }}>
               {status === "success" ? "Готово!" : "Отключи достъп"}
