@@ -1051,7 +1051,7 @@ function Footer() {
             padding: "clamp(32px, 4vw, 56px) clamp(28px, 4vw, 56px)",
           }}
         >
-          <div className="grid grid-cols-1 md:grid-cols-[1.6fr_1fr_1fr] gap-10 md:gap-12 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-[1.6fr_1fr] gap-10 md:gap-12 items-start">
             <div className="flex flex-col gap-4">
               <img src="/logo-white.png" alt="AI Brand Scale" style={{ width: "clamp(180px, 18vw, 240px)", height: "auto", display: "block" }} />
               <div style={{ display: "flex", gap: 10, marginTop: 4 }}>
@@ -1090,17 +1090,15 @@ function Footer() {
               </ul>
             </div>
 
-            <div>
-              <div style={eyebrowStyle}>Документи</div>
-              <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 12 }}>
-                <li><a href="#" className="logi-foot-link" style={linkStyle}>Privacy Policy</a></li>
-                <li><a href="#" className="logi-foot-link" style={linkStyle}>Terms &amp; Conditions</a></li>
-              </ul>
-            </div>
           </div>
 
           <div className="footer-divider" aria-hidden />
-          <div style={{ marginTop: 28, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", gap: 12 } as React.CSSProperties} className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-center md:text-left">
+          <div style={{ marginTop: 24, display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 18, fontFamily: "Manrope, sans-serif", fontSize: 13 }}>
+            <a href="#" className="logi-foot-link" style={linkStyle}>Privacy Policy</a>
+            <span aria-hidden style={{ color: DC.fgMuted, opacity: 0.5 }}>|</span>
+            <a href="#" className="logi-foot-link" style={linkStyle}>Terms &amp; Conditions</a>
+          </div>
+          <div style={{ marginTop: 18, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", gap: 12 } as React.CSSProperties} className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-center md:text-left">
             <p style={{ margin: 0, fontFamily: "Manrope, sans-serif", fontSize: 12, color: DC.fgMuted, lineHeight: 1.6, maxWidth: 760 }}>
               Този сайт не е част от Facebook или Meta Platforms, Inc. FACEBOOK е регистрирана търговска марка на Meta Platforms, Inc.
             </p>
