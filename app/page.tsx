@@ -1,6 +1,5 @@
 "use client";
 
-import { motion, AnimatePresence, useScroll, useSpring, type Variants } from "framer-motion";
 import { useEffect, useState, type FormEvent } from "react";
 import Image from "next/image";
 import {
@@ -16,20 +15,6 @@ import {
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const EASE_OUT_QUINT = [0.22, 1, 0.36, 1] as const;
-
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 18 },
-  show: (i: number = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.55, delay: i * 0.06, ease: EASE_OUT_QUINT },
-  }),
-};
-
-const fadeIn: Variants = {
-  hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { duration: 0.6, ease: EASE_OUT_QUINT } },
-};
 
 /* ─────────── ICONS ─────────── */
 const I = {
@@ -124,12 +109,6 @@ function Logo() {
       <span style={{ color: "var(--accent)" }}>Scale</span>
     </span>
   );
-}
-
-function ScrollProgress() {
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 30, restDelta: 0.001 });
-  return <motion.div className="scroll-progress" style={{ scaleX }} aria-hidden="true" />;
 }
 
 function StickyMobileCTA({ onOpen }: { onOpen: () => void }) {
@@ -289,8 +268,8 @@ function Hero({ onOpen, unlocked }: { onOpen: () => void; unlocked: boolean }) {
     <section id="home" className="relative pt-16 pb-12 overflow-hidden">
       <div className="absolute inset-0 bg-wash" aria-hidden="true" />
       <div className="relative max-w-[1280px] mx-auto px-6 text-center">
-        <motion.h1
-          initial="hidden" animate="show" variants={fadeUp} custom={1}
+        <h1
+         
           className="mx-auto"
           style={{
             fontFamily: '"alfabet", "Alfabet Black", "Alfabet Bold", Manrope, "Helvetica Neue", Arial, sans-serif',
@@ -312,10 +291,10 @@ function Hero({ onOpen, unlocked }: { onOpen: () => void; unlocked: boolean }) {
           <span style={{ display: "block" }}>
             в сферата от <span style={{ fontFamily: "Manrope, sans-serif" }}>10</span> години.
           </span>
-        </motion.h1>
+        </h1>
 
-        <motion.div
-          initial="hidden" animate="show" variants={fadeUp} custom={2}
+        <div
+         
           aria-hidden
           style={{
             marginTop: 28,
@@ -326,8 +305,8 @@ function Hero({ onOpen, unlocked }: { onOpen: () => void; unlocked: boolean }) {
           }}
         />
 
-        <motion.p
-          initial="hidden" animate="show" variants={fadeUp} custom={3}
+        <p
+         
           className="mx-auto"
           style={{
             marginTop: 22,
@@ -354,10 +333,10 @@ function Hero({ onOpen, unlocked }: { onOpen: () => void; unlocked: boolean }) {
             €5K–€20K&nbsp;/&nbsp;месец
           </span>{" "}
           без опит, без голям бюджет, без собствен продукт и без аудитория.
-        </motion.p>
+        </p>
 
-        <motion.p
-          initial="hidden" animate="show" variants={fadeUp} custom={4}
+        <p
+         
           className="mx-auto"
           style={{
             marginTop: 14,
@@ -375,14 +354,14 @@ function Hero({ onOpen, unlocked }: { onOpen: () => void; unlocked: boolean }) {
         >
           Ако вече си пробвал dropshipping, Amazon FBA или SMM агенция и си уморен от „онлайн бизнес“ гурута, които никога не показват реални резултати,{" "}
           <span style={{ color: DC.fg, fontStyle: "normal", fontWeight: 600 }}>изгледай видеото внимателно…</span>
-        </motion.p>
+        </p>
 
-        <motion.div initial={{ opacity: 0, y: 30, scale: 0.97 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.85, delay: 0.4, ease: EASE_OUT_QUINT }} className="mt-12 mx-auto" style={{ width: "100%" }}>
+        <div className="mt-12 mx-auto" style={{ width: "100%" }}>
           <WistiaPlayer mediaId="fy5m3sogu1" unlocked={unlocked} onUnlock={handleUnlock} />
-        </motion.div>
+        </div>
 
         {!unlocked && (
-        <motion.div initial="hidden" animate="show" variants={fadeUp} custom={5} className="mt-12 flex flex-col items-center gap-7">
+        <div className="mt-12 flex flex-col items-center gap-7">
           <button
             type="button"
             onClick={handleUnlock}
@@ -439,10 +418,10 @@ function Hero({ onOpen, unlocked }: { onOpen: () => void; unlocked: boolean }) {
               Вземи безплатното обучение и виж как в действителност може и ти да започнеш. След това ще можеш сам да решиш дали това е за теб.
             </p>
           </div>
-        </motion.div>
+        </div>
         )}
 
-        <motion.div initial="hidden" animate="show" variants={fadeUp} custom={7} className="mt-32 flex flex-col items-center gap-7">
+        <div className="mt-32 flex flex-col items-center gap-7">
           <DesignEyebrow>Защо да го гледаш</DesignEyebrow>
           <div className="trust-pills-grid">
             {/* Pill 1 Beginners */}
@@ -492,7 +471,7 @@ function Hero({ onOpen, unlocked }: { onOpen: () => void; unlocked: boolean }) {
               <p className="trust-pill__copy">Гледаш веднага след регистрация без плащания, без чакане за имейл.</p>
             </div>
           </div>
-        </motion.div>
+        </div>
 
       </div>
     </section>
@@ -504,8 +483,8 @@ function Hero({ onOpen, unlocked }: { onOpen: () => void; unlocked: boolean }) {
 function StudentsCallout() {
   return (
     <section className="relative px-6 pt-4 pb-14 md:pb-20" aria-label="Социално доказателство">
-      <motion.div
-        initial="hidden" whileInView="show" viewport={{ once: true, margin: "-40px" }} variants={fadeIn}
+      <div
+       
         className="max-w-3xl mx-auto surface-accent rounded-2xl p-6 md:p-7 flex flex-col md:flex-row items-center gap-5"
       >
         <div className="flex flex-col items-center shrink-0">
@@ -520,7 +499,7 @@ function StudentsCallout() {
           <span style={{ color: "var(--text)", fontWeight: 700 }}>AI рекламата обръща цялата игра.</span>{" "}
           Начинаещи вече изпреварват хора с години опит, защото теренът беше върнат обратно на&nbsp;нула.
         </p>
-      </motion.div>
+      </div>
     </section>
   );
 }
@@ -531,7 +510,7 @@ function Comparison() {
   return (
     <section id="izborut" className="relative px-6 py-14 md:py-20">
       <div className="max-w-[1200px] mx-auto">
-        <motion.div initial="hidden" whileInView="show" viewport={{ once: true, margin: "-80px" }} variants={fadeIn}
+        <div
           className="max-w-5xl mb-14 mx-auto flex flex-col items-center text-center">
           <div className="mb-5"><DesignEyebrow>Ако си като повечето хора, които попадат на тази страница…</DesignEyebrow></div>
           <h2
@@ -543,10 +522,10 @@ function Comparison() {
           <p className="mt-5 t-body" style={{ color: "var(--text-2)", maxWidth: 1080, fontStyle: "italic", fontSize: "clamp(14px, 1.1vw, 17px)", lineHeight: 1.55, textWrap: "balance" }}>
             <strong style={{ color: "var(--text-1)" }}>Dropshipping. Amazon FBA. SMM агенции. Crypto bots. Faceless YouTube.</strong> Всяко едно от тях изискваше пари, които нямаше. Време, което не можеше да отделиш или преднина, която нямаше как да наваксаш. <strong style={{ color: "var(--text-1)" }}>AI рекламата обръща цялата игра</strong> и начинаещи вече изпреварват хора с години опит, защото теренът беше върнат обратно на&nbsp;нула.
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-          <motion.div initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }} variants={fadeIn}
+          <div
             className="rounded-2xl p-8" style={{ background: "rgba(255,255,255,0.002)", border: "1px solid rgba(255,255,255,0.25)", boxShadow: "inset 32.972px 5.495px 167.131px -4.375px rgba(140,30,30,0.10), inset 19.148px 3.191px 97.060px -3.750px rgba(140,30,30,0.13), inset 11.698px 1.950px 59.295px -3.125px rgba(140,30,30,0.16), inset 7.244px 1.207px 36.717px -2.500px rgba(140,30,30,0.20), inset 4.357px 0.726px 22.086px -1.875px rgba(140,30,30,0.24), inset 2.389px 0.398px 12.108px -1.250px rgba(140,30,30,0.28), inset 1.008px 0.168px 5.108px -0.625px rgba(140,30,30,0.32)" }}>
             <div className="t-eyebrow mb-4" style={{ color: "#ff8a8a", textAlign: "center" }}>Старите модели</div>
             <h3 className="font-alfabet-bold mb-7" style={{ fontSize: "clamp(20px, 2.4vw, 26px)", lineHeight: 1.15, textAlign: "center" }}>
@@ -562,9 +541,9 @@ function Comparison() {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
 
-          <motion.div initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }} variants={fadeIn}
+          <div
             className="rounded-2xl p-8" style={{ background: "rgba(255,255,255,0.002)", border: "1px solid rgba(255,255,255,0.30)", boxShadow: CARD_INNER_GLOW }}>
             <div className="t-eyebrow mb-4" style={{ color: "var(--accent)", textAlign: "center" }}>Защо AI рекламата е различна</div>
             <h3 className="font-alfabet-bold mb-7" style={{ fontSize: "clamp(20px, 2.4vw, 26px)", lineHeight: 1.15, textAlign: "center" }}>
@@ -580,7 +559,7 @@ function Comparison() {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
@@ -610,16 +589,16 @@ function WhatYouLearn() {
   return (
     <section className="relative px-6 py-14 md:py-20">
       <div className="max-w-[1200px] mx-auto">
-        <motion.div initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }} variants={fadeIn}
+        <div
           className="mb-14 mx-auto flex flex-col items-center text-center max-w-6xl">
           <div className="mb-5"><DesignEyebrow>Вътре в безплатното обучение</DesignEyebrow></div>
           <h2 className="t-section" style={{ fontSize: "clamp(20px, 2.4vw, 32px)", lineHeight: 1.25, letterSpacing: "-0.02em", fontWeight: 700, maxWidth: 1100, textWrap: "balance" }}>
             Системата, която превръща AI в реален доход, <br />а не просто в още една отворена страница в Google.
           </h2>
-        </motion.div>
+        </div>
         <div className="grid md:grid-cols-3 gap-6 md:gap-8">
           {items.map((it) => (
-            <motion.div key={it.n} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }} variants={fadeIn}
+            <div key={it.n}
               className="relative rounded-2xl p-8 overflow-hidden" style={{ background: "rgba(255,255,255,0.002)", border: "1px solid rgba(255,255,255,0.30)", boxShadow: CARD_INNER_GLOW }}>
               <div aria-hidden className="absolute select-none pointer-events-none" style={{ top: -8, right: 18, fontFamily: "Manrope, sans-serif", fontWeight: 800, fontSize: "clamp(80px, 8vw, 120px)", lineHeight: 1, letterSpacing: "-0.04em", background: "linear-gradient(180deg, rgba(196,155,217,0.22) 0%, rgba(196,155,217,0) 75%)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent" }}>
                 0{it.n}
@@ -634,7 +613,7 @@ function WhatYouLearn() {
                 </h3>
                 <p className="leading-relaxed" style={{ color: "var(--text-2)", fontSize: 15 }}>{it.body}</p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
@@ -648,15 +627,15 @@ function Discover() {
   return (
     <section id="kakvo-shte-otkriesh" className="relative px-6 py-14 md:py-20" style={{ background: "var(--bg-2)" }}>
       <div className="max-w-[1200px] mx-auto">
-        <motion.div initial="hidden" whileInView="show" viewport={{ once: true, margin: "-80px" }} variants={fadeIn}
+        <div
           className="max-w-3xl mb-14">
           <div className="mb-5"><DesignEyebrow>Какво ще откриеш</DesignEyebrow></div>
           <h2 className="t-section">Какво ще откриеш вътре?</h2>
-        </motion.div>
+        </div>
 
         <div className="grid lg:grid-cols-[1.4fr_1fr] gap-5">
           {/* Tall left card */}
-          <motion.div initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }} variants={fadeIn}>
+          <div>
             <GlowCard interactive minHeight={360} style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "clamp(28px, 4vw, 44px)" }}>
               <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 24 }}>
                 <span className="font-felt" style={{ color: DC.purple100, fontSize: "clamp(56px, 6vw, 72px)", lineHeight: 1 }}>{discover[0].n}</span>
@@ -669,22 +648,22 @@ function Discover() {
                 <p style={{ fontFamily: "Manrope, sans-serif", fontSize: 16, lineHeight: 1.65, color: DC.fgMuted, margin: 0, maxWidth: 60 + "ch" }}>{discover[0].desc}</p>
               </div>
             </GlowCard>
-          </motion.div>
+          </div>
 
           {/* 2 short right cards */}
           <div className="grid gap-5">
             {discover.slice(1).map((d, i) => (
-              <motion.div
+              <div
                 key={d.n}
-                initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }} variants={fadeIn}
-                transition={{ delay: 0.1 * (i + 1) }}
+               
+               
               >
                 <GlowCard interactive style={{ padding: 26 }}>
                   <span className="font-felt" style={{ color: DC.purple100, fontSize: 36, lineHeight: 1, display: "block", marginBottom: 14 }}>{d.n}</span>
                   <h3 style={{ fontFamily: "Manrope, sans-serif", fontWeight: 700, fontSize: "clamp(18px, 2vw, 22px)", lineHeight: 1.2, margin: 0, marginBottom: 8, color: DC.fg }}>{d.title}</h3>
                   <p style={{ fontFamily: "Manrope, sans-serif", fontSize: 14.5, lineHeight: 1.6, color: DC.fgMuted, margin: 0 }}>{d.desc}</p>
                 </GlowCard>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -704,7 +683,7 @@ function WhyNow() {
   return (
     <section id="zashto-sega" className="relative px-6 py-14 md:py-20 overflow-hidden">
       <div className="relative max-w-[1200px] mx-auto">
-        <motion.div initial="hidden" whileInView="show" viewport={{ once: true, margin: "-80px" }} variants={fadeIn}
+        <div
           className="mb-12 max-w-[1280px] mx-auto text-center flex flex-col items-center">
           <div className="mb-5"><DesignEyebrow>Прозорецът</DesignEyebrow></div>
           <h2 className="t-section" style={{ fontSize: "clamp(24px, 3vw, 38px)", lineHeight: 1.2, letterSpacing: "-0.02em", fontWeight: 700, textWrap: "balance" }}>
@@ -713,11 +692,11 @@ function WhyNow() {
           <p className="mt-5 t-body" style={{ color: "var(--text-2)", maxWidth: 1280, fontStyle: "italic", fontSize: "clamp(14px, 1.1vw, 17px)", lineHeight: 1.55, textWrap: "balance" }}>
             На всеки 5–10 години се отваря нов рекламен канал. Малка група хора влизат рано и печелят сериозно, преди всички останали да разберат. <strong style={{ color: "var(--text-1)" }}>Facebook реклами през 2012. YouTube през 2016. TikTok през 2020.</strong> AI рекламата е този прозорец точно сега. И хората, които печелят от него, не са експертите с години опит. <strong style={{ color: "var(--text-1)" }}>Те са начинаещите.</strong> Защото експертите се опитват да приложат старите правила в нова игра. А начинаещите просто правят това, което работи&nbsp;сега.
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid md:grid-cols-3 gap-6 md:gap-8">
           {stats.map((s) => (
-            <motion.div key={s.big} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }} variants={fadeIn}
+            <div key={s.big}
               className="relative rounded-2xl p-8 text-center flex flex-col items-center" style={{ background: "rgba(255,255,255,0.002)", border: "1px solid rgba(255,255,255,0.30)", boxShadow: CARD_INNER_GLOW }}>
               <div className="mb-4 inline-flex items-center gap-2" style={{ fontFamily: "Manrope, sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--accent)" }}>
                 <span style={{ width: 18, height: 1, background: "var(--accent)" }} />
@@ -728,7 +707,7 @@ function WhyNow() {
                 {s.big}
               </div>
               <p className="leading-relaxed" style={{ color: "var(--text-2)", fontSize: 15 }}>{s.label}</p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
@@ -742,14 +721,14 @@ function About() {
   return (
     <section id="ot-kogo" className="relative px-6 py-14 md:py-20 overflow-hidden">
       <div className="relative max-w-[1200px] mx-auto">
-        <motion.div initial="hidden" whileInView="show" viewport={{ once: true, margin: "-80px" }} variants={fadeIn} className="mb-12 max-w-4xl mx-auto text-center flex flex-col items-center">
+        <div className="mb-12 max-w-4xl mx-auto text-center flex flex-col items-center">
           <div className="mb-5"><DesignEyebrow>От кого ще учиш</DesignEyebrow></div>
           <h2 className="t-section" style={{ fontSize: "clamp(22px, 2.8vw, 34px)", lineHeight: 1.2, letterSpacing: "-0.02em", fontWeight: 700, maxWidth: 1100, textWrap: "balance" }}>
             Истински човек, който изгради това от нулата.
           </h2>
-        </motion.div>
+        </div>
 
-        <motion.div initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }} variants={fadeIn}
+        <div
           className="rounded-2xl mx-auto overflow-hidden" style={{ maxWidth: 1200, background: "rgba(255,255,255,0.002)", border: "1px solid rgba(255,255,255,0.30)", boxShadow: CARD_INNER_GLOW }}>
           <div className="grid lg:grid-cols-[420px_1fr]">
             <div className="relative" style={{ minHeight: 460, background: "#0E0E10" }}>
@@ -788,7 +767,7 @@ function About() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
@@ -800,7 +779,7 @@ function Modules() {
   return (
     <section id="moduli" className="relative px-6 py-14 md:py-20">
       <div className="max-w-[1100px] mx-auto">
-        <motion.div initial="hidden" whileInView="show" viewport={{ once: true, margin: "-80px" }} variants={fadeIn}
+        <div
           className="mb-14 flex flex-col md:flex-row md:items-end md:justify-between gap-5 max-w-4xl">
           <div>
             <div className="mb-5"><DesignEyebrow>Модули</DesignEyebrow></div>
@@ -809,17 +788,17 @@ function Modules() {
           <p className="t-small max-w-sm" style={{ color: "var(--text-3)" }}>
             Учебна програма, не теория. Всеки модул завършва с конкретно действие, което ще предприемеш.
           </p>
-        </motion.div>
+        </div>
 
         {/* Curriculum list 2 columns, divided rows, no boxed cards */}
         <ol className="grid md:grid-cols-2 gap-x-12">
           {modules.map((m, i) => (
-            <motion.li
+            <li
               key={m.n}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: (i % 2) * 0.05, ease: EASE_OUT_QUINT }}
+             
+             
+             
+             
               className="border-t py-6 grid grid-cols-[auto_1fr] gap-6 items-start group"
               style={{ borderColor: "var(--line)" }}
             >
@@ -830,7 +809,7 @@ function Modules() {
                 </h3>
                 <p className="leading-relaxed" style={{ color: "var(--text-3)" }}>{m.desc}</p>
               </div>
-            </motion.li>
+            </li>
           ))}
         </ol>
       </div>
@@ -844,17 +823,17 @@ function Testimonials() {
   return (
     <section id="rezultati" className="relative px-6 py-14 md:py-20" style={{ background: "var(--bg-2)" }}>
       <div className="max-w-[1200px] mx-auto">
-        <motion.div initial="hidden" whileInView="show" viewport={{ once: true, margin: "-80px" }} variants={fadeIn}
+        <div
           className="mb-14 max-w-3xl">
           <div className="mb-5"><DesignEyebrow>Студенти</DesignEyebrow></div>
           <h2 className="t-section">Какво казват нашите студенти</h2>
-        </motion.div>
+        </div>
 
         {/* Featured quote + 3 supporting quotes */}
         <div className="grid lg:grid-cols-[1.3fr_1fr] gap-5">
           {/* Big featured */}
-          <motion.div
-            initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }} variants={fadeIn}
+          <div
+           
           >
             <GlowCard interactive style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "clamp(28px, 4vw, 44px)", minHeight: 360 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 4, marginBottom: 22, color: DC.purple100 }}>
@@ -879,15 +858,15 @@ function Testimonials() {
                 </div>
               </figcaption>
             </GlowCard>
-          </motion.div>
+          </div>
 
           {/* Stack of 3 compact */}
           <div className="grid gap-4">
             {testimonials.slice(1).map((t, i) => (
-              <motion.div
+              <div
                 key={t.name}
-                initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, delay: i * 0.07, ease: EASE_OUT_QUINT }}
+               
+               
               >
                 <GlowCard interactive style={{ padding: 22 }}>
                   <blockquote style={{ fontFamily: "Manrope, sans-serif", fontSize: 15, lineHeight: 1.55, color: DC.fg, margin: 0 }}>„{t.quote}“</blockquote>
@@ -896,7 +875,7 @@ function Testimonials() {
                     <div style={{ color: DC.purple100, fontWeight: 700 }}>{t.result}</div>
                   </figcaption>
                 </GlowCard>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -912,7 +891,7 @@ function FAQ({ onOpen }: { onOpen: () => void }) {
   return (
     <section id="chzv" className="relative px-6 py-14 md:py-20">
       <div className="max-w-[1200px] mx-auto grid lg:grid-cols-[1fr_2fr] gap-12">
-        <motion.div initial="hidden" whileInView="show" viewport={{ once: true, margin: "-80px" }} variants={fadeIn} className="flex flex-col items-center text-center lg:items-center lg:text-center">
+        <div className="flex flex-col items-center text-center lg:items-center lg:text-center">
           <div className="mb-5"><DesignEyebrow>Първоначални въпроси</DesignEyebrow></div>
           <h2 className="t-section" style={{ fontSize: "clamp(28px, 3vw, 42px)", lineHeight: 1.15, letterSpacing: "-0.02em", fontWeight: 700, textWrap: "balance" }}>Въпросите, които ти минават през ума в момента.</h2>
           <p className="t-small mt-5" style={{ color: "var(--text-3)", maxWidth: 520 }}>
@@ -921,16 +900,16 @@ function FAQ({ onOpen }: { onOpen: () => void }) {
           <div className="mt-6">
             <CTAPill onClick={onOpen} ariaLabel="Запази безплатна консултация">Запази безплатна консултация →</CTAPill>
           </div>
-        </motion.div>
+        </div>
 
         <div className="space-y-2">
           {faqs.map((f, i) => {
             const isOpen = open === i;
             return (
-              <motion.div
+              <div
                 key={f.q}
-                initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }} transition={{ duration: 0.45, delay: i * 0.04, ease: EASE_OUT_QUINT }}
+               
+               
                 style={{
                   borderRadius: 16,
                   border: `1px solid ${isOpen ? "rgba(196,155,217,0.35)" : "rgba(196,155,217,0.14)"}`,
@@ -966,7 +945,7 @@ function FAQ({ onOpen }: { onOpen: () => void }) {
                     <div style={{ padding: "0 22px 22px", color: DC.fgMuted, fontFamily: "Manrope, sans-serif", fontSize: 15, lineHeight: 1.65 }}>{f.a}</div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             );
           })}
         </div>
@@ -980,8 +959,8 @@ function FAQ({ onOpen }: { onOpen: () => void }) {
 function FinalCTA({ onOpen }: { onOpen: () => void }) {
   return (
     <section id="cta" className="relative px-6 py-14 md:py-20">
-      <motion.div
-        initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: EASE_OUT_QUINT }}
+      <div
+       
         className="max-w-[1200px] mx-auto relative overflow-hidden text-center"
         style={{
           padding: "clamp(48px, 6vw, 80px) clamp(28px, 5vw, 60px)",
@@ -1030,7 +1009,7 @@ function FinalCTA({ onOpen }: { onOpen: () => void }) {
             ))}
           </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
@@ -1235,22 +1214,20 @@ function OptInModal({ open, onClose, onUnlock }: { open: boolean; onClose: () =>
     }
   };
 
+  if (!open) return null;
   return (
-    <AnimatePresence>
-      {open && (
-        <motion.div
-          initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+        <div
           className="modal-backdrop" onClick={onClose}
           role="dialog" aria-modal="true" aria-labelledby="modal-title"
         >
           <button onClick={(e) => { e.stopPropagation(); onClose(); }} aria-label="Затвори" className="modal-close-page" type="button">
             <I.X className="w-5 h-5" />
           </button>
-          <motion.div
-            initial={{ opacity: 0, y: 16, scale: 0.97 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 12, scale: 0.97 }}
-            transition={{ duration: 0.25, ease: EASE_OUT_QUINT }}
+          <div
+           
+           
+           
+           
             className="modal-card" onClick={(e) => e.stopPropagation()}
           >
             <span className="modal-eyebrow">{status === "success" ? "Достъп отключен" : "Безплатно обучение"}</span>
@@ -1411,10 +1388,8 @@ function OptInModal({ open, onClose, onUnlock }: { open: boolean; onClose: () =>
                 </p>
               </form>
             )}
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+          </div>
+        </div>
   );
 }
 
