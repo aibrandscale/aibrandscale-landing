@@ -905,7 +905,7 @@ function Testimonials() {
 
 /* ─────────── FAQ ─────────── */
 
-function FAQ() {
+function FAQ({ onOpen }: { onOpen: () => void }) {
   const [open, setOpen] = useState<number | null>(0);
   return (
     <section id="chzv" className="relative px-6 py-14 md:py-20">
@@ -914,8 +914,11 @@ function FAQ() {
           <div className="mb-5"><DesignEyebrow>Първоначални въпроси</DesignEyebrow></div>
           <h2 className="t-section" style={{ fontSize: "clamp(28px, 3vw, 42px)", lineHeight: 1.15, letterSpacing: "-0.02em", fontWeight: 700, textWrap: "balance" }}>Въпросите, които ти минават през ума в момента.</h2>
           <p className="t-small mt-5" style={{ color: "var(--text-3)", maxWidth: 520 }}>
-            Не намираш отговор? Запази 10-минутна безплатна<br />консултация след като отключиш видеото.
+            Не намираш отговор? Запази 10-минутна безплатна консултация след като отключиш видеото.
           </p>
+          <div className="mt-6">
+            <CTAPill onClick={onOpen} ariaLabel="Запази безплатна консултация">Запази безплатна консултация →</CTAPill>
+          </div>
         </motion.div>
 
         <div className="space-y-2">
@@ -1449,7 +1452,7 @@ export default function Page() {
         <WhatYouLearn />
         <WhyNow />
         <About />
-        <FAQ />
+        <FAQ onOpen={open} />
         <FinalCTA onOpen={open} />
       </main>
       <Footer />
