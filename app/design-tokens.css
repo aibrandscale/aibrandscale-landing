@@ -1,0 +1,231 @@
+/* ============================================================
+   AI Brand Scale — Design Tokens
+   Source of truth: Figma "aibrandscale.io" + provided notes
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Manrope:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap");
+/* Manrope is the canonical typeface for the entire system — display + body. */
+
+:root {
+  /* ── COLOR · NEUTRALS ─────────────────────────────────────── */
+  --bg-0: #1A1A1A;          /* primary page background (figma rgb(26,26,26)) */
+  --bg-1: #111111;          /* alternating section background */
+  --bg-2: #04070D;          /* deepest panel / divider line color */
+  --surface-card: rgba(255,255,255,0.002); /* near-transparent card body */
+
+  --fg-1: #FFFFFF;          /* pure white (used in nav strip, footer) */
+  --fg-2: #F9F9F9;          /* primary text on dark — figma rgb(249,249,249) */
+  --fg-3: #ADB0B7;          /* dim caption / muted */
+  --fg-4: #888888;          /* body muted (per spec) */
+  --fg-5: #666666;          /* footnote */
+  --fg-6: #444444;           /* divider text */
+
+  /* ── COLOR · BRAND PURPLE ─────────────────────────────────── */
+  --purple-900: #2D1B4E;    /* deepest card gradient stop */
+  --purple-850: #1F1635;    /* deeper card gradient stop */
+  --purple-800: #552B69;    /* nav strip + social chip — figma rgb(85,43,105) */
+  --purple-700: #6B21A8;    /* CTA gradient start */
+  --purple-600: #7B2FBE;    /* primary accent start */
+  --purple-500: #9165AB;    /* mid lavender — figma rgb(145,101,171) */
+  --purple-400: #AD76C7;    /* button hover light — figma rgb(173,118,199) */
+  --purple-300: #9333EA;    /* primary accent end / CTA mid */
+  --purple-250: #7C3AED;    /* CTA gradient end */
+  --purple-200: #C49BD9;    /* highlight glow */
+  --purple-100: #F7CBFF;    /* progress bar light end — figma rgba(247,203,255) */
+
+  /* ── COLOR · SHADOW STOPS (purple inner-glow stack) ──────── */
+  --glow-1: rgba(85,43,105,0.45);
+  --glow-2: rgba(85,43,105,0.68);
+  --glow-3: rgba(85,43,105,0.81);
+  --glow-4: rgba(85,43,105,0.88);
+  --glow-5: rgba(85,43,105,0.93);
+  --glow-6: rgba(85,43,105,0.96);
+  --glow-7: rgba(85,43,105,0.98);
+  --halo:   rgba(144,60,165,0.40);  /* outer purple halo */
+
+  /* ── COLOR · BORDERS ──────────────────────────────────────── */
+  --border-soft:   rgba(255,255,255,0.10);
+  --border-card:   rgba(255,255,255,0.30);
+  --border-strong: rgba(255,255,255,0.60);
+  --border-purple: rgba(123,47,190,0.30);
+  --border-line:   #1C1E20;
+
+  /* ── COLOR · GRADIENTS ────────────────────────────────────── */
+  --grad-card:   linear-gradient(145deg, #2D1B4E 0%, #1F1635 100%);
+  /* CTA — solid bright purple. The legacy radial + linear gradients are RETIRED on interactive
+     elements; they remain available as decorative background tokens only. */
+  --cta-bg:       #903CA5;
+  --cta-bg-hover: #A044B8;
+  --grad-radial:  radial-gradient(circle at 50% 50%, #AD76C7 0%, #552B69 100%); /* decorative bg only */
+  --grad-bar:    linear-gradient(90deg, rgba(145,101,171,0.9) 0%, rgba(247,203,255,0.9) 100%);
+  --grad-rule:   linear-gradient(90deg, #04070D 0%, #FFFFFF 100%);
+
+  /* ── COLOR · INNER GLOW (cards) ───────────────────────────── */
+  --shadow-card-inner:
+    inset 32.972px 5.495px 167.131px -4.375px var(--glow-1),
+    inset 19.148px 3.191px  97.060px -3.750px var(--glow-2),
+    inset 11.698px 1.950px  59.295px -3.125px var(--glow-3),
+    inset  7.244px 1.207px  36.717px -2.500px var(--glow-4),
+    inset  4.357px 0.726px  22.086px -1.875px var(--glow-5),
+    inset  2.389px 0.398px  12.108px -1.250px var(--glow-6),
+    inset  1.008px 0.168px   5.108px -0.625px var(--glow-7);
+
+  --shadow-video-halo: 0 1px 45px 0 var(--halo);
+  --shadow-cta:        inset 0 -1px 0 0 rgba(0,0,0,0.15),
+                       inset 0  1px 0 0 rgba(255,255,255,0.20);
+  --shadow-icon-pop:   0 1px 5px 0 rgba(255,255,255,0.40);
+
+  /* ── TYPOGRAPHY · FAMILIES ────────────────────────────────── */
+  --font-display: "Manrope", "Helvetica Neue", Arial, sans-serif; /* H1/H2/H3 — uppercase, weights 600–800 */
+  --font-body:    "Manrope", "Helvetica Neue", Arial, sans-serif; /* paragraphs — weight 400, labels 500 */
+  --font-mono:    ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  /* ── TYPOGRAPHY · SIZES (1920 base scale) ────────────────── */
+  --fs-display: 37px;       /* H1 — section big titles */
+  --fs-h2:      30px;       /* card title */
+  --fs-h3:      22px;       /* CTA / sub-head */
+  --fs-h4:      18px;       /* footer head */
+  --fs-body-l:  18px;       /* primary paragraph */
+  --fs-body:    17px;       /* card body */
+  --fs-body-s:  16px;       /* dense body */
+  --fs-tag:     16px;       /* italic tag — section eyebrow */
+  --fs-meta:    13px;       /* timestamp, captions */
+
+  /* line-heights */
+  --lh-tight:   1.05;
+  --lh-snug:    1.10;
+  --lh-h:       1.42;       /* card title (42 / 30) */
+  --lh-body:    1.10;       /* per Manrope 18 / 19.8 */
+  --lh-loose:   1.60;
+
+  /* letter-spacing */
+  --ls-display: -0.76px;    /* H1 negative tracking */
+  --ls-h2:       0px;
+  --ls-body:    -0.54px;    /* body Manrope */
+  --ls-tag:     -0.32px;
+  --ls-meta:     0.5px;     /* small caps, timestamp */
+
+  /* ── SPACING · 4-step base ────────────────────────────────── */
+  --sp-1:   4px;
+  --sp-2:   8px;
+  --sp-3:  12px;
+  --sp-4:  16px;
+  --sp-5:  20px;
+  --sp-6:  25px;
+  --sp-7:  40px;
+  --sp-8:  60px;
+  --sp-9:  80px;
+
+  /* ── RADIUS ──────────────────────────────────────────────── */
+  --r-sm:    6px;
+  --r-md:    9px;
+  --r-card: 10px;
+  --r-card-l: 13px;
+  --r-video: 15px;
+  --r-pill: 1000px;
+  --r-tag:  123px;
+
+  /* ── MOTION ──────────────────────────────────────────────── */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 120ms;
+  --dur:      220ms;
+  --dur-slow: 480ms;
+
+  /* ── LAYOUT ──────────────────────────────────────────────── */
+  --layout-w:  1920px;
+  --content-w: 1500px;
+  --reading-w:  870px;
+  --grid-tile: 50px;        /* dotted grid texture cell size */
+}
+
+/* ============================================================
+   SEMANTIC TYPE PRIMITIVES
+   ============================================================ */
+
+.h1, h1 {
+  font-family: var(--font-display);
+  font-weight: 800;                 /* hero / section title */
+  font-size: var(--fs-display);
+  line-height: 38px;
+  letter-spacing: var(--ls-display);
+  color: var(--fg-2);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.h2, h2 {
+  font-family: var(--font-display);
+  font-weight: 700;                 /* section heading */
+  font-size: var(--fs-h2);
+  line-height: 42px;
+  color: var(--fg-2);
+  margin: 0;
+}
+
+.h3, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;                 /* card title / sub-head */
+  font-size: var(--fs-h3);
+  line-height: 1.10;
+  text-transform: uppercase;
+  color: var(--fg-1);
+  margin: 0;
+}
+
+.h4, h4 {
+  font-family: var(--font-body);
+  font-weight: 600;                 /* footer head, label-y */
+  font-size: var(--fs-h4);
+  line-height: 27px;
+  color: var(--fg-1);
+  margin: 0;
+}
+
+.p, p, .body {
+  font-family: var(--font-body);
+  font-weight: 400;                 /* body */
+  font-size: var(--fs-body-l);
+  line-height: 19.8px;
+  letter-spacing: var(--ls-body);
+  color: var(--fg-2);
+  margin: 0;
+}
+
+.label, .ui-label {
+  font-family: var(--font-body);
+  font-weight: 500;                 /* UI label / button text */
+  font-size: var(--fs-body-s);
+  letter-spacing: 0;
+  color: var(--fg-2);
+}
+
+.tag {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-style: italic;
+  font-size: var(--fs-tag);
+  letter-spacing: var(--ls-tag);
+  line-height: 25.6px;
+  color: var(--fg-2);
+  text-transform: uppercase;
+}
+
+.meta {
+  font-family: var(--font-display);
+  font-size: var(--fs-meta);
+  letter-spacing: var(--ls-meta);
+  color: var(--fg-1);
+}
+
+.caps {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+a, .link {
+  color: var(--fg-2);
+  text-decoration: none;
+  transition: color var(--dur) var(--ease-out), opacity var(--dur) var(--ease-out);
+}
+a:hover, .link:hover { color: var(--purple-200); }

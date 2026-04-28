@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0612"/>
+      <stop offset="50%" stop-color="#2a1640"/>
+      <stop offset="100%" stop-color="#0a0612"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="20%" r="60%">
+      <stop offset="0%" stop-color="#d438ff" stop-opacity="0.55"/>
+      <stop offset="60%" stop-color="#903ca5" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#0a0612" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#d438ff"/>
+      <stop offset="100%" stop-color="#903ca5"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <g transform="translate(80,90)">
+    <rect width="62" height="62" rx="14" fill="url(#accent)"/>
+    <text x="80" y="42" font-family="'DM Sans', sans-serif" font-size="28" font-weight="700" fill="#fff">AI Brand Scale</text>
+  </g>
+  <text x="80" y="280" font-family="'DM Sans', sans-serif" font-size="68" font-weight="800" fill="#fff" letter-spacing="-1.4">AI рекламната система,</text>
+  <text x="80" y="360" font-family="'DM Sans', sans-serif" font-size="68" font-weight="800" letter-spacing="-1.4" fill="url(#accent)">с която обикновени хора</text>
+  <text x="80" y="440" font-family="'DM Sans', sans-serif" font-size="68" font-weight="800" letter-spacing="-1.4" fill="#fff">изграждат €5K–€20K/мес.</text>
+  <g transform="translate(80,520)">
+    <rect width="320" height="68" rx="34" fill="url(#accent)"/>
+    <text x="160" y="44" font-family="'DM Sans', sans-serif" font-size="22" font-weight="700" fill="#fff" text-anchor="middle" letter-spacing="2">ОТКЛЮЧИ ВИДЕОТО</text>
+  </g>
+  <text x="80" y="610" font-family="'DM Sans', sans-serif" font-size="18" fill="#888">Безплатно обучение · Гледаш веднага · 4.9/5 от 1,200+ курсисти</text>
+</svg>
