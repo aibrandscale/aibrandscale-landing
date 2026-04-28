@@ -236,6 +236,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://framerusercontent.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <Script
+          id="block-context-menu"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `document.addEventListener('contextmenu',function(e){var t=e.target;if(t&&(t.tagName==='INPUT'||t.tagName==='TEXTAREA'))return;e.preventDefault();},{capture:true});`,
+          }}
+        />
+        <Script
           id="gfonts-async"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
