@@ -1393,7 +1393,7 @@ function OptInModal({ open, onClose, onUnlock }: { open: boolean; onClose: () =>
                   rowGap: 8,
                   textAlign: "center",
                 }}>
-                  {["100% безплатно", "Незабавен достъп", "Без кредитна карта"].map((t) => (
+                  {["100% безплатно", "Мигновен достъп", "Без кредитна карта"].map((t) => (
                     <li key={t} style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
                       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" style={{ color: "var(--accent)" }} aria-hidden>
                         <path d="M5 12l5 5L20 7" />
