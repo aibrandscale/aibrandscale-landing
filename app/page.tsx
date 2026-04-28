@@ -1158,19 +1158,21 @@ function Footer() {
 /* ─────────── OPT-IN MODAL ─────────── */
 
 function OptInModal({ open, onClose, onUnlock }: { open: boolean; onClose: () => void; onUnlock: () => void }) {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [hp, setHp] = useState("");
-  const [errors, setErrors] = useState<{ email?: string; phone?: string; form?: string }>({});
+  const [errors, setErrors] = useState<{ name?: string; email?: string; phone?: string; form?: string }>({});
   const [status, setStatus] = useState<"idle" | "loading" | "success">("idle");
 
   const phoneDigits = phone.replace(/\D/g, "").replace(/^0+/, "").slice(0, 9);
   const phoneFormatted = phoneDigits.replace(/^(\d{3})(\d{0,3})(\d{0,3}).*/, (_m, a, b, c) =>
     [a, b, c].filter(Boolean).join(" "),
   );
+  const nameValid = name.trim().length >= 2;
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(email.trim());
   const phoneValid = phoneDigits.length === 9 && /^[2-9]/.test(phoneDigits);
-  const canSubmit = emailValid && phoneValid && status !== "loading";
+  const canSubmit = nameValid && emailValid && phoneValid && status !== "loading";
 
   useEffect(() => {
     if (!open) return;
@@ -1187,6 +1189,7 @@ function OptInModal({ open, onClose, onUnlock }: { open: boolean; onClose: () =>
     e.preventDefault();
     if (hp || status === "loading") return;
     const next: typeof errors = {};
+    if (!nameValid) next.name = "Моля, въведи името си.";
     if (!emailValid) next.email = "Невалиден имейл адрес.";
     if (!phoneValid) next.phone = phoneDigits.length !== 9 ? "Трябват 9 цифри след +359." : "Невалиден български номер.";
     if (Object.keys(next).length) {
@@ -1200,6 +1203,7 @@ function OptInModal({ open, onClose, onUnlock }: { open: boolean; onClose: () =>
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          name: name.trim(),
           email: email.trim(),
           phone: `+359${phoneDigits}`,
           hp,
@@ -1262,6 +1266,30 @@ function OptInModal({ open, onClose, onUnlock }: { open: boolean; onClose: () =>
               </div>
             ) : (
               <form onSubmit={submit} noValidate style={{ display: "flex", flexDirection: "column", alignItems: "stretch", gap: 18, width: "100%" }}>
+                {/* Name */}
+                <div style={{ display: "flex", flexDirection: "column", gap: 8, alignItems: "stretch", width: "100%" }}>
+                  <label htmlFor="optin-name" style={{ fontSize: 11, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--text-3)", fontFamily: "Manrope, sans-serif", fontWeight: 600, textAlign: "center" }}>
+                    Име
+                  </label>
+                  <div className={`field-shell${errors.name ? " is-error" : ""}`}>
+                    <input
+                      id="optin-name"
+                      type="text"
+                      required
+                      value={name}
+                      onChange={(e) => { setName(e.target.value); if (errors.name) setErrors((p) => ({ ...p, name: undefined })); }}
+                      autoComplete="given-name"
+                      placeholder="Име и фамилия"
+                      aria-invalid={!!errors.name}
+                      aria-describedby={errors.name ? "optin-name-err" : undefined}
+                      className="field-input"
+                    />
+                  </div>
+                  {errors.name && (
+                    <p id="optin-name-err" role="alert" className="field-err">{errors.name}</p>
+                  )}
+                </div>
+
                 {/* Email */}
                 <div style={{ display: "flex", flexDirection: "column", gap: 8, alignItems: "stretch", width: "100%" }}>
                   <label htmlFor="optin-email" style={{ fontSize: 11, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--text-3)", fontFamily: "Manrope, sans-serif", fontWeight: 600, textAlign: "center" }}>
@@ -1365,7 +1393,7 @@ function OptInModal({ open, onClose, onUnlock }: { open: boolean; onClose: () =>
                   rowGap: 8,
                   textAlign: "center",
                 }}>
-                  {["100% безплатно", "Незабавен достъп", "Без кредитна карта", "Отписване с 1 клик"].map((t) => (
+                  {["100% безплатно", "Незабавен достъп", "Без кредитна карта"].map((t) => (
                     <li key={t} style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
                       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" style={{ color: "var(--accent)" }} aria-hidden>
                         <path d="M5 12l5 5L20 7" />
