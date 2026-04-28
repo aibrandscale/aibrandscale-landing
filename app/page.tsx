@@ -276,12 +276,11 @@ function Hero({ onOpen, unlocked }: { onOpen: () => void; unlocked: boolean }) {
           }}
         >
           <span style={{ display: "block" }}>
-            <span style={{ fontFamily: "Manrope, sans-serif" }}>AI</span> рекламното умение, с което
+            <span style={{ fontFamily: "Manrope, sans-serif" }}>AI</span> рекламното умение, с което начинаещи
           </span>
-          <span style={{ display: "block" }}>начинаещи започват да изкарват</span>
-          <span style={{ display: "block" }}>повече от хора, които са</span>
+          <span style={{ display: "block" }}>започват да изкарват повече от хора,</span>
           <span style={{ display: "block" }}>
-            в сферата от <span style={{ fontFamily: "Manrope, sans-serif" }}>10</span> години.
+            които са в сферата от <span style={{ fontFamily: "Manrope, sans-serif" }}>10</span> години.
           </span>
         </h1>
 
