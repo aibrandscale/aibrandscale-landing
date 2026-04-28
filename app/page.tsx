@@ -541,7 +541,7 @@ function Comparison() {
             Не си изостанал. Не си бил без късмет.<br />Просто са ти продали грешната възможност.
           </h2>
           <p className="mt-5 t-body" style={{ color: "var(--text-2)", maxWidth: 1080, fontStyle: "italic", fontSize: "clamp(14px, 1.1vw, 17px)", lineHeight: 1.55, textWrap: "balance" }}>
-            <strong style={{ color: "var(--text-1)" }}>Dropshipping. Amazon FBA. SMM агенции. Crypto bots. Faceless YouTube.</strong> Всяко едно от тях изискваше пари, които нямаше, време, което не можеше да отделиш, или преднина, която нямаше как да наваксаш. <strong style={{ color: "var(--text-1)" }}>AI рекламата обръща цялата игра</strong> начинаещи вече изпреварват хора с години опит, защото теренът беше върнат обратно на нула.
+            <strong style={{ color: "var(--text-1)" }}>Dropshipping. Amazon FBA. SMM агенции. Crypto bots. Faceless YouTube.</strong> Всяко едно от тях изискваше пари, които нямаше. Време, което не можеше да отделиш или преднина, която нямаше как да наваксаш. <strong style={{ color: "var(--text-1)" }}>AI рекламата обръща цялата игра</strong> и начинаещи вече изпреварват хора с години опит, защото теренът беше върнат обратно на нула.
           </p>
         </motion.div>
 
