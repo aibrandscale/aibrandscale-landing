@@ -489,7 +489,7 @@ function Hero({ onOpen, unlocked }: { onOpen: () => void; unlocked: boolean }) {
                   <span style={{ fontSize: "0.55em", color: DC.fgMuted, fontWeight: 600 }}>&nbsp;сек.</span>
                 </span>
               </div>
-              <p className="trust-pill__copy">Гледаш веднага след регистрация без опашки, без чакане за имейл.</p>
+              <p className="trust-pill__copy">Гледаш веднага след регистрация без плащания, без чакане за имейл.</p>
             </div>
           </div>
         </motion.div>
