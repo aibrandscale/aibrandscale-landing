@@ -125,16 +125,6 @@ function WistiaPlayer({ mediaId, unlocked, onUnlock }: { mediaId: string; unlock
   const [scriptsLoaded, setScriptsLoaded] = useState(false);
 
   useEffect(() => {
-    const styleId = `wistia-style-${mediaId}`;
-    if (!document.getElementById(styleId)) {
-      const st = document.createElement("style");
-      st.id = styleId;
-      st.textContent = `wistia-player[media-id='${mediaId}']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/${mediaId}/swatch'); display: block; filter: blur(5px); padding-top:56.25%; }`;
-      document.head.appendChild(st);
-    }
-  }, [mediaId]);
-
-  useEffect(() => {
     if (!unlocked || scriptsLoaded) return;
 
     const swallow = (e: PromiseRejectionEvent) => {
@@ -178,6 +168,8 @@ function WistiaPlayer({ mediaId, unlocked, onUnlock }: { mediaId: string; unlock
     >
       <div
         style={{
+          aspectRatio: "16 / 9",
+          width: "100%",
           filter: unlocked ? "none" : "blur(14px)",
           transform: unlocked ? "scale(1)" : "scale(1.04)",
           transition: "filter 600ms cubic-bezier(0.23,1,0.32,1), transform 600ms cubic-bezier(0.23,1,0.32,1)",

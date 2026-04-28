@@ -5,6 +5,14 @@
   --font-inter-stack: var(--font-inter), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
+wistia-player:not(:defined) {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: center / contain no-repeat url("https://fast.wistia.com/embed/medias/fy5m3sogu1/swatch");
+  filter: blur(5px);
+}
+
 @font-face {
   font-family: "alfabet";
   font-style: normal;
