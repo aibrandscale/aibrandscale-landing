@@ -102,9 +102,6 @@ wistia-player:not(:defined) {
   80%  { box-shadow: 0 0 0 22px rgba(196,155,217,0); opacity: 0; }
   100% { box-shadow: 0 0 0 22px rgba(196,155,217,0); opacity: 0; }
 }
-@media (prefers-reduced-motion: reduce) {
-  .hero-cta-pulse { animation: none; }
-}
 
 .lock-pulse {
   animation: lockPulse 1.6s ease-in-out infinite;
@@ -120,9 +117,6 @@ wistia-player:not(:defined) {
     transform: scale(1.08);
     box-shadow: 0 0 0 16px rgba(196, 155, 217, 0);
   }
-}
-@media (prefers-reduced-motion: reduce) {
-  .lock-pulse { animation: none; }
 }
 
 /* ── Trust pills (hero) ── */
@@ -344,10 +338,6 @@ wistia-player:not(:defined) {
   line-height: 1.55;
   color: rgba(255,255,255,0.72);
 }
-@media (prefers-reduced-motion: reduce) {
-  .trust-pill__dot { animation: none; }
-  .trust-pill { transition: none; }
-}
 
 /* Hero video unlock celebration — purple ring pop */
 [data-hero-video] { transition: box-shadow 700ms cubic-bezier(0.23,1,0.32,1); }
@@ -374,9 +364,6 @@ wistia-player:not(:defined) {
       0 30px 80px -20px rgba(0,0,0,0.7);
     transform: scale(1);
   }
-}
-@media (prefers-reduced-motion: reduce) {
-  [data-hero-video].video-unlocked { animation: none; }
 }
 
 /* ── Opt-in modal form ── */
@@ -539,9 +526,7 @@ wistia-player:not(:defined) {
       0 0 0 14px rgba(196,155,217,0);
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  .optin-submit { animation: none; }
-}
+
 .optin-submit:hover, .optin-submit:focus-visible, .optin-submit:active, .optin-submit:disabled {
   animation-play-state: paused;
 }
@@ -572,14 +557,6 @@ wistia-player:not(:defined) {
 }
 
 :focus-visible { outline: 2px solid #C49BD9; outline-offset: 2px; border-radius: 4px; }
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-    scroll-behavior: auto !important;
-  }
-}
 
 /* ── Fonts from aibrandscale.io (Framer-hosted, brand-authentic) ── */
 @font-face {
@@ -842,14 +819,6 @@ body { overflow-x: hidden; }
 }
 
 /* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
-  .cta-pulse { animation: none !important; }
-  .marquee-track { animation: marquee 40s linear infinite !important; }
-}
 
 /* Skip link */
 .skip-link {
