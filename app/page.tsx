@@ -1096,7 +1096,7 @@ function Footer() {
           <div style={{ marginTop: 24, position: "relative", zIndex: 1, display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 18, fontFamily: "Manrope, sans-serif", fontSize: 13 }}>
             <a href="/privacy" className="logi-foot-link" style={linkStyle}>Privacy Policy</a>
             <span aria-hidden style={{ color: DC.fgMuted, opacity: 0.5 }}>|</span>
-            <a href="/privacy" className="logi-foot-link" style={linkStyle}>Terms &amp; Conditions</a>
+            <a href="/terms" className="logi-foot-link" style={linkStyle}>Terms &amp; Conditions</a>
           </div>
           <div style={{ marginTop: 18, position: "relative", zIndex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", gap: 12 } as React.CSSProperties} className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-center md:text-left">
             <p style={{ margin: 0, fontFamily: "Manrope, sans-serif", fontSize: 12, color: DC.fgMuted, lineHeight: 1.6, maxWidth: 760 }}>
