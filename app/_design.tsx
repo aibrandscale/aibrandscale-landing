@@ -118,18 +118,6 @@ export function PurpleAlertNav({
           </div>
         ))}
       </div>
-      <style>{`
-        .logi-marquee-track {
-          animation: logiMarquee ${speedSec}s linear infinite;
-        }
-        @keyframes logiMarquee {
-          from { transform: translateX(0); }
-          to   { transform: translateX(-50%); }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .logi-marquee-track { animation: none; }
-        }
-      `}</style>
     </div>
   );
 }

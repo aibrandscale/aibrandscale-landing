@@ -5,6 +5,15 @@
   --font-inter-stack: var(--font-inter), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
+.logi-marquee-track {
+  animation: logiMarquee 60s linear infinite;
+  will-change: transform;
+}
+@keyframes logiMarquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
 wistia-player:not(:defined) {
   display: block;
   width: 100%;
