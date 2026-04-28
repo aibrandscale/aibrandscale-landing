@@ -913,8 +913,8 @@ function FAQ() {
         <motion.div initial="hidden" whileInView="show" viewport={{ once: true, margin: "-80px" }} variants={fadeIn} className="flex flex-col items-center text-center lg:items-center lg:text-center">
           <div className="mb-5"><DesignEyebrow>Първоначални въпроси</DesignEyebrow></div>
           <h2 className="t-section" style={{ fontSize: "clamp(28px, 3vw, 42px)", lineHeight: 1.15, letterSpacing: "-0.02em", fontWeight: 700, textWrap: "balance" }}>Въпросите, които ти минават през ума в момента.</h2>
-          <p className="t-small mt-5" style={{ color: "var(--text-3)" }}>
-            Не намираш отговор? Запази 10-минутна безплатна консултация след като отключиш видеото.
+          <p className="t-small mt-5" style={{ color: "var(--text-3)", maxWidth: 520 }}>
+            Не намираш отговор? Запази 10-минутна безплатна<br />консултация след като отключиш видеото.
           </p>
         </motion.div>
 
