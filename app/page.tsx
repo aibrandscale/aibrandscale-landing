@@ -257,7 +257,7 @@ function PromoBar() {
 function Hero({ onOpen, unlocked }: { onOpen: () => void; unlocked: boolean }) {
   const handleUnlock = () => { onOpen(); };
   return (
-    <section id="home" className="relative pt-16 pb-12 overflow-hidden">
+    <section id="home" className="relative pt-10 pb-8 md:pt-16 md:pb-12 overflow-hidden">
       <div className="absolute inset-0 bg-wash" aria-hidden="true" />
       <div className="relative max-w-[1280px] mx-auto px-6 text-center">
         <h1
@@ -470,7 +470,7 @@ function Hero({ onOpen, unlocked }: { onOpen: () => void; unlocked: boolean }) {
 
 function StudentsCallout() {
   return (
-    <section className="relative px-6 pt-4 pb-14 md:pb-20" aria-label="Социално доказателство">
+    <section className="relative px-6 pt-4 pb-10 md:pb-20" aria-label="Социално доказателство">
       <div
        
         className="max-w-3xl mx-auto surface-accent rounded-2xl p-6 md:p-7 flex flex-col md:flex-row items-center gap-5"
@@ -496,7 +496,7 @@ function StudentsCallout() {
 
 function Comparison() {
   return (
-    <section id="izborut" className="relative px-6 py-14 md:py-20">
+    <section id="izborut" className="relative px-6 py-10 md:py-20">
       <div className="max-w-[1200px] mx-auto">
         <div
           className="max-w-5xl mb-14 mx-auto flex flex-col items-center text-center">
@@ -575,7 +575,7 @@ function WhatYouLearn() {
     },
   ];
   return (
-    <section className="relative px-6 py-14 md:py-20">
+    <section className="relative px-6 py-10 md:py-20">
       <div className="max-w-[1200px] mx-auto">
         <div
           className="mb-14 mx-auto flex flex-col items-center text-center max-w-6xl">
@@ -613,7 +613,7 @@ function WhatYouLearn() {
 
 function Discover() {
   return (
-    <section id="kakvo-shte-otkriesh" className="relative px-6 py-14 md:py-20" style={{ background: "var(--bg-2)" }}>
+    <section id="kakvo-shte-otkriesh" className="relative px-6 py-10 md:py-20" style={{ background: "var(--bg-2)" }}>
       <div className="max-w-[1200px] mx-auto">
         <div
           className="max-w-3xl mb-14">
@@ -669,7 +669,7 @@ function WhyNow() {
     { big: "12–18м.", tag: "Времеви прозорец", label: "Прозорецът преди AI рекламата да стане „стандартът“ и лесните пари да изчезнат." },
   ];
   return (
-    <section id="zashto-sega" className="relative px-6 py-14 md:py-20 overflow-hidden">
+    <section id="zashto-sega" className="relative px-6 py-10 md:py-20 overflow-hidden">
       <div className="relative max-w-[1200px] mx-auto">
         <div
           className="mb-12 max-w-[1280px] mx-auto text-center flex flex-col items-center">
@@ -707,7 +707,7 @@ function WhyNow() {
 
 function About() {
   return (
-    <section id="ot-kogo" className="relative px-6 py-14 md:py-20 overflow-hidden">
+    <section id="ot-kogo" className="relative px-6 py-10 md:py-20 overflow-hidden">
       <div className="relative max-w-[1200px] mx-auto">
         <div className="mb-12 max-w-4xl mx-auto text-center flex flex-col items-center">
           <div className="mb-5"><DesignEyebrow>От кого ще учиш</DesignEyebrow></div>
@@ -765,7 +765,7 @@ function About() {
 
 function Modules() {
   return (
-    <section id="moduli" className="relative px-6 py-14 md:py-20">
+    <section id="moduli" className="relative px-6 py-10 md:py-20">
       <div className="max-w-[1100px] mx-auto">
         <div
           className="mb-14 flex flex-col md:flex-row md:items-end md:justify-between gap-5 max-w-4xl">
@@ -809,7 +809,7 @@ function Modules() {
 
 function Testimonials() {
   return (
-    <section id="rezultati" className="relative px-6 py-14 md:py-20" style={{ background: "var(--bg-2)" }}>
+    <section id="rezultati" className="relative px-6 py-10 md:py-20" style={{ background: "var(--bg-2)" }}>
       <div className="max-w-[1200px] mx-auto">
         <div
           className="mb-14 max-w-3xl">
@@ -877,7 +877,7 @@ function Testimonials() {
 function FAQ({ onOpen }: { onOpen: () => void }) {
   const [open, setOpen] = useState<number | null>(null);
   return (
-    <section id="chzv" className="relative px-6 py-14 md:py-20">
+    <section id="chzv" className="relative px-6 py-10 md:py-20">
       <div className="max-w-[1200px] mx-auto grid lg:grid-cols-[1fr_2fr] gap-12">
         <div className="flex flex-col items-center text-center lg:items-center lg:text-center">
           <div className="mb-5"><DesignEyebrow>Първоначални въпроси</DesignEyebrow></div>
@@ -946,7 +946,7 @@ function FAQ({ onOpen }: { onOpen: () => void }) {
 
 function FinalCTA({ onOpen }: { onOpen: () => void }) {
   return (
-    <section id="cta" className="relative px-6 py-14 md:py-20">
+    <section id="cta" className="relative px-6 py-10 md:py-20">
       <div
        
         className="max-w-[1200px] mx-auto relative overflow-hidden text-center"
