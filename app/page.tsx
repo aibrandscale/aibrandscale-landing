@@ -1095,7 +1095,6 @@ function Footer() {
               <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 12 }}>
                 <li><a href="#" className="logi-foot-link" style={linkStyle}>Privacy Policy</a></li>
                 <li><a href="#" className="logi-foot-link" style={linkStyle}>Terms &amp; Conditions</a></li>
-                <li><a href="#" className="logi-foot-link" style={linkStyle}>Контакти</a></li>
               </ul>
             </div>
           </div>
