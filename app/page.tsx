@@ -1020,7 +1020,7 @@ function FinalCTA({ onOpen }: { onOpen: () => void }) {
                 }}>
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
                 </span>
-                <span style={{ display: "flex", flexDirection: "column", textAlign: "left", lineHeight: 1.15 }}>
+                <span style={{ display: "flex", flexDirection: "column", textAlign: "center", alignItems: "center", lineHeight: 1.15 }}>
                   <span style={{ fontSize: 13, fontWeight: 700, color: DC.fg }}>{b.label}</span>
                   <span style={{ fontSize: 11, color: DC.fgMuted }}>{b.sub}</span>
                 </span>
@@ -1054,9 +1054,6 @@ function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-[1.6fr_1fr_1fr] gap-10 md:gap-12 items-start">
             <div className="flex flex-col gap-4">
               <img src="/logo-white.png" alt="AI Brand Scale" style={{ width: "clamp(180px, 18vw, 240px)", height: "auto", display: "block" }} />
-              <p style={{ margin: 0, fontFamily: "Manrope, sans-serif", fontSize: 14, lineHeight: 1.6, color: DC.fgMuted, maxWidth: 360 }}>
-                AI рекламна система за начинаещи и предприемачи, които искат реални резултати без guru магия.
-              </p>
               <div style={{ display: "flex", gap: 10, marginTop: 4 }}>
                 {[
                   { Icon: I.Inst, label: "Instagram" },
