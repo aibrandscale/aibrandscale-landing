@@ -550,7 +550,7 @@ function Comparison() {
             className="rounded-2xl p-8" style={{ background: "rgba(255,255,255,0.002)", border: "1px solid rgba(255,255,255,0.25)", boxShadow: "inset 32.972px 5.495px 167.131px -4.375px rgba(140,30,30,0.10), inset 19.148px 3.191px 97.060px -3.750px rgba(140,30,30,0.13), inset 11.698px 1.950px 59.295px -3.125px rgba(140,30,30,0.16), inset 7.244px 1.207px 36.717px -2.500px rgba(140,30,30,0.20), inset 4.357px 0.726px 22.086px -1.875px rgba(140,30,30,0.24), inset 2.389px 0.398px 12.108px -1.250px rgba(140,30,30,0.28), inset 1.008px 0.168px 5.108px -0.625px rgba(140,30,30,0.32)" }}>
             <div className="t-eyebrow mb-4" style={{ color: "#ff8a8a" }}>Старите модели</div>
             <h3 className="font-alfabet-bold mb-7" style={{ fontSize: "clamp(20px, 2.4vw, 26px)", lineHeight: 1.15 }}>
-              Защо „старите“ онлайн бизнеси продължават да те разочароват
+              Защо „старите“ онлайн бизнеси продължават да те разочароват.
             </h3>
             <ul className="space-y-4">
               {oldWay.map((t) => (
