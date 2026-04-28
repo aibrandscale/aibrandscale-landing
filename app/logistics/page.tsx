@@ -1224,7 +1224,7 @@ function ResultCard({
   caption: string;
   idx: number;
 }) {
-  const { ref, seen } = useInView<HTMLDivElement>();
+  const { ref, seen } = useInView<HTMLButtonElement>();
   const [hover, setHover] = useState(false);
   const [press, setPress] = useState(false);
   const reduced = usePrefersReducedMotion();
