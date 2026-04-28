@@ -568,7 +568,7 @@ function Comparison() {
             className="rounded-2xl p-8" style={{ background: "rgba(255,255,255,0.002)", border: "1px solid rgba(255,255,255,0.30)", boxShadow: CARD_INNER_GLOW }}>
             <div className="t-eyebrow mb-4" style={{ color: "var(--accent)" }}>Защо AI рекламата е различна</div>
             <h3 className="font-alfabet-bold mb-7" style={{ fontSize: "clamp(20px, 2.4vw, 26px)", lineHeight: 1.15 }}>
-              Системата, която превръща AI в реален доход, не просто в още един отворен таб в браузъра ти.
+              Системата, която превръща AI в реален доход, а не просто в още една отворена страница в Google.
             </h3>
             <ul className="space-y-4">
               {newWay.map((t) => (
@@ -614,7 +614,7 @@ function WhatYouLearn() {
           className="mb-14 mx-auto flex flex-col items-center text-center max-w-4xl">
           <div className="mb-5"><DesignEyebrow>Вътре в безплатното обучение</DesignEyebrow></div>
           <h2 className="t-section" style={{ fontSize: "clamp(20px, 2.4vw, 32px)", lineHeight: 1.25, letterSpacing: "-0.02em", fontWeight: 700, maxWidth: 1100, textWrap: "balance" }}>
-            Системата, която превръща AI в реален доход <br />не просто в още един отворен таб в браузъра ти.
+            Системата, която превръща AI в реален доход, <br />а не просто в още една отворена страница в Google.
           </h2>
         </motion.div>
         <div className="grid md:grid-cols-3 gap-6 md:gap-8">
