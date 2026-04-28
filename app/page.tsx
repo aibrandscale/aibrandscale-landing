@@ -1048,52 +1048,43 @@ function Footer() {
             border: "1px solid rgba(196,155,217,0.18)",
             background: "rgba(255,255,255,0.002)",
             boxShadow: CARD_INNER_GLOW,
-            padding: "clamp(32px, 4vw, 56px) clamp(28px, 4vw, 56px)",
+            padding: "clamp(28px, 3vw, 44px) clamp(28px, 4vw, 56px)",
           }}
         >
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 items-center">
-            <div className="flex flex-col gap-4">
-              <img src="/logo-white.png" alt="AI Brand Scale" style={{ width: "clamp(180px, 18vw, 240px)", height: "auto", display: "block" }} />
-            </div>
+          <div className="flex flex-col items-center gap-8 text-center">
+            <img src="/logo-white.png" alt="AI Brand Scale" style={{ width: "clamp(190px, 16vw, 220px)", height: "auto", display: "block" }} />
 
-            <div>
-              <div style={eyebrowStyle}>Навигация</div>
-              <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 12 }}>
-                {[
-                  ["#home", "Начало"],
-                  ["#izborut", "Изборът"],
-                  ["#kakvo-shte-otkriesh", "Какво ще откриеш"],
-                  ["#zashto-sega", "Защо сега"],
-                  ["#chzv", "ЧЗВ"],
-                ].map(([h, l]) => (
-                  <li key={h}><a href={h} className="logi-foot-link" style={linkStyle}>{l}</a></li>
-                ))}
-              </ul>
-            </div>
+            <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "12px 28px", fontFamily: "Manrope, sans-serif", fontSize: 14 }}>
+              {[
+                ["#home", "Начало"],
+                ["#izborut", "Изборът"],
+                ["#kakvo-shte-otkriesh", "Какво ще откриеш"],
+                ["#zashto-sega", "Защо сега"],
+                ["#chzv", "ЧЗВ"],
+              ].map(([h, l]) => (
+                <li key={h}><a href={h} className="logi-foot-link" style={linkStyle}>{l}</a></li>
+              ))}
+            </ul>
 
-            <div>
-              <div style={eyebrowStyle}>Социални мрежи</div>
-              <div style={{ display: "flex", gap: 10 }}>
-                {[
-                  { Icon: I.Inst, label: "Instagram", href: "https://www.instagram.com/aibrandscale.io?igsh=MWdxbG02NGl4YWd4ag%3D%3D&utm_source=qr" },
-                  { Icon: I.TT, label: "TikTok", href: "https://www.tiktok.com/@venelinnyordan0v" },
-                ].map(({ Icon, label, href }) => (
-                  <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
-                    className="logi-social-chip"
-                    style={{
-                      width: 38, height: 38, borderRadius: "50%",
-                      display: "inline-flex", alignItems: "center", justifyContent: "center",
-                      background: "rgba(85,43,105,0.45)", color: "#fff",
-                      border: "1px solid rgba(196,155,217,0.25)",
-                      transition: "transform 200ms cubic-bezier(0.23,1,0.32,1), background 220ms cubic-bezier(0.23,1,0.32,1)",
-                    }}
-                  >
-                    <Icon className="w-4 h-4" />
-                  </a>
-                ))}
-              </div>
+            <div style={{ display: "flex", gap: 12 }}>
+              {[
+                { Icon: I.Inst, label: "Instagram", href: "https://www.instagram.com/aibrandscale.io?igsh=MWdxbG02NGl4YWd4ag%3D%3D&utm_source=qr" },
+                { Icon: I.TT, label: "TikTok", href: "https://www.tiktok.com/@venelinnyordan0v" },
+              ].map(({ Icon, label, href }) => (
+                <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
+                  className="logi-social-chip"
+                  style={{
+                    width: 40, height: 40, borderRadius: "50%",
+                    display: "inline-flex", alignItems: "center", justifyContent: "center",
+                    background: "rgba(85,43,105,0.45)", color: "#fff",
+                    border: "1px solid rgba(196,155,217,0.25)",
+                    transition: "transform 200ms cubic-bezier(0.23,1,0.32,1), background 220ms cubic-bezier(0.23,1,0.32,1)",
+                  }}
+                >
+                  <Icon className="w-4 h-4" />
+                </a>
+              ))}
             </div>
-
           </div>
 
           <div className="footer-divider" aria-hidden />
