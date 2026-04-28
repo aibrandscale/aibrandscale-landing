@@ -176,7 +176,7 @@
 .trust-pill__big {
   font-family: Manrope, sans-serif;
   font-weight: 800;
-  font-size: clamp(34px, 4vw, 44px);
+  font-size: clamp(42px, 5vw, 54px);
   line-height: 1;
   letter-spacing: -0.02em;
   color: #fff;
@@ -396,11 +396,13 @@
   -webkit-appearance: none;
   appearance: none;
   box-shadow: none;
-  padding: 16px 0;
+  padding: 12px 0;
   color: #fff;
   font-family: Manrope, sans-serif;
   font-size: 16px;
+  text-align: left;
 }
+.field-input::placeholder { text-align: left; }
 .field-shell input,
 .field-shell input:focus,
 .field-shell input:focus-visible,
@@ -444,14 +446,15 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 16px 28px;
+  padding: 16px 20px;
   min-height: 52px;
   width: 100%;
   border: 0;
   border-radius: 1000px;
   font-family: Manrope, sans-serif;
   font-weight: 700;
-  font-size: 15px;
+  font-size: clamp(12px, 3.4vw, 15px);
+  white-space: nowrap;
   letter-spacing: 0.02em;
   color: #fff;
   background: linear-gradient(135deg, #903CA5 0%, #7B2FBE 100%);
@@ -832,6 +835,9 @@ body { overflow-x: hidden; }
   max-width: 480px;
   width: 100%;
   padding: 2.25rem 2rem 2rem;
+  max-height: calc(100dvh - 2rem);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   box-shadow:
     inset 32.972px 5.495px 167.131px -4.375px rgba(85,43,105,0.45),
     inset 19.148px 3.191px 97.060px -3.750px rgba(85,43,105,0.68),

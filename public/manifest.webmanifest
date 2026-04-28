@@ -1,0 +1,14 @@
+{
+  "name": "AI Brand Scale",
+  "short_name": "AI Brand Scale",
+  "description": "Безплатно обучение за AI рекламна система до €5K–€20K/месец.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0612",
+  "theme_color": "#0a0612",
+  "lang": "bg-BG",
+  "dir": "ltr",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

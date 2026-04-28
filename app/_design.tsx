@@ -149,25 +149,26 @@ export function Eyebrow({ children }: { children: ReactNode }) {
         alignItems: "center",
         gap: 14,
         padding: "0 16px",
-        height: 26,
+        maxWidth: "100%",
       }}
     >
-      <span style={rule} />
+      <span style={{ ...rule, flexShrink: 0 }} />
       <span
         style={{
           fontFamily: "Inter, Manrope, sans-serif",
           fontWeight: 300,
           fontStyle: "italic",
-          fontSize: 14,
+          fontSize: "clamp(11px, 2.6vw, 14px)",
           letterSpacing: "0.08em",
           color: COLOR.fg,
           textTransform: "uppercase",
-          whiteSpace: "nowrap",
+          textAlign: "center",
+          lineHeight: 1.4,
         }}
       >
         {children}
       </span>
-      <span style={{ ...rule, transform: "scaleX(-1)" }} />
+      <span style={{ ...rule, flexShrink: 0, transform: "scaleX(-1)" }} />
     </div>
   );
 }
@@ -263,14 +264,15 @@ export function CTAPill({
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
-    padding: big ? "20px 44px" : "14px 30px",
+    padding: big ? "clamp(14px, 3vw, 20px) clamp(20px, 5vw, 44px)" : "12px clamp(16px, 4vw, 30px)",
     minHeight: 44,
+    whiteSpace: "nowrap",
     border: 0,
     borderRadius: 1000,
     cursor: "pointer",
     fontFamily: "Manrope, sans-serif",
     fontWeight: 700,
-    fontSize: big ? 20 : 16,
+    fontSize: big ? "clamp(15px, 3.4vw, 20px)" : "clamp(12px, 2.8vw, 16px)",
     textTransform: "uppercase",
     letterSpacing: "0.02em",
     color: "#fff",

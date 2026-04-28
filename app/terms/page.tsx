@@ -2,8 +2,10 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Общи условия · AI Brand Scale",
-  description: "Общи условия за използване на услугите на AI Brand Scale.",
+  title: "Общи условия",
+  description: "Общи условия за използване на услугите на AI Brand Scale — Република България.",
+  alternates: { canonical: "https://aibrandscale.io/terms" },
+  robots: { index: true, follow: true },
 };
 
 const LAST_UPDATED = "Април 2026 г.";

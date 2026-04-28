@@ -2,8 +2,10 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Политика за поверителност · AI Brand Scale",
-  description: "Как AI Brand Scale събира, използва и защитава личните ви данни.",
+  title: "Политика за поверителност",
+  description: "Как AI Brand Scale събира, използва и защитава личните ви данни според GDPR.",
+  alternates: { canonical: "https://aibrandscale.io/privacy" },
+  robots: { index: true, follow: true },
 };
 
 const LAST_UPDATED = "Април 2026 г.";

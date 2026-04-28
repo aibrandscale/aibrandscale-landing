@@ -296,7 +296,7 @@ function Hero({ onOpen, unlocked }: { onOpen: () => void; unlocked: boolean }) {
           style={{
             fontFamily: '"alfabet", "Alfabet Black", "Alfabet Bold", Manrope, "Helvetica Neue", Arial, sans-serif',
             fontWeight: 850,
-            fontSize: "clamp(24px, 3vw, 38px)",
+            fontSize: "clamp(18px, 4.4vw, 38px)",
             lineHeight: 1.12,
             letterSpacing: "-0.02em",
             color: DC.fg,
@@ -306,11 +306,12 @@ function Hero({ onOpen, unlocked }: { onOpen: () => void; unlocked: boolean }) {
           }}
         >
           <span style={{ display: "block" }}>
-            <span style={{ fontFamily: "Manrope, sans-serif" }}>AI</span> рекламното умение, с което начинаещи
+            <span style={{ fontFamily: "Manrope, sans-serif" }}>AI</span> рекламното умение, с което
           </span>
-          <span style={{ display: "block" }}>започват да изкарват повече от хора,</span>
+          <span style={{ display: "block" }}>начинаещи започват да изкарват</span>
+          <span style={{ display: "block" }}>повече от хора, които са</span>
           <span style={{ display: "block" }}>
-            които са в сферата от <span style={{ fontFamily: "Manrope, sans-serif" }}>10</span> години.
+            в сферата от <span style={{ fontFamily: "Manrope, sans-serif" }}>10</span> години.
           </span>
         </motion.h1>
 
@@ -393,13 +394,13 @@ function Hero({ onOpen, unlocked }: { onOpen: () => void; unlocked: boolean }) {
               display: "inline-flex",
               alignItems: "center",
               justifyContent: "center",
-              padding: "18px 80px",
+              padding: "20px clamp(22px, 6vw, 80px)",
               minHeight: 64,
               borderRadius: 1000,
               cursor: "pointer",
               fontFamily: "Manrope, sans-serif",
               fontWeight: 800,
-              fontSize: "clamp(14px, 1.2vw, 17px)",
+              fontSize: "clamp(13px, 3.2vw, 17px)",
               letterSpacing: "0.02em",
               color: "#fff",
               textAlign: "center",
@@ -413,14 +414,14 @@ function Hero({ onOpen, unlocked }: { onOpen: () => void; unlocked: boolean }) {
             }}
           >
             <span style={{ position: "relative" }}>
-              {unlocked ? "Видеото е отключено" : <>Отключи видеото, в което разкривам<br />как може да го направиш и ти</>}
+              {unlocked ? "Видеото е отключено" : <><span style={{ display: "block", whiteSpace: "nowrap" }}>Отключи видеото, в което разкривам</span><span style={{ display: "block", whiteSpace: "nowrap" }}>как може да го направиш и ти</span></>}
             </span>
           </button>
 
           <div style={{ width: "min(100%, 880px)", display: "flex", flexDirection: "column", alignItems: "center", gap: 10 }}>
-            <div style={{ display: "inline-flex", alignItems: "center", gap: 12 }}>
-              <span aria-hidden style={{ fontSize: 22, lineHeight: 1 }}>🎁</span>
-              <span style={{ fontFamily: "Manrope, sans-serif", fontWeight: 800, fontSize: "clamp(17px, 1.6vw, 21px)", color: DC.fg, letterSpacing: "-0.01em" }}>
+            <div style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 10, flexWrap: "wrap", textAlign: "center", maxWidth: "100%" }}>
+              <span aria-hidden style={{ fontSize: 20, lineHeight: 1 }}>🎁</span>
+              <span style={{ fontFamily: "Manrope, sans-serif", fontWeight: 800, fontSize: "clamp(14px, 3.6vw, 21px)", color: DC.fg, letterSpacing: "-0.01em", whiteSpace: "nowrap" }}>
                 Бонус: 10-минутна безплатна консултация
               </span>
             </div>
@@ -456,7 +457,7 @@ function Hero({ onOpen, unlocked }: { onOpen: () => void; unlocked: boolean }) {
               <div className="trust-pill__metric">
                 <span className="trust-pill__big">100%</span>
               </div>
-              <p className="trust-pill__copy">Създадено за хора без опит стъпка по стъпка от нулата.</p>
+              <p className="trust-pill__copy">Създадено за хора без опит,<br />стъпка по стъпка от нулата.</p>
             </div>
 
             {/* Pill 2 Rating */}
@@ -470,7 +471,7 @@ function Hero({ onOpen, unlocked }: { onOpen: () => void; unlocked: boolean }) {
               <div className="trust-pill__metric">
                 <span className="trust-pill__big">4.5<span style={{ fontSize: "0.55em", color: DC.fgMuted, fontWeight: 600 }}>/5</span></span>
               </div>
-              <p className="trust-pill__copy">Оценено от <strong style={{ color: DC.fg }}>1,200+</strong> курсисти, които вече имат резултати.</p>
+              <p className="trust-pill__copy">Оценено от <strong style={{ color: DC.fg }}>1,200+</strong> курсисти,<br />които вече имат резултати.</p>
             </div>
 
             {/* Pill 3 Instant */}
@@ -518,7 +519,7 @@ function StudentsCallout() {
         <p className="leading-relaxed text-center md:text-left" style={{ color: "var(--text-2)" }}>
           Не е твърде късно <span className="font-felt text-xl" style={{ color: "var(--accent)" }}>да наваксаш</span>.{" "}
           <span style={{ color: "var(--text)", fontWeight: 700 }}>AI рекламата обръща цялата игра.</span>{" "}
-          Начинаещи вече изпреварват хора с години опит, защото теренът беше върнат обратно на нула.
+          Начинаещи вече изпреварват хора с години опит, защото теренът беше върнат обратно на&nbsp;нула.
         </p>
       </motion.div>
     </section>
@@ -541,7 +542,7 @@ function Comparison() {
             Не си изостанал. Не си бил без късмет.<br />Просто са ти продали грешната възможност.
           </h2>
           <p className="mt-5 t-body" style={{ color: "var(--text-2)", maxWidth: 1080, fontStyle: "italic", fontSize: "clamp(14px, 1.1vw, 17px)", lineHeight: 1.55, textWrap: "balance" }}>
-            <strong style={{ color: "var(--text-1)" }}>Dropshipping. Amazon FBA. SMM агенции. Crypto bots. Faceless YouTube.</strong> Всяко едно от тях изискваше пари, които нямаше. Време, което не можеше да отделиш или преднина, която нямаше как да наваксаш. <strong style={{ color: "var(--text-1)" }}>AI рекламата обръща цялата игра</strong> и начинаещи вече изпреварват хора с години опит, защото теренът беше върнат обратно на нула.
+            <strong style={{ color: "var(--text-1)" }}>Dropshipping. Amazon FBA. SMM агенции. Crypto bots. Faceless YouTube.</strong> Всяко едно от тях изискваше пари, които нямаше. Време, което не можеше да отделиш или преднина, която нямаше как да наваксаш. <strong style={{ color: "var(--text-1)" }}>AI рекламата обръща цялата игра</strong> и начинаещи вече изпреварват хора с години опит, защото теренът беше върнат обратно на&nbsp;нула.
           </p>
         </motion.div>
 
@@ -708,10 +709,10 @@ function WhyNow() {
           className="mb-12 max-w-[1280px] mx-auto text-center flex flex-col items-center">
           <div className="mb-5"><DesignEyebrow>Прозорецът</DesignEyebrow></div>
           <h2 className="t-section" style={{ fontSize: "clamp(24px, 3vw, 38px)", lineHeight: 1.2, letterSpacing: "-0.02em", fontWeight: 700, textWrap: "balance" }}>
-            Това работи само защото по-голямата част от света е с 18 месеца назад.
+            Това работи само защото по<span style={{ fontFamily: "Manrope, sans-serif" }}>-</span>голямата част от света е с <span style={{ fontFamily: "Manrope, sans-serif" }}>18</span> месеца назад.
           </h2>
           <p className="mt-5 t-body" style={{ color: "var(--text-2)", maxWidth: 1280, fontStyle: "italic", fontSize: "clamp(14px, 1.1vw, 17px)", lineHeight: 1.55, textWrap: "balance" }}>
-            На всеки 5–10 години се отваря нов рекламен канал. Малка група хора влизат рано и печелят сериозно, преди всички останали да разберат. <strong style={{ color: "var(--text-1)" }}>Facebook реклами през 2012. YouTube през 2016. TikTok през 2020.</strong> AI рекламата е този прозорец точно сега. И хората, които печелят от него, не са експертите с години опит. <strong style={{ color: "var(--text-1)" }}>Те са начинаещите.</strong> Защото експертите се опитват да приложат старите правила в нова игра. А начинаещите просто правят това, което работи сега.
+            На всеки 5–10 години се отваря нов рекламен канал. Малка група хора влизат рано и печелят сериозно, преди всички останали да разберат. <strong style={{ color: "var(--text-1)" }}>Facebook реклами през 2012. YouTube през 2016. TikTok през 2020.</strong> AI рекламата е този прозорец точно сега. И хората, които печелят от него, не са експертите с години опит. <strong style={{ color: "var(--text-1)" }}>Те са начинаещите.</strong> Защото експертите се опитват да приложат старите правила в нова игра. А начинаещите просто правят това, което работи&nbsp;сега.
           </p>
         </motion.div>
 
@@ -760,8 +761,8 @@ function About() {
               />
               <div aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 55%, rgba(14,14,16,0.85) 100%)" }} />
             </div>
-            <div className="p-10 md:p-12 flex flex-col justify-center">
-              <div className="mb-4 inline-flex items-center gap-2" style={{ fontFamily: "Manrope, sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--accent)" }}>
+            <div className="p-10 md:p-12 flex flex-col justify-center items-center text-center">
+              <div className="mb-4 inline-flex items-center gap-2 mx-auto" style={{ fontFamily: "Manrope, sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--accent)" }}>
                 <span style={{ width: 18, height: 1, background: "var(--accent)" }} />
                 Венелин Йорданов · Лектор
               </div>
@@ -776,7 +777,7 @@ function About() {
                   В това безплатно обучение ще ти покажа точния път, който бих изминал, ако трябваше да започна отначало днес <strong style={{ color: "var(--text-1)" }}>без трите години грешки, през които преминах.</strong>
                 </p>
               </div>
-              <div className="flex flex-wrap gap-2.5">
+              <div className="flex flex-wrap gap-2.5 justify-center">
                 {["€2.4M+ управлявани реклами", "15+ обучени студенти", "Активен собственик на такъв бизнес"].map((t) => (
                   <span key={t} style={{ padding: "8px 14px", borderRadius: 999, fontSize: 12.5, fontFamily: "Manrope, sans-serif", color: DC.fg, background: "rgba(123,47,190,0.10)", border: "1px solid rgba(196,155,217,0.35)" }}>
                     {t}
@@ -905,7 +906,7 @@ function Testimonials() {
 /* ─────────── FAQ ─────────── */
 
 function FAQ({ onOpen }: { onOpen: () => void }) {
-  const [open, setOpen] = useState<number | null>(0);
+  const [open, setOpen] = useState<number | null>(null);
   return (
     <section id="chzv" className="relative px-6 py-14 md:py-20">
       <div className="max-w-[1200px] mx-auto grid lg:grid-cols-[1fr_2fr] gap-12">
@@ -992,7 +993,7 @@ function FinalCTA({ onOpen }: { onOpen: () => void }) {
         <div className="relative flex flex-col items-center gap-6">
           <DesignEyebrow>Едно последно нещо</DesignEyebrow>
           <h2 style={{ margin: 0, fontFamily: "alfabet, sans-serif", fontWeight: 800, fontSize: "clamp(22px, 2.4vw, 32px)", letterSpacing: "-0.02em", color: DC.fg, lineHeight: 1.2, textWrap: "balance", maxWidth: 820, textTransform: "uppercase" }}>
-            До 2 години AI ще управлява половината реклами по света. Въпросът е само един: ще си <em style={{ fontStyle: "italic", color: DC.purple100 }}>консуматор</em>, или <em style={{ fontStyle: "italic", color: DC.purple100 }}>създател</em>?
+            До 2 години AI ще управлява половината реклами по света. Въпросът е само един: ще си <em style={{ fontStyle: "italic", color: DC.purple100 }}>консуматор</em>, или <em style={{ fontStyle: "italic", color: DC.purple100 }}>създател</em>&nbsp;<em style={{ fontStyle: "italic", color: DC.purple100 }}>?</em>
           </h2>
           <div className="mt-2 cta-pulse" style={{ display: "inline-flex", borderRadius: 999, animation: "ctaPulse 3.2s ease-in-out infinite" }}>
             <CTAPill big onClick={onOpen} ariaLabel="Получи мигновен достъп">Получи мигновен достъп →</CTAPill>
@@ -1263,10 +1264,10 @@ function OptInModal({ open, onClose, onUnlock }: { open: boolean; onClose: () =>
                 <CTAPill onClick={onClose} ariaLabel="Затвори">Затвори</CTAPill>
               </div>
             ) : (
-              <form onSubmit={submit} noValidate style={{ display: "flex", flexDirection: "column", alignItems: "stretch", gap: 18, width: "100%" }}>
+              <form onSubmit={submit} noValidate style={{ display: "flex", flexDirection: "column", alignItems: "stretch", gap: 12, width: "100%" }}>
                 {/* Name */}
-                <div style={{ display: "flex", flexDirection: "column", gap: 8, alignItems: "stretch", width: "100%" }}>
-                  <label htmlFor="optin-name" style={{ fontSize: 11, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--text-3)", fontFamily: "Manrope, sans-serif", fontWeight: 600, textAlign: "center" }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: 4, alignItems: "stretch", width: "100%" }}>
+                  <label htmlFor="optin-name" style={{ fontSize: 11, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--text-3)", fontFamily: "Manrope, sans-serif", fontWeight: 600, textAlign: "center", display: "block", width: "100%" }}>
                     Име
                   </label>
                   <div className={`field-shell${errors.name ? " is-error" : ""}`}>
@@ -1289,8 +1290,8 @@ function OptInModal({ open, onClose, onUnlock }: { open: boolean; onClose: () =>
                 </div>
 
                 {/* Email */}
-                <div style={{ display: "flex", flexDirection: "column", gap: 8, alignItems: "stretch", width: "100%" }}>
-                  <label htmlFor="optin-email" style={{ fontSize: 11, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--text-3)", fontFamily: "Manrope, sans-serif", fontWeight: 600, textAlign: "center" }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: 4, alignItems: "stretch", width: "100%" }}>
+                  <label htmlFor="optin-email" style={{ fontSize: 11, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--text-3)", fontFamily: "Manrope, sans-serif", fontWeight: 600, textAlign: "center", display: "block", width: "100%" }}>
                     Имейл
                   </label>
                   <div className={`field-shell${errors.email ? " is-error" : ""}`}>
@@ -1313,8 +1314,8 @@ function OptInModal({ open, onClose, onUnlock }: { open: boolean; onClose: () =>
                 </div>
 
                 {/* Phone */}
-                <div style={{ display: "flex", flexDirection: "column", gap: 8, alignItems: "stretch", width: "100%" }}>
-                  <label htmlFor="optin-phone" style={{ fontSize: 11, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--text-3)", fontFamily: "Manrope, sans-serif", fontWeight: 600, textAlign: "center" }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: 4, alignItems: "stretch", width: "100%" }}>
+                  <label htmlFor="optin-phone" style={{ fontSize: 11, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--text-3)", fontFamily: "Manrope, sans-serif", fontWeight: 600, textAlign: "center", display: "block", width: "100%" }}>
                     Телефон
                   </label>
                   <div className={`field-shell${errors.phone ? " is-error" : ""}`}>
@@ -1383,16 +1384,18 @@ function OptInModal({ open, onClose, onUnlock }: { open: boolean; onClose: () =>
                   fontSize: 12,
                   lineHeight: 1.5,
                   color: "var(--text-3)",
-                  display: "flex",
-                  flexWrap: "wrap",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  columnGap: 16,
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  justifyItems: "start",
+                  alignItems: "start",
+                  columnGap: 12,
                   rowGap: 8,
-                  textAlign: "center",
+                  textAlign: "left",
+                  maxWidth: 360,
+                  marginInline: "auto",
                 }}>
-                  {["100% безплатно", "Мигновен достъп", "Без кредитна карта", "10 мин. безплатна консултация"].map((t) => (
-                    <li key={t} style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+                  {["100% безплатно", "Мигновен достъп", "Без кредитна карта", <>10 мин. безплатна<br />консултация</>].map((t, i) => (
+                    <li key={i} style={{ display: "inline-flex", alignItems: "flex-start", gap: 6 }}>
                       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" style={{ color: "var(--accent)" }} aria-hidden>
                         <path d="M5 12l5 5L20 7" />
                       </svg>
@@ -1400,9 +1403,9 @@ function OptInModal({ open, onClose, onUnlock }: { open: boolean; onClose: () =>
                     </li>
                   ))}
                 </ul>
-                <p style={{ margin: "6px auto 0", fontSize: 11, lineHeight: 1.5, color: "var(--text-3)", textAlign: "center", whiteSpace: "nowrap", opacity: 0.75 }}>
+                <p style={{ margin: "6px auto 0", fontSize: 11, lineHeight: 1.5, color: "var(--text-3)", textAlign: "center", opacity: 0.75 }}>
                   С натискането на бутона приемаш{" "}
-                  <a href="/privacy" target="_blank" style={{ color: "var(--text-2)", textDecoration: "underline" }}>политиката за поверителност</a>.
+                  <a href="/privacy" target="_blank" style={{ color: "var(--text-2)", textDecoration: "underline", whiteSpace: "nowrap" }}>политиката за поверителност</a>.
                 </p>
               </form>
             )}
