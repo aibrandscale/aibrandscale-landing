@@ -745,7 +745,7 @@ function About() {
         <motion.div initial="hidden" whileInView="show" viewport={{ once: true, margin: "-80px" }} variants={fadeIn} className="mb-12 max-w-4xl mx-auto text-center flex flex-col items-center">
           <div className="mb-5"><DesignEyebrow>От кого ще учиш</DesignEyebrow></div>
           <h2 className="t-section" style={{ fontSize: "clamp(22px, 2.8vw, 34px)", lineHeight: 1.2, letterSpacing: "-0.02em", fontWeight: 700, maxWidth: 1100, textWrap: "balance" }}>
-            Истински човек, който изгради това от нулата. Не поредният „онлайн гуру“.
+            Истински човек, който изгради това от нулата.
           </h2>
         </motion.div>
 
