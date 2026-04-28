@@ -1057,7 +1057,7 @@ function Footer() {
 
             <div className="flex flex-col items-center gap-4">
               <DesignEyebrow>Навигация</DesignEyebrow>
-              <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 12, fontFamily: "Manrope, sans-serif", fontSize: 14 }}>
+              <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 12, fontFamily: "Manrope, sans-serif", fontSize: 14, textAlign: "center" }}>
                 {[
                   ["#home", "Начало"],
                   ["#izborut", "Изборът"],
