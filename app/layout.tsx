@@ -234,17 +234,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="preload" as="font" type="font/woff2" href={ALFABET_FONTS[0]} crossOrigin="anonymous" />
         <link rel="preconnect" href="https://framerusercontent.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://use.typekit.net" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://p.typekit.net" crossOrigin="anonymous" />
-        <link rel="preload" as="style" href="https://use.typekit.net/qrt3bsu.css" />
-        <Script
-          id="typekit-async"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `(function(){var l=document.createElement('link');l.rel='stylesheet';l.href='https://use.typekit.net/qrt3bsu.css';document.head.appendChild(l);})();`,
-          }}
-        />
-        <noscript><link rel="stylesheet" href="https://use.typekit.net/qrt3bsu.css" /></noscript>
         <Script
           id="ld-json"
           type="application/ld+json"
