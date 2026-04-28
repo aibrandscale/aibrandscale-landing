@@ -992,7 +992,7 @@ function FinalCTA({ onOpen }: { onOpen: () => void }) {
         <div aria-hidden style={{ position: "absolute", top: "-40%", left: "50%", transform: "translateX(-50%)", width: "70%", height: "120%", background: "radial-gradient(closest-side, rgba(196,155,217,0.20), transparent 70%)", pointerEvents: "none", filter: "blur(20px)" }} />
         <div className="relative flex flex-col items-center gap-6">
           <DesignEyebrow>Едно последно нещо</DesignEyebrow>
-          <h2 style={{ margin: 0, fontFamily: "alfabet, sans-serif", fontWeight: 800, fontSize: "clamp(22px, 2.4vw, 32px)", letterSpacing: "-0.02em", color: DC.fg, lineHeight: 1.2, textWrap: "balance", maxWidth: 820 }}>
+          <h2 style={{ margin: 0, fontFamily: "alfabet, sans-serif", fontWeight: 800, fontSize: "clamp(22px, 2.4vw, 32px)", letterSpacing: "-0.02em", color: DC.fg, lineHeight: 1.2, textWrap: "balance", maxWidth: 820, textTransform: "uppercase" }}>
             До 2 години AI ще управлява половината реклами по света. Въпросът е само един: ще си <em style={{ fontStyle: "italic", color: DC.purple100 }}>консуматор</em>, или <em style={{ fontStyle: "italic", color: DC.purple100 }}>създател</em>?
           </h2>
           <div className="mt-2 cta-pulse" style={{ display: "inline-flex", borderRadius: 999, animation: "ctaPulse 3.2s ease-in-out infinite" }}>
