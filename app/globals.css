@@ -394,13 +394,34 @@
   background: transparent;
   border: 0;
   outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  box-shadow: none;
   padding: 16px 0;
   color: #fff;
   font-family: Manrope, sans-serif;
   font-size: 16px;
 }
+.field-input:focus,
+.field-input:focus-visible,
+.field-input:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
 .field-input::placeholder {
   color: rgba(255,255,255,0.42);
+}
+.field-input::selection {
+  background: rgba(196,155,217,0.45);
+  color: #fff;
+}
+.field-input:-webkit-autofill,
+.field-input:-webkit-autofill:hover,
+.field-input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #fff;
+  -webkit-box-shadow: 0 0 0 1000px transparent inset;
+  transition: background-color 9999s ease-in-out 0s;
+  caret-color: #C49BD9;
 }
 .field-err {
   margin: 0;
