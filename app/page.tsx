@@ -1051,22 +1051,8 @@ function Footer() {
             padding: "clamp(28px, 3vw, 44px) clamp(28px, 4vw, 56px)",
           }}
         >
-          <div className="relative" style={{ overflow: "hidden" }}>
-            <img aria-hidden src="/logo-white.png" alt="" style={{
-              position: "absolute",
-              left: "50%",
-              top: "50%",
-              transform: "translate(-50%, -50%)",
-              width: "min(110%, 980px)",
-              maxWidth: "none",
-              height: "auto",
-              opacity: 0.05,
-              pointerEvents: "none",
-              userSelect: "none",
-              filter: "blur(0.5px)",
-              zIndex: 0,
-            }} />
-          <div className="relative flex flex-col items-center gap-8 text-center" style={{ zIndex: 1 }}>
+          <div className="flex flex-col items-center gap-8 text-center">
+            <img src="/logo-white.png" alt="AI Brand Scale" style={{ width: "clamp(190px, 16vw, 220px)", height: "auto", display: "block" }} />
             <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "12px 28px", fontFamily: "Manrope, sans-serif", fontSize: 14 }}>
               {[
                 ["#home", "Начало"],
@@ -1100,8 +1086,7 @@ function Footer() {
             </div>
           </div>
 
-          </div>
-          <div className="footer-divider relative" aria-hidden style={{ zIndex: 1 }} />
+          <div className="footer-divider" aria-hidden />
           <div style={{ marginTop: 24, position: "relative", zIndex: 1, display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 18, fontFamily: "Manrope, sans-serif", fontSize: 13 }}>
             <a href="#" className="logi-foot-link" style={linkStyle}>Privacy Policy</a>
             <span aria-hidden style={{ color: DC.fgMuted, opacity: 0.5 }}>|</span>
