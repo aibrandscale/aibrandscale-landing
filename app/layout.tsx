@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     description:
       "Безплатно обучение за AI рекламна система, с която обикновени хора изграждат €5K–€20K/месец без опит и без голям бюджет.",
     images: [
-      { url: "/og.svg", width: 1200, height: 630, alt: "AI Brand Scale — AI рекламна система за начинаещи", type: "image/svg+xml" },
+      { url: "/og.png", width: 1200, height: 630, alt: "AI Brand Scale — AI рекламна система за начинаещи", type: "image/png" },
     ],
   },
   twitter: {
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     title: "AI Brand Scale — AI рекламна система за начинаещи",
     description:
       "Безплатно обучение за AI рекламна система до €5K–€20K/месец без опит.",
-    images: ["/og.svg"],
+    images: ["/og.png"],
     creator: "@aibrandscale",
     site: "@aibrandscale",
   },
@@ -84,10 +84,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.png", type: "image/png" },
     ],
-    shortcut: "/favicon.svg",
-    apple: "/favicon.svg",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
   },
   manifest: "/manifest.webmanifest",
   verification: {
@@ -204,7 +204,7 @@ const jsonLdGraph = {
       "@id": `${SITE_URL}#hero-video`,
       name: "AI рекламната система — безплатно обучение",
       description: "Видео обучение, което показва AI рекламната система за начинаещи.",
-      thumbnailUrl: `${SITE_URL}/og.svg`,
+      thumbnailUrl: `${SITE_URL}/og.png`,
       uploadDate: "2026-01-01",
       contentUrl: `https://fast.wistia.com/embed/medias/fy5m3sogu1.bin`,
       embedUrl: `https://fast.wistia.com/embed/iframe/fy5m3sogu1`,

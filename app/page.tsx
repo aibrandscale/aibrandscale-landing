@@ -105,7 +105,8 @@ const faqs = [
 
 function Logo() {
   return (
-    <span className="font-alfabet-black tracking-tight text-lg">
+    <span className="font-alfabet-black tracking-tight text-lg" style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+      <Image src="/favicon.png" alt="" width={28} height={28} priority style={{ width: 28, height: 28, display: "block" }} />
       <span style={{ color: "var(--text)" }}>AI Brand</span>{" "}
       <span style={{ color: "var(--accent)" }}>Scale</span>
     </span>
