@@ -2,6 +2,7 @@
 
 import { useEffect, useState, type FormEvent } from "react";
 import Image from "next/image";
+import { track } from "@/lib/tracker";
 import {
   PurpleAlertNav,
   Eyebrow as DesignEyebrow,
@@ -1146,6 +1147,7 @@ function OptInModal({ open, onClose, onUnlock }: { open: boolean; onClose: () =>
 
   useEffect(() => {
     if (!open) return;
+    track("Modal_Open", { props: { type: "optin" } });
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
     document.addEventListener("keydown", onKey);
     const scrollY = window.scrollY;
@@ -1171,16 +1173,19 @@ function OptInModal({ open, onClose, onUnlock }: { open: boolean; onClose: () =>
   const submit = async (e: FormEvent) => {
     e.preventDefault();
     if (hp || status === "loading") return;
+    track("Modal_Submit_Attempt", { props: { has_name: nameValid, has_email: emailValid, has_phone: phoneValid } });
     const next: typeof errors = {};
     if (!nameValid) next.name = "Моля, въведи името си.";
     if (!emailValid) next.email = "Невалиден имейл адрес.";
     if (!phoneValid) next.phone = phoneDigits.length !== 9 ? "Трябват 9 цифри след +359." : "Невалиден български номер.";
     if (Object.keys(next).length) {
       setErrors(next);
+      track("Modal_Submit_ValidationError", { props: { errors: Object.keys(next) } });
       return;
     }
     setErrors({});
     setStatus("loading");
+    const leadEventId = (typeof crypto !== "undefined" && "randomUUID" in crypto) ? crypto.randomUUID() : String(Date.now());
     try {
       const res = await fetch("/api/optin", {
         method: "POST",
@@ -1189,17 +1194,30 @@ function OptInModal({ open, onClose, onUnlock }: { open: boolean; onClose: () =>
           name: name.trim(),
           email: email.trim(),
           phone: `+359${phoneDigits}`,
+          event_id: leadEventId,
           hp,
         }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok || data.ok === false) {
         setStatus("idle");
+        track("Modal_Submit_Error", { props: { field: data.field, message: data.message, status: res.status } });
         if (data.field === "email") setErrors({ email: data.message });
         else if (data.field === "phone") setErrors({ phone: data.message });
         else setErrors({ form: data.message || "Възникна грешка. Опитай отново." });
         return;
       }
+      track("Lead", {
+        event_id: leadEventId,
+        user: { name: name.trim(), email: email.trim(), phone: `+359${phoneDigits}` },
+        props: { content_name: "AI Brand Scale Free Training", value: 0, currency: "EUR" },
+      });
+      track("CompleteRegistration", {
+        event_id: leadEventId + "-reg",
+        user: { name: name.trim(), email: email.trim(), phone: `+359${phoneDigits}` },
+        props: { content_name: "AI Brand Scale Free Training", status: "completed" },
+      });
+      track("Modal_Submit_Success");
       // Success: close modal, unlock video, scroll into view smoothly.
       onClose();
       // small delay so the modal close animation finishes before the unlock pulse
@@ -1211,6 +1229,7 @@ function OptInModal({ open, onClose, onUnlock }: { open: boolean; onClose: () =>
       setStatus("idle");
     } catch {
       setStatus("idle");
+      track("Modal_Submit_NetworkError");
       setErrors({ form: "Няма връзка със сървъра. Опитай отново." });
     }
   };
