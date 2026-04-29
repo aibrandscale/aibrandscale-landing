@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { track, getAnonId } from "@/lib/tracker";
+import { track, getAnonId, markPageStart } from "@/lib/tracker";
 
 const SCROLL_BUCKETS = [25, 50, 75, 90, 100];
 const TIME_BUCKETS_MS = [10_000, 30_000, 60_000, 120_000, 300_000];
@@ -22,6 +22,31 @@ export default function TrackerInit() {
     // Initial PageView
     track("PageView", { props: { initial: true } });
     track("SessionStart", { props: { anon_id: getAnonId() } });
+
+    // SPA navigation → fire PageView on client-side route changes.
+    // App Router uses history.pushState / replaceState for <Link> navigations.
+    let lastPath = window.location.pathname + window.location.search;
+    const fireSpaPageView = () => {
+      const cur = window.location.pathname + window.location.search;
+      if (cur === lastPath) return;
+      lastPath = cur;
+      markPageStart();
+      track("PageView", { props: { spa: true } });
+    };
+    const origPush = history.pushState;
+    const origReplace = history.replaceState;
+    history.pushState = function (...args: Parameters<typeof history.pushState>) {
+      const r = origPush.apply(this, args);
+      queueMicrotask(fireSpaPageView);
+      return r;
+    };
+    history.replaceState = function (...args: Parameters<typeof history.replaceState>) {
+      const r = origReplace.apply(this, args);
+      queueMicrotask(fireSpaPageView);
+      return r;
+    };
+    const onPopState = () => fireSpaPageView();
+    window.addEventListener("popstate", onPopState);
 
     // Scroll depth tracker
     const firedScroll = new Set<number>();
@@ -196,6 +221,9 @@ export default function TrackerInit() {
       window.removeEventListener("resize", onResize);
       document.removeEventListener("touchstart", onTouchStart);
       document.removeEventListener("touchend", onTouchEnd);
+      window.removeEventListener("popstate", onPopState);
+      history.pushState = origPush;
+      history.replaceState = origReplace;
     };
   }, []);
 

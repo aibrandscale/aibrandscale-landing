@@ -127,7 +127,7 @@ function WistiaPlayer({ mediaId, unlocked, onUnlock }: { mediaId: string; unlock
   const [scriptsLoaded, setScriptsLoaded] = useState(false);
 
   useEffect(() => {
-    if (!unlocked || scriptsLoaded) return;
+    if (scriptsLoaded) return;
 
     const swallow = (e: PromiseRejectionEvent) => {
       if (e.reason === undefined || e.reason === null) { e.preventDefault(); return; }
@@ -151,7 +151,26 @@ function WistiaPlayer({ mediaId, unlocked, onUnlock }: { mediaId: string; unlock
     setScriptsLoaded(true);
 
     return () => { window.removeEventListener("unhandledrejection", swallow); };
-  }, [unlocked, scriptsLoaded, mediaId]);
+  }, [scriptsLoaded, mediaId]);
+
+  // On unlock, tell the wistia-player to start immediately.
+  useEffect(() => {
+    if (!unlocked) return;
+    let cancelled = false;
+    const tryPlay = (attempt = 0) => {
+      if (cancelled) return;
+      const el = document.querySelector(`wistia-player[media-id="${mediaId}"]`) as
+        | (HTMLElement & { play?: () => void | Promise<void> })
+        | null;
+      if (el && typeof el.play === "function") {
+        try { el.play(); } catch {}
+        return;
+      }
+      if (attempt < 40) setTimeout(() => tryPlay(attempt + 1), 100);
+    };
+    tryPlay();
+    return () => { cancelled = true; };
+  }, [unlocked, mediaId]);
 
   return (
     <div

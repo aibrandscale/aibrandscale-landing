@@ -212,6 +212,27 @@ export function track(eventName: string, payload: TrackPayload = {}): string {
 
   // Fire Meta Pixel client-side
   if (typeof window.fbq === "function") {
+    // Advanced Matching: if this event carries user PII, re-init pixel with
+    // plaintext fields so the browser SDK hashes them and improves match quality.
+    // Persists for subsequent fbq() calls in the same session.
+    if (payload.user && (payload.user.email || payload.user.phone || payload.user.name)) {
+      const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID || "1300040625301757";
+      const am: Record<string, string> = {};
+      if (payload.user.email) am.em = payload.user.email.trim().toLowerCase();
+      if (payload.user.phone) {
+        const digits = payload.user.phone.replace(/\D/g, "");
+        if (digits) am.ph = digits;
+      }
+      if (payload.user.name) {
+        const parts = payload.user.name.trim().split(/\s+/);
+        if (parts[0]) am.fn = parts[0].toLowerCase();
+        if (parts.length > 1) am.ln = parts.slice(1).join(" ").toLowerCase();
+      }
+      if (payload.user.external_id) am.external_id = payload.user.external_id;
+      else am.external_id = state.anonId;
+      try { window.fbq("init", PIXEL_ID, am); } catch {}
+    }
+
     const fbqProps = { ...(payload.props || {}), eventID: eventId };
     if (META_STANDARD.has(eventName)) {
       window.fbq("track", eventName, fbqProps, { eventID: eventId });
@@ -243,4 +264,11 @@ export function getAnonId(): string {
 }
 export function getSessionId(): string {
   return getState().sessionId;
+}
+
+// Reset the per-page timer when SPA navigation occurs so page_age_ms is correct.
+export function markPageStart(): void {
+  if (typeof window === "undefined") return;
+  const state = getState();
+  state.pageStart = Date.now();
 }
