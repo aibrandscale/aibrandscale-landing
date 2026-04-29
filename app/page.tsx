@@ -1164,7 +1164,7 @@ function OptInModal({ open, onClose, onUnlock }: { open: boolean; onClose: () =>
       body.style.right = "";
       body.style.width = "";
       body.style.overflow = "";
-      window.scrollTo(0, scrollY);
+      window.scrollTo({ top: scrollY, left: 0, behavior: "instant" as ScrollBehavior });
     };
   }, [open, onClose]);
 
