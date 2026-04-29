@@ -83,6 +83,14 @@ function captureUtm(): Record<string, string> {
   try {
     stored = JSON.parse(localStorage.getItem(UTM_KEY) || "{}");
   } catch {}
+
+  // Auto-tag /organic path as organic traffic when no UTM is present.
+  if (url.pathname.startsWith("/organic") && !fresh.utm_source && !stored.utm_source) {
+    fresh.utm_source = "organic";
+    fresh.utm_medium = "organic";
+    fresh.traffic_source = "organic";
+  }
+
   if (Object.keys(fresh).length > 0) {
     const merged = { ...stored, ...fresh };
     localStorage.setItem(UTM_KEY, JSON.stringify(merged));
