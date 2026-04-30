@@ -1238,6 +1238,14 @@ function OptInModal({ open, onClose, onUnlock }: { open: boolean; onClose: () =>
         props: { content_name: "AI Brand Scale Free Training", status: "completed" },
       });
       track("Modal_Submit_Success");
+      try {
+        localStorage.setItem("aibs_lead", JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          phone: `+359${phoneDigits}`,
+          ts: Date.now(),
+        }));
+      } catch {}
       // Success: close modal, unlock video, scroll into view smoothly.
       onClose();
       // small delay so the modal close animation finishes before the unlock pulse
@@ -1438,9 +1446,15 @@ function OptInModal({ open, onClose, onUnlock }: { open: boolean; onClose: () =>
 export default function Page() {
   const [modalOpen, setModalOpen] = useState(false);
   const [unlocked, setUnlocked] = useState(false);
+  useEffect(() => {
+    try {
+      if (localStorage.getItem("aibs_lead")) setUnlocked(true);
+    } catch {}
+  }, []);
   const open = () => setModalOpen(true);
   const close = () => setModalOpen(false);
   const handleUnlock = () => {
+    if (unlocked) return;
     setUnlocked(true);
     import("canvas-confetti").then(({ default: confetti }) => {
       const colors = ["#7B2FBE", "#C49BD9", "#F7CBFF", "#ffffff"];
