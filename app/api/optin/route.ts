@@ -34,6 +34,39 @@ function getClientIp(req: NextRequest): string | null {
   return req.headers.get("x-real-ip");
 }
 
+async function forwardToSheet(
+  data: { name: string; email: string; phone: string; event_id?: string },
+  meta: { ip: string | null; ua: string | null; referer: string | null; url?: URL },
+) {
+  const sheetUrl = process.env.GOOGLE_SHEET_WEBHOOK_URL;
+  if (!sheetUrl) return;
+  const u = meta.url;
+  const payload = {
+    name: data.name,
+    email: data.email,
+    phone: data.phone,
+    event_id: data.event_id,
+    ip: meta.ip,
+    ua: meta.ua,
+    referrer: meta.referer,
+    path: u?.pathname || "",
+    utm_source: u?.searchParams.get("utm_source") || "",
+    utm_medium: u?.searchParams.get("utm_medium") || "",
+    utm_campaign: u?.searchParams.get("utm_campaign") || "",
+    fbclid: u?.searchParams.get("fbclid") || "",
+    secret: process.env.GOOGLE_SHEET_WEBHOOK_SECRET || "",
+  };
+  try {
+    await fetch(sheetUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(5000),
+      redirect: "follow",
+    });
+  } catch {}
+}
+
 async function forwardLead(
   data: { name: string; email: string; phone: string; event_id?: string },
   meta: { ip: string | null; ua: string | null; referer: string | null },
@@ -92,8 +125,13 @@ export async function POST(req: NextRequest) {
     referer: req.headers.get("referer"),
   };
   const eventId = typeof body.event_id === "string" ? body.event_id : undefined;
+  let refUrl: URL | undefined;
+  try { if (meta.referer) refUrl = new URL(meta.referer); } catch {}
   // Fire and forget; Vercel will keep the function alive long enough thanks to the awaited promise.
-  await forwardLead({ name: result.name, email: result.email, phone: result.phone, event_id: eventId }, meta).catch(() => {});
+  await Promise.all([
+    forwardLead({ name: result.name, email: result.email, phone: result.phone, event_id: eventId }, meta).catch(() => {}),
+    forwardToSheet({ name: result.name, email: result.email, phone: result.phone, event_id: eventId }, { ...meta, url: refUrl }).catch(() => {}),
+  ]);
 
   return NextResponse.json({ ok: true });
 }
