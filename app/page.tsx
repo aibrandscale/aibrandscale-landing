@@ -1235,7 +1235,12 @@ function OptInModal({ open, onClose, onUnlock }: { open: boolean; onClose: () =>
       track("CompleteRegistration", {
         event_id: leadEventId + "-reg",
         user: { name: name.trim(), email: email.trim(), phone: `+359${phoneDigits}` },
-        props: { content_name: "AI Brand Scale Free Training", status: "completed" },
+        props: { content_name: "AI Brand Scale Free Training", status: "completed", value: 0, currency: "EUR" },
+      });
+      track("SubmitApplication", {
+        event_id: leadEventId + "-app",
+        user: { name: name.trim(), email: email.trim(), phone: `+359${phoneDigits}` },
+        props: { content_name: "AI Brand Scale Free Training", value: 0, currency: "EUR" },
       });
       track("Modal_Submit_Success");
       try {
