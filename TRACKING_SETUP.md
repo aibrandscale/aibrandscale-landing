@@ -16,6 +16,8 @@ The landing site has a centralized event tracker at `lib/tracker.ts` + `/api/tra
 | `META_TEST_EVENT_CODE` | `TEST12345` | When set, CAPI events appear in **Test Events** tab in Events Manager (use during dev only — remove in prod) |
 | `TRACKER_WEBHOOK_URL` | `https://your-software.com/api/tracking/webhook` | Sends every event to your software |
 | `TRACKER_WEBHOOK_SECRET` | random 64-char hex | HMAC signing key, must match the value in your software |
+| `GOOGLE_SHEET_WEBHOOK_URL` | `https://script.google.com/macros/s/.../exec` | Apps Script web app URL — appends every form submit as a row in a Google Sheet |
+| `GOOGLE_SHEET_WEBHOOK_SECRET` | string (optional) | If set, must equal `SECRET` constant inside the Apps Script |
 
 ## How to get the CAPI token
 
@@ -59,3 +61,35 @@ Browser
 ```
 
 Server-side path covers iOS/ad-blocker users (~30% of mobile traffic) where the client pixel is blocked.
+
+## Additional integrations
+
+### Microsoft Clarity
+Project ID `wjp6an4e9n` is hard-coded in `app/layout.tsx` (no env var needed). Loads via `afterInteractive` script. Heatmaps + session recordings at https://clarity.microsoft.com.
+
+### Google Sheets logging
+Every successful `/api/optin` POST is forwarded to `GOOGLE_SHEET_WEBHOOK_URL` (Apps Script web app). Sheet columns: Date, Name, Email, Phone, IP, UA, Referrer, UTM Source/Medium/Campaign, fbclid, Path, Event ID. The Apps Script source lives in the linked Google Sheet (Extensions → Apps Script).
+
+### Form rate limiting
+`/api/optin` enforces 5 requests/minute/IP via in-memory Map (per Vercel function instance). Over-limit returns 429.
+
+### `/organic` mirror route
+- `app/organic/page.tsx` re-renders home but with `metadata.robots = { index:false, follow:false }` and canonical → `/`.
+- `app/robots.ts` adds `Disallow: /organic` and `/api/`.
+- `lib/tracker.ts` auto-tags traffic on `/organic` paths as `utm_source=organic, utm_medium=organic, traffic_source=organic` if no UTM is present.
+
+### Lead persistence + auto-unlock
+On successful submit, `localStorage.aibs_lead = { name, email, phone, ts }`. On Page mount, if present → video auto-unlocks (no confetti, no modal). Tracker also auto-attaches stored email/phone/name to **every** subsequent event so EMQ stays high (~9+) for the whole session post-opt-in.
+
+### CAPI geo enrichment
+`/api/track` reads Vercel headers `x-vercel-ip-country/city/country-region/postal-code` and forwards them as hashed `country/ct/st/zp` in CAPI `user_data`. Boosts EMQ for anonymous traffic.
+
+### Standard events fired on form success
+- `Lead` (event_id = leadEventId)
+- `CompleteRegistration` (event_id = leadEventId + "-reg")
+- `SubmitApplication` (event_id = leadEventId + "-app")
+
+All include `value: 0, currency: "EUR"` and the user object (name/email/phone) for Advanced Matching + CAPI.
+
+### Meta Pixel autoConfig disabled
+`fbq('set','autoConfig','false', PIXEL_ID)` runs before init in `app/layout.tsx` to prevent Meta auto-detected events that fire without our `currency`/`value` and pollute diagnostics.
