@@ -180,11 +180,31 @@ export type TrackPayload = {
   props?: Record<string, unknown>;
 };
 
+function getStoredLead(): { name?: string; email?: string; phone?: string } | null {
+  if (typeof localStorage === "undefined") return null;
+  try {
+    const raw = localStorage.getItem("aibs_lead");
+    if (!raw) return null;
+    const j = JSON.parse(raw);
+    if (!j || typeof j !== "object") return null;
+    return { name: j.name, email: j.email, phone: j.phone };
+  } catch { return null; }
+}
+
 export function track(eventName: string, payload: TrackPayload = {}): string {
   if (typeof window === "undefined") return "";
   const state = getState();
   const eventId = payload.event_id || uuid();
   const now = Date.now();
+
+  // Auto-attach identified user PII from localStorage to every event so
+  // match quality stays high for the whole session after opt-in.
+  if (!payload.user || (!payload.user.email && !payload.user.phone)) {
+    const stored = getStoredLead();
+    if (stored && (stored.email || stored.phone)) {
+      payload = { ...payload, user: { ...stored, ...(payload.user || {}) } };
+    }
+  }
 
   const fullEvent = {
     event_id: eventId,
