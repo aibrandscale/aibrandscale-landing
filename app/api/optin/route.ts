@@ -34,6 +34,25 @@ function getClientIp(req: NextRequest): string | null {
   return req.headers.get("x-real-ip");
 }
 
+const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_WINDOW_MS = 60_000;
+const rateLimitMap: Map<string, number[]> = (globalThis as unknown as { __aibsRl?: Map<string, number[]> }).__aibsRl
+  || ((globalThis as unknown as { __aibsRl?: Map<string, number[]> }).__aibsRl = new Map());
+
+function rateLimited(ip: string | null): boolean {
+  if (!ip) return false;
+  const now = Date.now();
+  const arr = (rateLimitMap.get(ip) || []).filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
+  arr.push(now);
+  rateLimitMap.set(ip, arr);
+  if (rateLimitMap.size > 5000) {
+    for (const [k, v] of rateLimitMap) {
+      if (!v.length || now - v[v.length - 1] > RATE_LIMIT_WINDOW_MS) rateLimitMap.delete(k);
+    }
+  }
+  return arr.length > RATE_LIMIT_MAX;
+}
+
 async function forwardToSheet(
   data: { name: string; email: string; phone: string; event_id?: string },
   meta: { ip: string | null; ua: string | null; referer: string | null; url?: URL },
@@ -101,6 +120,11 @@ async function forwardLead(
 }
 
 export async function POST(req: NextRequest) {
+  const ip = getClientIp(req);
+  if (rateLimited(ip)) {
+    return NextResponse.json({ ok: false, message: "Твърде много опити. Опитай след минута." }, { status: 429 });
+  }
+
   let body: { name?: unknown; email?: unknown; phone?: unknown; hp?: unknown; event_id?: unknown } = {};
   try {
     body = await req.json();
@@ -120,7 +144,7 @@ export async function POST(req: NextRequest) {
 
   // Priority forward to consumer software — never block the user response on this.
   const meta = {
-    ip: getClientIp(req),
+    ip,
     ua: req.headers.get("user-agent"),
     referer: req.headers.get("referer"),
   };
