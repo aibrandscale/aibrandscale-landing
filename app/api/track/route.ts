@@ -50,7 +50,12 @@ type IncomingEvent = {
   [k: string]: unknown;
 };
 
-async function sendToCAPI(event: IncomingEvent, ip: string | null, ua: string | null) {
+async function sendToCAPI(
+  event: IncomingEvent,
+  ip: string | null,
+  ua: string | null,
+  geo: { country?: string | null; city?: string | null; region?: string | null; zip?: string | null } = {},
+) {
   if (!PIXEL_ID || !CAPI_TOKEN) return { skipped: "no_credentials" };
   const isStandard = META_STANDARD.has(event.event_name);
 
@@ -68,6 +73,10 @@ async function sendToCAPI(event: IncomingEvent, ip: string | null, ua: string | 
     if (parts[0]) userData.fn = sha256(parts[0]);
     if (parts.length > 1) userData.ln = sha256(parts.slice(1).join(" "));
   }
+  if (geo.country) userData.country = sha256(geo.country);
+  if (geo.city) userData.ct = sha256(geo.city.replace(/\s+/g, ""));
+  if (geo.region) userData.st = sha256(geo.region);
+  if (geo.zip) userData.zp = sha256(geo.zip);
   for (const k of Object.keys(userData)) if (userData[k] == null) delete userData[k];
 
   const capiEvent = {
@@ -132,8 +141,14 @@ export async function POST(req: NextRequest) {
 
   const ip = getClientIp(req);
   const ua = req.headers.get("user-agent");
+  const geo = {
+    country: req.headers.get("x-vercel-ip-country"),
+    city: req.headers.get("x-vercel-ip-city") ? decodeURIComponent(req.headers.get("x-vercel-ip-city") as string) : null,
+    region: req.headers.get("x-vercel-ip-country-region"),
+    zip: req.headers.get("x-vercel-ip-postal-code"),
+  };
 
-  const [capi, webhook] = await Promise.all([sendToCAPI(event, ip, ua), sendToWebhook(event, ip)]);
+  const [capi, webhook] = await Promise.all([sendToCAPI(event, ip, ua, geo), sendToWebhook(event, ip)]);
 
   return NextResponse.json({ ok: true, capi, webhook });
 }
