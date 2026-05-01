@@ -125,7 +125,6 @@ function StickyMobileCTA({ onOpen }: { onOpen: () => void }) {
 
 function WistiaPlayer({ mediaId, unlocked, onUnlock }: { mediaId: string; unlocked: boolean; onUnlock: () => void }) {
   const [scriptsLoaded, setScriptsLoaded] = useState(false);
-  const [videoStarted, setVideoStarted] = useState(false);
   const [wistiaFailed, setWistiaFailed] = useState(false);
 
   useEffect(() => {
@@ -155,33 +154,6 @@ function WistiaPlayer({ mediaId, unlocked, onUnlock }: { mediaId: string; unlock
 
     return () => { window.removeEventListener("unhandledrejection", swallow); };
   }, [scriptsLoaded, mediaId]);
-
-  // Listen for Wistia's real 'play' event so we can hide the loading overlay
-  // exactly when the first frame begins playing (not on user click).
-  useEffect(() => {
-    let attached = false;
-    let cancelled = false;
-    let attempts = 0;
-    const onPlay = () => setVideoStarted(true);
-    const tryAttach = () => {
-      if (cancelled || attached) return;
-      const el = document.querySelector(`wistia-player[media-id="${mediaId}"]`);
-      if (el) {
-        el.addEventListener("play", onPlay);
-        attached = true;
-        return;
-      }
-      if (++attempts < 100) setTimeout(tryAttach, 100);
-    };
-    tryAttach();
-    return () => {
-      cancelled = true;
-      if (attached) {
-        const el = document.querySelector(`wistia-player[media-id="${mediaId}"]`);
-        el?.removeEventListener("play", onPlay);
-      }
-    };
-  }, [mediaId]);
 
   // On unlock, tell the wistia-player to start immediately + watch for failure.
   useEffect(() => {
@@ -243,25 +215,6 @@ function WistiaPlayer({ mediaId, unlocked, onUnlock }: { mediaId: string; unlock
           __html: `<wistia-player media-id="${mediaId}" aspect="1.7777777777777777" preload="auto"></wistia-player>`,
         }}
       />
-
-      {unlocked && !videoStarted && !wistiaFailed && (
-        <div
-          aria-hidden
-          style={{
-            position: "absolute",
-            inset: 0,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            background: "rgba(0,0,0,0.35)",
-            color: "#fff",
-            pointerEvents: "none",
-            transition: "opacity 280ms ease",
-          }}
-        >
-          <span className="spinner" style={{ width: 36, height: 36, borderWidth: 3 }} />
-        </div>
-      )}
 
       {wistiaFailed && (
         <div
