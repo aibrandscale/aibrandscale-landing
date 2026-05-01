@@ -956,7 +956,7 @@ function Testimonials() {
 
 /* ─────────── FAQ ─────────── */
 
-function FAQ({ onOpen }: { onOpen: () => void }) {
+function FAQ({ onOpen, unlocked }: { onOpen: () => void; unlocked: boolean }) {
   const [open, setOpen] = useState<number | null>(null);
   return (
     <section id="chzv" className="relative px-6 py-10 md:py-20">
@@ -967,9 +967,11 @@ function FAQ({ onOpen }: { onOpen: () => void }) {
           <p className="t-small mt-5" style={{ color: "var(--text-3)", maxWidth: 520 }}>
             Не намираш отговор? Запази 10-минутна безплатна консултация след като отключиш видеото.
           </p>
-          <div className="mt-6">
-            <CTAPill onClick={onOpen} ariaLabel="Запази безплатна консултация">Запази безплатна консултация →</CTAPill>
-          </div>
+          {!unlocked && (
+            <div className="mt-6">
+              <CTAPill onClick={onOpen} ariaLabel="Запази безплатна консултация">Запази безплатна консултация →</CTAPill>
+            </div>
+          )}
         </div>
 
         <div className="space-y-2">
@@ -1026,7 +1028,7 @@ function FAQ({ onOpen }: { onOpen: () => void }) {
 
 /* ─────────── FINAL CTA ─────────── */
 
-function FinalCTA({ onOpen }: { onOpen: () => void }) {
+function FinalCTA({ onOpen, unlocked }: { onOpen: () => void; unlocked: boolean }) {
   return (
     <section id="cta" className="relative px-6 py-10 md:py-20">
       <div
@@ -1046,9 +1048,11 @@ function FinalCTA({ onOpen }: { onOpen: () => void }) {
           <h2 style={{ margin: 0, fontFamily: "alfabet, sans-serif", fontWeight: 800, fontSize: "clamp(22px, 2.4vw, 32px)", letterSpacing: "-0.02em", color: DC.fg, lineHeight: 1.2, textWrap: "balance", maxWidth: 820, textTransform: "uppercase" }}>
             До 2 години AI ще управлява половината реклами по света. Въпросът е само един: ще си <em style={{ fontStyle: "italic", color: DC.purple100 }}>консуматор</em>, или <em style={{ fontStyle: "italic", color: DC.purple100 }}>създател</em>&nbsp;<em style={{ fontStyle: "italic", color: DC.purple100 }}>?</em>
           </h2>
-          <div className="mt-2 cta-pulse" style={{ display: "inline-flex", borderRadius: 999, animation: "ctaPulse 3.2s ease-in-out infinite" }}>
-            <CTAPill big onClick={onOpen} ariaLabel="Получи мигновен достъп">Получи мигновен достъп →</CTAPill>
-          </div>
+          {!unlocked && (
+            <div className="mt-2 cta-pulse" style={{ display: "inline-flex", borderRadius: 999, animation: "ctaPulse 3.2s ease-in-out infinite" }}>
+              <CTAPill big onClick={onOpen} ariaLabel="Получи мигновен достъп">Получи мигновен достъп →</CTAPill>
+            </div>
+          )}
           <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 10, marginTop: 4 }}>
             {[
               { label: "100% Безплатно", sub: "Без скрити такси" },
@@ -1548,8 +1552,8 @@ export default function Page() {
         <WhatYouLearn />
         <WhyNow />
         <About />
-        <FAQ onOpen={open} />
-        <FinalCTA onOpen={open} />
+        <FAQ onOpen={open} unlocked={unlocked} />
+        <FinalCTA onOpen={open} unlocked={unlocked} />
       </main>
       <Footer />
       <OptInModal open={modalOpen} onClose={close} onUnlock={handleUnlock} />
