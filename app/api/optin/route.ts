@@ -104,7 +104,7 @@ async function forwardLead(
     page: { referrer: meta.referer },
     device: { ua: meta.ua },
     server: { ip: meta.ip, received_at: Date.now() },
-    props: { content_name: "AI Brand Scale Free Training", currency: "EUR", value: 0, priority: true },
+    props: { content_name: "AI Brand Scale Free Training", priority: true },
   };
   const body = JSON.stringify(payload);
   const headers: Record<string, string> = { "Content-Type": "application/json" };

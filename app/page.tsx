@@ -125,6 +125,8 @@ function StickyMobileCTA({ onOpen }: { onOpen: () => void }) {
 
 function WistiaPlayer({ mediaId, unlocked, onUnlock }: { mediaId: string; unlocked: boolean; onUnlock: () => void }) {
   const [scriptsLoaded, setScriptsLoaded] = useState(false);
+  const [videoStarted, setVideoStarted] = useState(false);
+  const [wistiaFailed, setWistiaFailed] = useState(false);
 
   useEffect(() => {
     if (scriptsLoaded) return;
@@ -146,6 +148,7 @@ function WistiaPlayer({ mediaId, unlocked, onUnlock }: { mediaId: string; unlock
       s.src = src;
       s.async = true;
       if (type) s.type = type;
+      s.onerror = () => setWistiaFailed(true);
       document.head.appendChild(s);
     });
     setScriptsLoaded(true);
@@ -153,7 +156,34 @@ function WistiaPlayer({ mediaId, unlocked, onUnlock }: { mediaId: string; unlock
     return () => { window.removeEventListener("unhandledrejection", swallow); };
   }, [scriptsLoaded, mediaId]);
 
-  // On unlock, tell the wistia-player to start immediately.
+  // Listen for Wistia's real 'play' event so we can hide the loading overlay
+  // exactly when the first frame begins playing (not on user click).
+  useEffect(() => {
+    let attached = false;
+    let cancelled = false;
+    let attempts = 0;
+    const onPlay = () => setVideoStarted(true);
+    const tryAttach = () => {
+      if (cancelled || attached) return;
+      const el = document.querySelector(`wistia-player[media-id="${mediaId}"]`);
+      if (el) {
+        el.addEventListener("play", onPlay);
+        attached = true;
+        return;
+      }
+      if (++attempts < 100) setTimeout(tryAttach, 100);
+    };
+    tryAttach();
+    return () => {
+      cancelled = true;
+      if (attached) {
+        const el = document.querySelector(`wistia-player[media-id="${mediaId}"]`);
+        el?.removeEventListener("play", onPlay);
+      }
+    };
+  }, [mediaId]);
+
+  // On unlock, tell the wistia-player to start immediately + watch for failure.
   useEffect(() => {
     if (!unlocked) return;
     let cancelled = false;
@@ -169,7 +199,17 @@ function WistiaPlayer({ mediaId, unlocked, onUnlock }: { mediaId: string; unlock
       if (attempt < 40) setTimeout(() => tryPlay(attempt + 1), 100);
     };
     tryPlay();
-    return () => { cancelled = true; };
+
+    // Failure fallback: if the custom element never registers, the Wistia
+    // scripts are blocked (ad-blocker / corporate firewall / mobile carrier).
+    const failTimer = setTimeout(() => {
+      if (cancelled) return;
+      if (typeof customElements !== "undefined" && !customElements.get("wistia-player")) {
+        setWistiaFailed(true);
+      }
+    }, 10000);
+
+    return () => { cancelled = true; clearTimeout(failTimer); };
   }, [unlocked, mediaId]);
 
   return (
@@ -195,11 +235,79 @@ function WistiaPlayer({ mediaId, unlocked, onUnlock }: { mediaId: string; unlock
           transform: unlocked ? "scale(1)" : "scale(1.04)",
           transition: "filter 600ms cubic-bezier(0.23,1,0.32,1), transform 600ms cubic-bezier(0.23,1,0.32,1)",
           pointerEvents: unlocked ? "auto" : "none",
+          backgroundImage: 'url("/assets/video-thumb-main.jpg")',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
         dangerouslySetInnerHTML={{
-          __html: `<wistia-player media-id="${mediaId}" aspect="1.7777777777777777"></wistia-player>`,
+          __html: `<wistia-player media-id="${mediaId}" aspect="1.7777777777777777" preload="auto"></wistia-player>`,
         }}
       />
+
+      {unlocked && !videoStarted && !wistiaFailed && (
+        <div
+          aria-hidden
+          style={{
+            position: "absolute",
+            inset: 0,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            background: "rgba(0,0,0,0.35)",
+            color: "#fff",
+            pointerEvents: "none",
+            transition: "opacity 280ms ease",
+          }}
+        >
+          <span className="spinner" style={{ width: 36, height: 36, borderWidth: 3 }} />
+        </div>
+      )}
+
+      {wistiaFailed && (
+        <div
+          role="alert"
+          style={{
+            position: "absolute",
+            inset: 0,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 14,
+            background: "rgba(8,4,20,0.92)",
+            padding: "24px 28px",
+            textAlign: "center",
+            color: "#fff",
+            fontFamily: "Manrope, sans-serif",
+          }}
+        >
+          <p style={{ margin: 0, fontSize: 14, lineHeight: 1.55, maxWidth: 480, color: "rgba(255,255,255,0.9)" }}>
+            Видеото не може да се зареди. Възможно е твоята мрежа или браузър да блокира видео плейъра.
+          </p>
+          <a
+            href={`https://fast.wistia.net/embed/iframe/${mediaId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              padding: "12px 22px",
+              borderRadius: 999,
+              background: "linear-gradient(180deg, rgba(123,47,190,0.95) 0%, rgba(85,43,105,0.95) 100%)",
+              border: "1px solid rgba(255,255,255,0.25)",
+              color: "#fff",
+              fontWeight: 700,
+              fontSize: 13,
+              letterSpacing: "0.04em",
+              textTransform: "uppercase",
+              textDecoration: "none",
+            }}
+          >
+            Отвори видеото в нов прозорец →
+          </a>
+        </div>
+      )}
 
       <button
         type="button"
@@ -1230,17 +1338,17 @@ function OptInModal({ open, onClose, onUnlock }: { open: boolean; onClose: () =>
       track("Lead", {
         event_id: leadEventId,
         user: { name: name.trim(), email: email.trim(), phone: `+359${phoneDigits}` },
-        props: { content_name: "AI Brand Scale Free Training", value: 0, currency: "EUR" },
+        props: { content_name: "AI Brand Scale Free Training" },
       });
       track("CompleteRegistration", {
         event_id: leadEventId + "-reg",
         user: { name: name.trim(), email: email.trim(), phone: `+359${phoneDigits}` },
-        props: { content_name: "AI Brand Scale Free Training", status: "completed", value: 0, currency: "EUR" },
+        props: { content_name: "AI Brand Scale Free Training", status: "completed" },
       });
       track("SubmitApplication", {
         event_id: leadEventId + "-app",
         user: { name: name.trim(), email: email.trim(), phone: `+359${phoneDigits}` },
-        props: { content_name: "AI Brand Scale Free Training", value: 0, currency: "EUR" },
+        props: { content_name: "AI Brand Scale Free Training" },
       });
       track("Modal_Submit_Success");
       try {

@@ -9,8 +9,11 @@ const TEST_CODE = process.env.META_TEST_EVENT_CODE;
 const WEBHOOK_URL = process.env.TRACKER_WEBHOOK_URL;
 const WEBHOOK_SECRET = process.env.TRACKER_WEBHOOK_SECRET;
 
-// Meta Standard events that map to CAPI
-const META_STANDARD = new Set([
+// Meta Standard events that map to CAPI. Mirrors the client-side whitelist
+// in lib/tracker.ts. Internal analytics events (Click, ScrollDepth, Modal_*,
+// RageClick, JSError, TouchStart, etc.) are NOT forwarded to Meta CAPI —
+// they only flow to the internal webhook.
+const META_CAPI_EVENTS = new Set([
   "PageView", "ViewContent", "Lead", "CompleteRegistration", "Contact",
   "InitiateCheckout", "Purchase", "AddToCart", "Search", "Subscribe",
   "AddPaymentInfo", "AddToWishlist", "FindLocation", "Schedule",
@@ -57,7 +60,7 @@ async function sendToCAPI(
   geo: { country?: string | null; city?: string | null; region?: string | null; zip?: string | null } = {},
 ) {
   if (!PIXEL_ID || !CAPI_TOKEN) return { skipped: "no_credentials" };
-  const isStandard = META_STANDARD.has(event.event_name);
+  if (!META_CAPI_EVENTS.has(event.event_name)) return { skipped: "not_meta_event" };
 
   const userData: Record<string, unknown> = {
     client_ip_address: ip || undefined,
@@ -80,7 +83,7 @@ async function sendToCAPI(
   for (const k of Object.keys(userData)) if (userData[k] == null) delete userData[k];
 
   const capiEvent = {
-    event_name: isStandard ? event.event_name : event.event_name,
+    event_name: event.event_name,
     event_time: Math.floor((event.timestamp || Date.now()) / 1000),
     event_id: event.event_id,
     event_source_url: event.page?.url,

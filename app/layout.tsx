@@ -93,6 +93,9 @@ export const metadata: Metadata = {
   verification: {
     // Add Google Search Console verification token here when available
     // google: "your-token",
+    other: {
+      "facebook-domain-verification": "z8dq8we2vp60ptkffm4xf16iqrxi9q",
+    },
   },
 };
 
@@ -262,7 +265,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           id="wistia-rejection-swallow"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
-            __html: `(function(){function isWistia(s){return typeof s==='string'&&(s.indexOf('wistia')>-1||s.indexOf('fast.wistia.com')>-1);}function shouldSwallow(args){try{for(var i=0;i<args.length;i++){var a=args[i];if(a==null)continue;var s=typeof a==='string'?a:(a&&(a.stack||a.message||(typeof a.toString==='function'&&a.toString())))||'';if(isWistia(s))return true;if(s&&s.indexOf('Failed to fetch')>-1)return true;}}catch(_){}return false;}function wrap(){var origErr=console.error;if(origErr&&origErr.__wistiaWrapped)return;var fn=function(){if(shouldSwallow(arguments))return;return origErr.apply(this,arguments);};fn.__wistiaWrapped=true;console.error=fn;var origWarn=console.warn;if(origWarn&&!origWarn.__wistiaWrapped){var fn2=function(){if(shouldSwallow(arguments))return;return origWarn.apply(this,arguments);};fn2.__wistiaWrapped=true;console.warn=fn2;}}wrap();setTimeout(wrap,0);setTimeout(wrap,500);setTimeout(wrap,1500);setTimeout(wrap,3000);window.addEventListener('unhandledrejection',function(e){var r=e.reason;if(r==null){e.preventDefault();e.stopImmediatePropagation&&e.stopImmediatePropagation();return;}var s=(r&&(r.stack||r.message||(typeof r.toString==='function'&&r.toString())))||'';if(isWistia(s)||(s&&s.indexOf('Failed to fetch')>-1)){e.preventDefault();e.stopImmediatePropagation&&e.stopImmediatePropagation();}},true);window.addEventListener('error',function(e){var src=(e&&e.filename)||'';var msg=(e&&e.message)||'';if(isWistia(src)||isWistia(msg)||(msg&&msg.indexOf('Failed to fetch')>-1)){e.preventDefault();e.stopImmediatePropagation&&e.stopImmediatePropagation();}},true);})();`,
+            __html: `(function(){function isWistia(s){return typeof s==='string'&&(s.indexOf('wistia')>-1||s.indexOf('fast.wistia.com')>-1);}function shouldSwallow(args){try{for(var i=0;i<args.length;i++){var a=args[i];if(a==null)continue;var s=typeof a==='string'?a:(a&&(a.stack||a.message||(typeof a.toString==='function'&&a.toString())))||'';if(isWistia(s))return true;}}catch(_){}return false;}function wrap(){var origErr=console.error;if(origErr&&origErr.__wistiaWrapped)return;var fn=function(){if(shouldSwallow(arguments))return;return origErr.apply(this,arguments);};fn.__wistiaWrapped=true;console.error=fn;var origWarn=console.warn;if(origWarn&&!origWarn.__wistiaWrapped){var fn2=function(){if(shouldSwallow(arguments))return;return origWarn.apply(this,arguments);};fn2.__wistiaWrapped=true;console.warn=fn2;}}wrap();setTimeout(wrap,0);setTimeout(wrap,500);setTimeout(wrap,1500);setTimeout(wrap,3000);window.addEventListener('unhandledrejection',function(e){var r=e.reason;if(r==null){e.preventDefault();e.stopImmediatePropagation&&e.stopImmediatePropagation();return;}var s=(r&&(r.stack||r.message||(typeof r.toString==='function'&&r.toString())))||'';if(isWistia(s)){e.preventDefault();e.stopImmediatePropagation&&e.stopImmediatePropagation();}},true);window.addEventListener('error',function(e){var src=(e&&e.filename)||'';var msg=(e&&e.message)||'';if(isWistia(src)||isWistia(msg)){e.preventDefault();e.stopImmediatePropagation&&e.stopImmediatePropagation();}},true);})();`,
           }}
         />
         <Script

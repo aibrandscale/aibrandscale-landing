@@ -152,8 +152,11 @@ function getState(): TrackerState {
   return state;
 }
 
-// Standard Meta events whitelist. Custom events go through trackCustom.
-const META_STANDARD = new Set([
+// Events that are forwarded to Meta Pixel + CAPI. Internal analytics events
+// (Click, ScrollDepth, Modal_Open, RageClick, JSError, TouchStart, etc.) are
+// sent only to our internal webhook to keep Pixel signal quality clean and
+// avoid Meta's "missing deduplication key" diagnostics.
+const META_PIXEL_EVENTS = new Set([
   "PageView",
   "ViewContent",
   "Lead",
@@ -173,6 +176,8 @@ const META_STANDARD = new Set([
   "CustomizeProduct",
   "Donate",
 ]);
+// All of these are also Meta-standard; trackCustom is no longer used.
+const META_STANDARD = META_PIXEL_EVENTS;
 
 export type TrackPayload = {
   event_id?: string;
@@ -230,8 +235,9 @@ export function track(eventName: string, payload: TrackPayload = {}): string {
     props: payload.props || {},
   };
 
-  // Fire Meta Pixel client-side
-  if (typeof window.fbq === "function") {
+  // Fire Meta Pixel client-side ONLY for whitelisted standard events.
+  // Internal analytics events go to our webhook only to keep Pixel clean.
+  if (typeof window.fbq === "function" && META_PIXEL_EVENTS.has(eventName)) {
     // Advanced Matching: if this event carries user PII, re-init pixel with
     // plaintext fields so the browser SDK hashes them and improves match quality.
     // Persists for subsequent fbq() calls in the same session.
@@ -254,11 +260,7 @@ export function track(eventName: string, payload: TrackPayload = {}): string {
     }
 
     const fbqProps = { ...(payload.props || {}), eventID: eventId };
-    if (META_STANDARD.has(eventName)) {
-      window.fbq("track", eventName, fbqProps, { eventID: eventId });
-    } else {
-      window.fbq("trackCustom", eventName, fbqProps, { eventID: eventId });
-    }
+    window.fbq("track", eventName, fbqProps, { eventID: eventId });
   }
 
   // Fire to /api/track (server-side proxy → CAPI + webhook)

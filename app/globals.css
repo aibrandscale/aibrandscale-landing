@@ -38,7 +38,7 @@ wistia-player:not(:defined) {
   display: block;
   width: 100%;
   aspect-ratio: 16 / 9;
-  background: center / contain no-repeat url("https://fast.wistia.com/embed/medias/fy5m3sogu1/swatch");
+  background: center / cover no-repeat url("/assets/video-thumb-main.jpg");
   filter: blur(5px);
 }
 
