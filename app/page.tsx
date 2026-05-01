@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import Image from "next/image";
 import { track } from "@/lib/tracker";
 import {
@@ -123,66 +123,81 @@ function StickyMobileCTA({ onOpen }: { onOpen: () => void }) {
   );
 }
 
-function WistiaPlayer({ mediaId, unlocked, onUnlock }: { mediaId: string; unlocked: boolean; onUnlock: () => void }) {
-  const [scriptsLoaded, setScriptsLoaded] = useState(false);
-  const [wistiaFailed, setWistiaFailed] = useState(false);
+type VimeoPlayerInstance = {
+  play: () => Promise<void>;
+  pause: () => Promise<void>;
+  ready: () => Promise<void>;
+};
+
+declare global {
+  interface Window {
+    Vimeo?: { Player: new (el: HTMLIFrameElement | HTMLElement) => VimeoPlayerInstance };
+  }
+}
+
+function VimeoPlayer({ videoId, unlocked, onUnlock }: { videoId: string; unlocked: boolean; onUnlock: () => void }) {
+  const [scriptLoaded, setScriptLoaded] = useState(false);
+  const [vimeoFailed, setVimeoFailed] = useState(false);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const playerRef = useRef<VimeoPlayerInstance | null>(null);
 
   useEffect(() => {
-    if (scriptsLoaded) return;
+    if (scriptLoaded) return;
+    const SRC = "https://player.vimeo.com/api/player.js";
+    if (document.querySelector(`script[src="${SRC}"]`)) {
+      if (window.Vimeo) setScriptLoaded(true);
+      else {
+        const i = setInterval(() => {
+          if (window.Vimeo) { setScriptLoaded(true); clearInterval(i); }
+        }, 100);
+        setTimeout(() => clearInterval(i), 10000);
+      }
+      return;
+    }
+    const s = document.createElement("script");
+    s.src = SRC;
+    s.async = true;
+    s.onload = () => setScriptLoaded(true);
+    s.onerror = () => setVimeoFailed(true);
+    document.head.appendChild(s);
+  }, [scriptLoaded]);
 
-    const swallow = (e: PromiseRejectionEvent) => {
-      if (e.reason === undefined || e.reason === null) { e.preventDefault(); return; }
-      const stack = (e.reason.stack || e.reason.toString?.() || "") + "";
-      if (stack.includes("wistia") || stack.includes("fast.wistia.com")) e.preventDefault();
-    };
-    window.addEventListener("unhandledrejection", swallow);
+  useEffect(() => {
+    if (!scriptLoaded || !iframeRef.current || playerRef.current) return;
+    if (!window.Vimeo) return;
+    try {
+      playerRef.current = new window.Vimeo.Player(iframeRef.current);
+    } catch {
+      setVimeoFailed(true);
+    }
+  }, [scriptLoaded]);
 
-    const scripts = [
-      { src: "https://fast.wistia.com/player.js", type: "" },
-      { src: `https://fast.wistia.com/embed/${mediaId}.js`, type: "module" },
-    ];
-    scripts.forEach(({ src, type }) => {
-      if (document.querySelector(`script[src="${src}"]`)) return;
-      const s = document.createElement("script");
-      s.src = src;
-      s.async = true;
-      if (type) s.type = type;
-      s.onerror = () => setWistiaFailed(true);
-      document.head.appendChild(s);
-    });
-    setScriptsLoaded(true);
-
-    return () => { window.removeEventListener("unhandledrejection", swallow); };
-  }, [scriptsLoaded, mediaId]);
-
-  // On unlock, tell the wistia-player to start immediately + watch for failure.
+  // On unlock, kick off playback + watch for failure if Vimeo is blocked.
   useEffect(() => {
     if (!unlocked) return;
     let cancelled = false;
     const tryPlay = (attempt = 0) => {
       if (cancelled) return;
-      const el = document.querySelector(`wistia-player[media-id="${mediaId}"]`) as
-        | (HTMLElement & { play?: () => void | Promise<void> })
-        | null;
-      if (el && typeof el.play === "function") {
-        try { el.play(); } catch {}
+      const player = playerRef.current;
+      if (player && typeof player.play === "function") {
+        player.play().catch(() => {});
         return;
       }
-      if (attempt < 40) setTimeout(() => tryPlay(attempt + 1), 100);
+      if (attempt < 60) setTimeout(() => tryPlay(attempt + 1), 100);
     };
     tryPlay();
 
-    // Failure fallback: if the custom element never registers, the Wistia
-    // scripts are blocked (ad-blocker / corporate firewall / mobile carrier).
+    // Failsafe: if the script or iframe fails to load (ad-blocker, corp firewall,
+    // mobile carrier blocking player.vimeo.com), surface a fallback link.
     const failTimer = setTimeout(() => {
       if (cancelled) return;
-      if (typeof customElements !== "undefined" && !customElements.get("wistia-player")) {
-        setWistiaFailed(true);
-      }
+      if (!playerRef.current) setVimeoFailed(true);
     }, 10000);
 
     return () => { cancelled = true; clearTimeout(failTimer); };
-  }, [unlocked, mediaId]);
+  }, [unlocked]);
+
+  const iframeSrc = `https://player.vimeo.com/video/${videoId}?dnt=1&playsinline=1&title=0&byline=0&portrait=0&pip=1`;
 
   return (
     <div
@@ -207,16 +222,20 @@ function WistiaPlayer({ mediaId, unlocked, onUnlock }: { mediaId: string; unlock
           transform: unlocked ? "scale(1)" : "scale(1.04)",
           transition: "filter 600ms cubic-bezier(0.23,1,0.32,1), transform 600ms cubic-bezier(0.23,1,0.32,1)",
           pointerEvents: unlocked ? "auto" : "none",
-          backgroundImage: 'url("/assets/video-thumb-main.jpg")',
-          backgroundSize: "cover",
-          backgroundPosition: "center",
         }}
-        dangerouslySetInnerHTML={{
-          __html: `<wistia-player media-id="${mediaId}" aspect="1.7777777777777777" preload="auto"></wistia-player>`,
-        }}
-      />
+      >
+        <iframe
+          ref={iframeRef}
+          src={iframeSrc}
+          title="AI Brand Scale — безплатно обучение"
+          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+          allowFullScreen
+          loading="eager"
+          style={{ width: "100%", height: "100%", display: "block", border: 0 }}
+        />
+      </div>
 
-      {wistiaFailed && (
+      {vimeoFailed && (
         <div
           role="alert"
           style={{
@@ -238,7 +257,7 @@ function WistiaPlayer({ mediaId, unlocked, onUnlock }: { mediaId: string; unlock
             Видеото не може да се зареди. Възможно е твоята мрежа или браузър да блокира видео плейъра.
           </p>
           <a
-            href={`https://fast.wistia.net/embed/iframe/${mediaId}`}
+            href={`https://vimeo.com/${videoId}`}
             target="_blank"
             rel="noopener noreferrer"
             style={{
@@ -427,7 +446,7 @@ function Hero({ onOpen, unlocked }: { onOpen: () => void; unlocked: boolean }) {
         </p>
 
         <div className="mt-12 mx-auto" style={{ width: "100%" }}>
-          <WistiaPlayer mediaId="fy5m3sogu1" unlocked={unlocked} onUnlock={handleUnlock} />
+          <VimeoPlayer videoId="1188388924" unlocked={unlocked} onUnlock={handleUnlock} />
         </div>
 
         {!unlocked && (

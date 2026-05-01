@@ -209,8 +209,8 @@ const jsonLdGraph = {
       description: "Видео обучение, което показва AI рекламната система за начинаещи.",
       thumbnailUrl: `${SITE_URL}/og.png`,
       uploadDate: "2026-01-01",
-      contentUrl: `https://fast.wistia.com/embed/medias/fy5m3sogu1.bin`,
-      embedUrl: `https://fast.wistia.com/embed/iframe/fy5m3sogu1`,
+      contentUrl: `https://vimeo.com/1188388924`,
+      embedUrl: `https://player.vimeo.com/video/1188388924`,
       inLanguage: "bg",
       publisher: { "@id": `${SITE_URL}#organization` },
     },
@@ -260,13 +260,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           strategy="beforeInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdGraph) }}
-        />
-        <Script
-          id="wistia-rejection-swallow"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `(function(){function isWistia(s){return typeof s==='string'&&(s.indexOf('wistia')>-1||s.indexOf('fast.wistia.com')>-1);}function shouldSwallow(args){try{for(var i=0;i<args.length;i++){var a=args[i];if(a==null)continue;var s=typeof a==='string'?a:(a&&(a.stack||a.message||(typeof a.toString==='function'&&a.toString())))||'';if(isWistia(s))return true;}}catch(_){}return false;}function wrap(){var origErr=console.error;if(origErr&&origErr.__wistiaWrapped)return;var fn=function(){if(shouldSwallow(arguments))return;return origErr.apply(this,arguments);};fn.__wistiaWrapped=true;console.error=fn;var origWarn=console.warn;if(origWarn&&!origWarn.__wistiaWrapped){var fn2=function(){if(shouldSwallow(arguments))return;return origWarn.apply(this,arguments);};fn2.__wistiaWrapped=true;console.warn=fn2;}}wrap();setTimeout(wrap,0);setTimeout(wrap,500);setTimeout(wrap,1500);setTimeout(wrap,3000);window.addEventListener('unhandledrejection',function(e){var r=e.reason;if(r==null){e.preventDefault();e.stopImmediatePropagation&&e.stopImmediatePropagation();return;}var s=(r&&(r.stack||r.message||(typeof r.toString==='function'&&r.toString())))||'';if(isWistia(s)){e.preventDefault();e.stopImmediatePropagation&&e.stopImmediatePropagation();}},true);window.addEventListener('error',function(e){var src=(e&&e.filename)||'';var msg=(e&&e.message)||'';if(isWistia(src)||isWistia(msg)){e.preventDefault();e.stopImmediatePropagation&&e.stopImmediatePropagation();}},true);})();`,
-          }}
         />
         <Script
           id="ms-clarity"
