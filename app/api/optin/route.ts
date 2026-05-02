@@ -19,30 +19,39 @@ function buildEmailHtml(name: string, educationUrl: string): string {
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="color-scheme" content="dark light" />
+<meta name="supported-color-schemes" content="dark light" />
 <title>Достъп до AI Brand Scale обучението</title>
+<style>
+  body, table, td { margin:0 !important; padding:0 !important; }
+  body { background:#0E0E10 !important; }
+  img { display:block; border:0; outline:none; text-decoration:none; -ms-interpolation-mode:bicubic; }
+  a img { border:0; outline:none; }
+</style>
 </head>
 <body style="margin:0;padding:0;background:#0E0E10;font-family:Manrope,Helvetica,Arial,sans-serif;color:#F9F9F9;">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#0E0E10;">
+<div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">${safeName}, отвори обучението от тук.</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#0E0E10;border-collapse:collapse;">
   <tr>
-    <td align="center" style="padding:24px 12px;">
-      <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;">
+    <td align="center" bgcolor="#0E0E10" style="background:#0E0E10;padding:0;">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;background:#0E0E10;border-collapse:collapse;">
         <tr>
-          <td align="center">
+          <td align="center" bgcolor="#0E0E10" style="background:#0E0E10;font-size:0;line-height:0;padding:0;">
             <a href="${safeUrl}" target="_blank" style="display:block;text-decoration:none;border:0;outline:none;">
-              <img src="${EMAIL_IMAGE_URL}" alt="${safeName}, отвори твоето безплатно AI Brand Scale обучение" width="600" style="display:block;width:100%;max-width:600px;height:auto;border:0;outline:none;text-decoration:none;border-radius:12px;" />
+              <img src="${EMAIL_IMAGE_URL}" alt="${safeName}, отвори твоето безплатно AI Brand Scale обучение" width="600" style="display:block;width:100%;max-width:600px;height:auto;border:0;outline:none;text-decoration:none;" />
             </a>
           </td>
         </tr>
         <tr>
-          <td align="center" style="padding:18px 16px 8px;">
-            <p style="margin:0;font-family:Manrope,Helvetica,Arial,sans-serif;font-size:12px;line-height:1.55;color:#7A7C82;">
+          <td align="center" bgcolor="#0E0E10" style="background:#0E0E10;padding:14px 16px 6px;">
+            <p style="margin:0;font-family:Manrope,Helvetica,Arial,sans-serif;font-size:12px;line-height:1.55;color:#6E6F75;">
               Ако картинката не се зарежда, <a href="${safeUrl}" style="color:#9D7DB5;text-decoration:underline;">отвори обучението от тук</a>.
             </p>
           </td>
         </tr>
         <tr>
-          <td align="center" style="padding:8px 16px 24px;">
-            <p style="margin:0;font-family:Manrope,Helvetica,Arial,sans-serif;font-size:11px;line-height:1.55;color:#5A5C62;">
+          <td align="center" bgcolor="#0E0E10" style="background:#0E0E10;padding:6px 16px 22px;">
+            <p style="margin:0;font-family:Manrope,Helvetica,Arial,sans-serif;font-size:11px;line-height:1.55;color:#4E4F55;">
               © ${new Date().getFullYear()} aibrandscale.io
             </p>
           </td>
