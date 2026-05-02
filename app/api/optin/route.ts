@@ -1,7 +1,106 @@
 import { NextRequest, NextResponse } from "next/server";
 import crypto from "crypto";
+import { buildEducationUrl } from "@/lib/education-token";
 
 export const runtime = "nodejs";
+
+const SITE_URL = process.env.EDUCATION_PUBLIC_URL || "https://aibrandscale.io";
+const EMAIL_IMAGE_URL = `${SITE_URL}/email-training.jpg`;
+
+function escapeHtml(s: string): string {
+  return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]!));
+}
+
+function buildEmailHtml(name: string, educationUrl: string): string {
+  const safeName = escapeHtml(name);
+  const safeUrl = escapeHtml(educationUrl);
+  return `<!doctype html>
+<html lang="bg">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Достъп до AI Brand Scale обучението</title>
+</head>
+<body style="margin:0;padding:0;background:#0E0E10;font-family:Manrope,Helvetica,Arial,sans-serif;color:#F9F9F9;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#0E0E10;">
+  <tr>
+    <td align="center" style="padding:24px 12px;">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;">
+        <tr>
+          <td align="center">
+            <a href="${safeUrl}" target="_blank" style="display:block;text-decoration:none;border:0;outline:none;">
+              <img src="${EMAIL_IMAGE_URL}" alt="${safeName}, отвори твоето безплатно AI Brand Scale обучение" width="600" style="display:block;width:100%;max-width:600px;height:auto;border:0;outline:none;text-decoration:none;border-radius:12px;" />
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td align="center" style="padding:18px 16px 8px;">
+            <p style="margin:0;font-family:Manrope,Helvetica,Arial,sans-serif;font-size:12px;line-height:1.55;color:#7A7C82;">
+              Ако картинката не се зарежда, <a href="${safeUrl}" style="color:#9D7DB5;text-decoration:underline;">отвори обучението от тук</a>.
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td align="center" style="padding:8px 16px 24px;">
+            <p style="margin:0;font-family:Manrope,Helvetica,Arial,sans-serif;font-size:11px;line-height:1.55;color:#5A5C62;">
+              © ${new Date().getFullYear()} aibrandscale.io
+            </p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</body>
+</html>`;
+}
+
+function buildEmailText(name: string, educationUrl: string): string {
+  return `Здравей, ${name}!
+
+Достъпът ти до безплатното AI Brand Scale обучение е готов:
+${educationUrl}
+
+— AI Brand Scale
+`;
+}
+
+async function sendEducationEmail(data: { name: string; email: string }) {
+  const apiKey = process.env.RESEND_API_KEY;
+  const from = process.env.RESEND_FROM_EMAIL;
+  if (!apiKey || !from) return { skipped: "no_resend_config" };
+
+  let educationUrl: string;
+  try {
+    educationUrl = buildEducationUrl(SITE_URL, data.email);
+  } catch {
+    return { skipped: "no_token_secret" };
+  }
+
+  const subject = `${data.name}, достъпът ти до AI Brand Scale обучението`;
+  const payload = {
+    from,
+    to: [data.email],
+    subject,
+    html: buildEmailHtml(data.name, educationUrl),
+    text: buildEmailText(data.name, educationUrl),
+  };
+
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(8000),
+    });
+    return { ok: res.ok, status: res.status };
+  } catch (err) {
+    return { ok: false, error: String(err) };
+  }
+}
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 
@@ -155,6 +254,7 @@ export async function POST(req: NextRequest) {
   await Promise.all([
     forwardLead({ name: result.name, email: result.email, phone: result.phone, event_id: eventId }, meta).catch(() => {}),
     forwardToSheet({ name: result.name, email: result.email, phone: result.phone, event_id: eventId }, { ...meta, url: refUrl }).catch(() => {}),
+    sendEducationEmail({ name: result.name, email: result.email }).catch(() => {}),
   ]);
 
   return NextResponse.json({ ok: true });

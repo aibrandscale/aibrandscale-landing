@@ -1,7 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 import { PurpleAlertNav } from "../_design";
+import { verifyEducationToken } from "@/lib/education-token";
 
 const SITE_URL = "https://aibrandscale.io";
 const VIMEO_ID = "1188615739";
@@ -63,7 +65,23 @@ const blocks = [
   },
 ];
 
-export default function EducationPage() {
+type SearchParams = Promise<Record<string, string | string[] | undefined>>;
+
+export default async function EducationPage({ searchParams }: { searchParams: SearchParams }) {
+  const params = await searchParams;
+  const e = typeof params.e === "string" ? params.e : "";
+  const t = typeof params.t === "string" ? params.t : "";
+
+  let allowed = false;
+  try {
+    allowed = verifyEducationToken(e, t);
+  } catch {
+    allowed = false;
+  }
+  if (!allowed) {
+    redirect("/");
+  }
+
   const iframeSrc = `https://player.vimeo.com/video/${VIMEO_ID}?dnt=1&playsinline=1&title=0&byline=0&portrait=0&pip=1`;
 
   return (
