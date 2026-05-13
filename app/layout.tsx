@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import TrackerInit from "./_tracker-init";
 
@@ -280,6 +281,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <TrackerInit />
         {children}
+        <Analytics />
       </body>
     </html>
   );
